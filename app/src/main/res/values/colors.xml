@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/PolyGreen</color>
+    <color name="colorPrimaryDark">@color/PolyGreenDark</color>
+    <color name="colorAccent">@color/PolyGreen</color>
+
+    <color name="PolyGreen">#319b3d</color>
+    <color name="PolyGreenDark">#267a30</color>
+    <color name="PolyGreenLight">#37b34a</color>
+</resources>
