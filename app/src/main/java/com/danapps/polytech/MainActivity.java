@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -24,6 +25,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.zip.Inflater;
+
 public class MainActivity extends FragmentActivity /*implements OnMapReadyCallback */ {
 
 
@@ -40,13 +43,7 @@ public class MainActivity extends FragmentActivity /*implements OnMapReadyCallba
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        /*
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        assert mapFragment != null;
-        mapFragment.getMapAsync(this);
 
-
-         */
         fm.beginTransaction().add(R.id.frame_layout, navigationFragment, "2").hide(navigationFragment).commit();
         fm.beginTransaction().add(R.id.frame_layout, scheduleFragment, "3").hide(scheduleFragment).commit();
         fm.beginTransaction().add(R.id.frame_layout, schemeFragment, "4").hide(schemeFragment).commit();
@@ -91,13 +88,4 @@ public class MainActivity extends FragmentActivity /*implements OnMapReadyCallba
             }
         });
     }
-/*
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        LatLng sydney = new LatLng(60.007234, 30.372781);
-        googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        googleMap.setMyLocationEnabled(true);
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 16f));
-    }
- */
 }
