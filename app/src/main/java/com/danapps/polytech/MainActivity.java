@@ -6,28 +6,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.danapps.polytech.BottomMenuFragments.EventFragment;
 import com.danapps.polytech.BottomMenuFragments.MenuFragment;
 import com.danapps.polytech.BottomMenuFragments.NavigationFragment;
 import com.danapps.polytech.BottomMenuFragments.ScheduleFragment;
 import com.danapps.polytech.BottomMenuFragments.SchemeFragment;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.zip.Inflater;
-
-public class MainActivity extends FragmentActivity /*implements OnMapReadyCallback */ {
+public class MainActivity extends AppCompatActivity {
 
 
     FragmentManager fm = getSupportFragmentManager();
