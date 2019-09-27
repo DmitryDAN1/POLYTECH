@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "368110203570",
+    "firebase_url": "https://polytech-bd5e7.firebaseio.com",
+    "project_id": "polytech-bd5e7",
+    "storage_bucket": "polytech-bd5e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:368110203570:android:10fb52ba225d5618080fab",
+        "android_client_info": {
+          "package_name": "com.danapps.polytech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "368110203570-v749o15j7c7d0p3udv3eq0rgsaghamdo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.danapps.polytech",
+            "certificate_hash": "b1817e460666eefb1781a90c749080ad5d7df488"
+          }
+        },
+        {
+          "client_id": "368110203570-k8575dciuljm20jtigoc3psk9e9lekkt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBznGki3TrZJGB_xLgShJHymbkDFI2U70k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "368110203570-k8575dciuljm20jtigoc3psk9e9lekkt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
