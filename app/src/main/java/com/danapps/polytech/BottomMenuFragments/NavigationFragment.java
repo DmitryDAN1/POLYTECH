@@ -17,6 +17,7 @@ public class NavigationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         @SuppressLint("InflateParams") View v = inflater.inflate(R.layout.fragment_navigation, null);
 
+
         return v;
     }
 
