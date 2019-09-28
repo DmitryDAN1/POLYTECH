@@ -5,7 +5,11 @@
     <color name="colorAccent">@color/PolyGreen</color>
 
     <color name="PolyWhiteDark">#dbdbdb</color>
+    <color name="PolyWhiteLight">#F3F2F2</color>
+
     <color name="PolyGreen">#319b3d</color>
     <color name="PolyGreenDark">#267a30</color>
     <color name="PolyGreenLight">#37b34a</color>
+
+    <color name="PolyBlack">#2E2E2E</color>
 </resources>

@@ -11,23 +11,10 @@
         android:id="@+id/frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottom_navigation_view" />
-    <!--
-        <Button
-            android:id="@+id/load_btn"
-            android:text="LOAD"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        android:layout_above="@id/bottom_navigation_view_line" />
 
-        <fragment
-            android:id="@+id/nav_map_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/load_btn"
-            android:layout_above="@id/bottom_navigation_view"
-            android:name="com.google.android.gms.maps.MapFragment" />
-    -->
     <View
+        android:id="@+id/bottom_navigation_view_line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_above="@+id/bottom_navigation_view"
