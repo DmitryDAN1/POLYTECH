@@ -51,7 +51,7 @@ public class Scheduler {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                listener.onError(new SchedulerError(error.getMessage(), SchedulerErrorType.ParsingFailed));
+                listener.onError(new SchedulerError(error.getMessage(), SchedulerErrorType.NetworkFailed));
             }
         });
 
