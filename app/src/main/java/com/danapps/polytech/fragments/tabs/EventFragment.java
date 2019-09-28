@@ -1,4 +1,4 @@
-package com.danapps.polytech.BottomMenuFragments;
+package com.danapps.polytech.fragments.tabs;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -11,12 +11,13 @@ import android.view.ViewGroup;
 
 import com.danapps.polytech.R;
 
-
-public class SchemeFragment extends Fragment {
+public class EventFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        @SuppressLint("InflateParams") View v = inflater.inflate(R.layout.fragment_scheme, null);
+        @SuppressLint("InflateParams") View v = inflater.inflate(R.layout.fragment_event, null);
+
+
 
         return v;
     }

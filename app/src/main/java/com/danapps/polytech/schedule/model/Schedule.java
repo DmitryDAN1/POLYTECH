@@ -1,4 +1,4 @@
-package com.danapps.polytech.schedule;
+package com.danapps.polytech.schedule.model;
 
 import java.util.List;
 

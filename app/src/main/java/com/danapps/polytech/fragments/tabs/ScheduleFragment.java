@@ -1,4 +1,4 @@
-package com.danapps.polytech.BottomMenuFragments;
+package com.danapps.polytech.fragments.tabs;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -10,11 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.danapps.polytech.R;
-import com.danapps.polytech.schedule.Ruz;
-import com.danapps.polytech.schedule.Schedule;
 import com.danapps.polytech.schedule.Scheduler;
 import com.danapps.polytech.schedule.SchedulerError;
-import com.danapps.polytech.schedule.Week;
+import com.danapps.polytech.schedule.Ruz;
+import com.danapps.polytech.schedule.model.Schedule;
+import com.danapps.polytech.schedule.model.Week;
 
 public class ScheduleFragment extends Fragment {
     private Ruz ruz;

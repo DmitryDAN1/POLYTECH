@@ -1,23 +1,22 @@
-package com.danapps.polytech;
+package com.danapps.polytech.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.danapps.polytech.BottomMenuFragments.EventFragment;
-import com.danapps.polytech.BottomMenuFragments.MenuFragment;
-import com.danapps.polytech.BottomMenuFragments.NavigationFragment;
-import com.danapps.polytech.BottomMenuFragments.ScheduleFragment;
-import com.danapps.polytech.BottomMenuFragments.SchemeFragment;
+import com.danapps.polytech.R;
+import com.danapps.polytech.fragments.tabs.EventFragment;
+import com.danapps.polytech.fragments.tabs.MenuFragment;
+import com.danapps.polytech.fragments.tabs.NavigationFragment;
+import com.danapps.polytech.fragments.tabs.ScheduleFragment;
+import com.danapps.polytech.fragments.tabs.SchemeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-
 
     FragmentManager fm = getSupportFragmentManager();
 
@@ -27,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private final SchemeFragment schemeFragment = new SchemeFragment();
     private final MenuFragment menuFragment = new MenuFragment();
     private Fragment currentFragment;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

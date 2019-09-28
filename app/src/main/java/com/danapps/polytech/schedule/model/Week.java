@@ -1,4 +1,4 @@
-package com.danapps.polytech.schedule;
+package com.danapps.polytech.schedule.model;
 
 import com.google.gson.annotations.SerializedName;
 

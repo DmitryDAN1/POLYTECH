@@ -1,4 +1,4 @@
-package com.danapps.polytech.BottomMenuFragments;
+package com.danapps.polytech.fragments.tabs;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;

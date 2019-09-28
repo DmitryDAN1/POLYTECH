@@ -4,11 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BottomMenuFragments.NavigationFragment">
+    tools:context=".fragments.tabs.NavigationFragment">
 
-        <com.google.android.gms.maps.MapView
-            android:id="@+id/nav_map_view"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
 
+                <Button
+                    android:id="@+id/load_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                        android:text="load" />
+
+                <com.google.android.gms.maps.MapView
+                    android:layout_below="@id/load_btn"
+                    android:id="@+id/nav_map_view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+        </RelativeLayout>
 </FrameLayout>

@@ -1,12 +1,17 @@
-package com.danapps.polytech.schedule;
+package com.danapps.polytech.schedule.model;
 
-public class TypeObj {
+public class Building {
     private String abbr;
+    private String address;
     private int id;
     private String name;
 
     public String getAbbr() {
         return abbr;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public int getId() {

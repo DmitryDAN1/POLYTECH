@@ -1,6 +1,5 @@
-package com.danapps.polytech.schedule;
+package com.danapps.polytech.schedule.model;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class Day {
