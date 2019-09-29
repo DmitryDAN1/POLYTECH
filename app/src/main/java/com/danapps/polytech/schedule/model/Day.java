@@ -1,13 +1,15 @@
 package com.danapps.polytech.schedule.model;
 
+import com.danapps.polytech.schedule.date.ScheduleDate;
+
 import java.util.List;
 
 public class Day {
-    private String date;
+    private ScheduleDate date;
     private List<Lesson> lessons;
     private int weekday;
 
-    public String getDate() {
+    public ScheduleDate getDate() {
         return date;
     }
 

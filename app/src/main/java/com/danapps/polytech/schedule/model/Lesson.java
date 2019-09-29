@@ -1,5 +1,6 @@
 package com.danapps.polytech.schedule.model;
 
+import com.danapps.polytech.schedule.time.ScheduleTime;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -15,9 +16,9 @@ public class Lesson {
     private String subjectShort;
     private List<Teacher> teachers;
     @SerializedName("time_end")
-    private String timeEnd;
+    private ScheduleTime timeEnd;
     @SerializedName("time_start")
-    private String timeStart;
+    private ScheduleTime timeStart;
     private int type;
     private TypeObj typeObj;
 
@@ -49,11 +50,11 @@ public class Lesson {
         return teachers;
     }
 
-    public String getTimeEnd() {
+    public ScheduleTime getTimeEnd() {
         return timeEnd;
     }
 
-    public String getTimeStart() {
+    public ScheduleTime getTimeStart() {
         return timeStart;
     }
 

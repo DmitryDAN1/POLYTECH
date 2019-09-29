@@ -29,12 +29,12 @@ public class ScheduleFragment extends Fragment {
 
         scheduler.querySchedule(28971, null, new Scheduler.Listener() {
             @Override
-            public void onReady(Schedule schedule) {
+            public void onResponseReady(Schedule schedule) {
                 Week week = schedule.getWeek();
             }
 
             @Override
-            public void onError(SchedulerError error) {
+            public void onResponseError(SchedulerError error) {
                 String message = error.getMessage();
             }
         });

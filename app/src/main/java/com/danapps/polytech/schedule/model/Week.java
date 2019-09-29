@@ -1,20 +1,21 @@
 package com.danapps.polytech.schedule.model;
 
+import com.danapps.polytech.schedule.date.ScheduleDate;
 import com.google.gson.annotations.SerializedName;
 
 public class Week {
     @SerializedName("date_end")
-    private String dateEnd;
+    private ScheduleDate dateEnd;
     @SerializedName("date_start")
-    private String dateStart;
+    private ScheduleDate dateStart;
     @SerializedName("is_odd")
     private boolean isOdd;
 
-    public String getDateEnd() {
+    public ScheduleDate getDateEnd() {
         return dateEnd;
     }
 
-    public String getDateStart() {
+    public ScheduleDate getDateStart() {
         return dateStart;
     }
 
