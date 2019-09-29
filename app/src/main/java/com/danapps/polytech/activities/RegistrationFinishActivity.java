@@ -21,19 +21,13 @@ import java.util.Objects;
 public class RegistrationFinishActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    SharedPreferences sPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_finish);
 
-        sPref = getPreferences(MODE_PRIVATE);
-
-        Log.e("TEST", sPref.getString("timeEmail", ""));
-        Log.e("TEST", sPref.getString("timePass", ""));
-
-        mAuth.createUserWithEmailAndPassword(sPref.getString("timeEmail", ""), sPref.getString("timePass", "")).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+        mAuth.createUserWithEmailAndPassword(getSharedPreferences("timeEmail", MODE_PRIVATE).getString("timeEmail", ""), getSharedPreferences("timePass", MODE_PRIVATE).getString("timePass", "")).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
                 Objects.requireNonNull(authResult.getUser()).sendEmailVerification();
@@ -49,8 +43,8 @@ public class RegistrationFinishActivity extends AppCompatActivity {
         findViewById(R.id.reg_finishBTN).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // sPref.edit().remove("timeEmail").apply();
-                // sPref.edit().remove("timePass").apply();
+                getSharedPreferences("timeEmail", MODE_PRIVATE).edit().remove("timeEmail").apply();
+                getSharedPreferences("timePass", MODE_PRIVATE).edit().remove("timePass").apply();
                 startActivity(new Intent(RegistrationFinishActivity.this, AuthActivity.class));
             }
         });

@@ -44,24 +44,6 @@ public class AuthActivity extends AppCompatActivity {
         Toast.makeText(getBaseContext(),sPref.getString("timeEmail", "") + sPref.getString("timeEmail", ""), Toast.LENGTH_LONG).show();
 
 
-        /*
-        if (!sPref.getString("userLogin", "").isEmpty())
-        {
-            mAuth.signInWithEmailAndPassword(sPref.getString("userLogin", ""), sPref.getString("userPass", "")).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                @Override
-                public void onSuccess(AuthResult authResult) {
-                    startActivity(new Intent(AuthActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Snackbar.make(Objects.requireNonNull(getCurrentFocus()), "Не можем войти в аккаунт :(\nПроверьте интернет соединение!", Snackbar.LENGTH_LONG);
-                }
-            });
-        }
-
-         */
-
         findViewById(R.id.LogBTN).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -81,7 +63,7 @@ public class AuthActivity extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Snackbar.make(v, "Неудачный вход!", Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(v, e.getLocalizedMessage(), Snackbar.LENGTH_SHORT).show();
                     }
                 });
             }

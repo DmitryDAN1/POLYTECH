@@ -30,7 +30,7 @@ public class RegistrationEmailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_email);
 
-        sPref = getPreferences(MODE_PRIVATE);
+
 
         emailTIL = findViewById(R.id.reg_emailTIL);
         emailET = findViewById(R.id.reg__email_emailET);
@@ -56,7 +56,7 @@ public class RegistrationEmailActivity extends AppCompatActivity {
                             if (e.getMessage().equals("The password is invalid or the user does not have a password."))
                                 emailTIL.setError("Данная электронная почта уже зарегестрирована!");
                             else {
-                                sPref.edit().putString("timeEmail", emailET.getText().toString()).apply();
+                                getSharedPreferences("timeEmail", MODE_PRIVATE).edit().putString("timeEmail", emailET.getText().toString()).apply();
                                 startActivity(new Intent(RegistrationEmailActivity.this, RegistrationPassActivity.class));
                             }
                         }

@@ -18,7 +18,6 @@ public class RegistrationPassActivity extends AppCompatActivity {
     TextInputLayout passTIL;
     EditText passET;
 
-    SharedPreferences sPref;
     TextView showPassBTN;
     boolean isPassShow = false;
 
@@ -26,8 +25,6 @@ public class RegistrationPassActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_pass);
-
-        sPref = getPreferences(MODE_PRIVATE);
 
         showPassBTN = findViewById(R.id.reg_showPassBTN);
         passET = findViewById(R.id.reg_pass_passET);
@@ -54,7 +51,8 @@ public class RegistrationPassActivity extends AppCompatActivity {
                 }
 
                 if (checker) {
-                    sPref.edit().putString("timePass", passET.getText().toString()).apply();
+
+                    getSharedPreferences("timePass", MODE_PRIVATE).edit().putString("timePass", passET.getText().toString()).apply();
                     startActivity(new Intent(RegistrationPassActivity.this, RegistrationFinishActivity.class));
                 }
             }
