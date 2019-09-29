@@ -1,9 +1,8 @@
-package com.danapps.polytech.activities;
+package com.danapps.polytech.activities.registration;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -33,7 +32,7 @@ public class RegistrationPassActivity extends AppCompatActivity {
         findViewById(R.id.reg_pass_backBTN).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegistrationPassActivity.this, AuthActivity.class));
+                startActivity(new Intent(RegistrationPassActivity.this, RegistrationEmailActivity.class));
             }
         });
 
@@ -72,6 +71,11 @@ public class RegistrationPassActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(RegistrationPassActivity.this, RegistrationEmailActivity.class));
     }
 }
 

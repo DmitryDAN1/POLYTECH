@@ -4,7 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.registration.RegistrationFinishActivity">
+    tools:context=".activities.ResetPassActivity">
+
+
+    <ImageView
+        android:id="@+id/reset_email_backBTN"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_arrow_back_green"/>
 
     <RelativeLayout
         android:layout_alignParentBottom="true"
@@ -15,10 +26,10 @@
 
 
         <TextView
-            android:id="@+id/enterPassText"
+            android:id="@+id/reset_enterEmailText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Подтвердите почту"
+            android:text="@string/enter_email"
             android:textStyle="bold"
             android:textSize="30sp"
             android:gravity="center"
@@ -27,21 +38,41 @@
             android:textColor="@color/PolyBlack"/>
 
         <TextView
-            android:id="@+id/enterPassHint"
+            android:id="@+id/reset_enterEmailHint"
             android:layout_marginTop="15dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
-            android:layout_below="@id/enterPassText"
+            android:layout_below="@id/reset_enterEmailText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="19sp"
             android:gravity="center"
-            android:text="Проверьте свою почту, чтобы завершить регистрацию" />
+            android:text="@string/reset_pass_subtext" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/reset_emailTIL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_below="@id/reset_enterEmailHint"
+            app:hintEnabled="false"
+            app:errorEnabled="true" >
+
+            <EditText
+                android:gravity="center"
+                android:id="@+id/reset_email_emailET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
     </RelativeLayout>
 
     <Button
-        android:id="@+id/reg_finishBTN"
+        android:id="@+id/reset_emailBTN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -49,7 +80,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/reg_btn"
-        android:text="@string/finish_registration"
+        android:text="@string/next_step"
         android:textColor="@android:color/white"
         android:textSize="16sp" />
 

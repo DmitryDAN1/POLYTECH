@@ -15,4 +15,5 @@
     <string name="enter_pass">Введите пароль</string>
     <string name="show_pass">Показать пароль</string>
     <string name="finish_registration">Завершить регистрацию</string>
+    <string name="reset_pass_subtext">На почту будет отправлено письмо с инструкцией по сбросу пароля</string>
 </resources>

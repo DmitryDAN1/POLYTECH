@@ -11,17 +11,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.RegistrationFinishActivity"></activity>
-        <activity android:name=".activities.RegistrationPassActivity" />
-        <activity android:name=".activities.RegistrationEmailActivity" />
-        <activity android:name=".activities.AuthActivity">
+        <activity android:name=".activities.ResetFinishActivity"></activity>
+        <activity android:name=".activities.ResetPassActivity" />
+        <activity android:name=".activities.registration.RegistrationFinishActivity" />
+        <activity android:name=".activities.registration.RegistrationPassActivity" />
+        <activity android:name=".activities.registration.RegistrationEmailActivity" />
+        <activity
+            android:name=".activities.AuthActivity"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MainActivity">
+        <activity
+            android:name=".activities.MainActivity"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -34,10 +40,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
 </manifest>

@@ -1,16 +1,15 @@
-package com.danapps.polytech.activities;
+package com.danapps.polytech.activities.registration;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.danapps.polytech.R;
+import com.danapps.polytech.activities.AuthActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -27,7 +26,7 @@ public class RegistrationFinishActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_finish);
 
-        mAuth.createUserWithEmailAndPassword(getSharedPreferences("timeEmail", MODE_PRIVATE).getString("timeEmail", ""), getSharedPreferences("timePass", MODE_PRIVATE).getString("timePass", "")).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+        mAuth.createUserWithEmailAndPassword(getSharedPreferences("timeEmail", MODE_PRIVATE).getString("timeEmail", "0"), getSharedPreferences("timePass", MODE_PRIVATE).getString("timePass", "0")).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
                 Objects.requireNonNull(authResult.getUser()).sendEmailVerification();
@@ -49,5 +48,10 @@ public class RegistrationFinishActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(RegistrationFinishActivity.this, AuthActivity.class));
     }
 }

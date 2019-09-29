@@ -1,19 +1,16 @@
-package com.danapps.polytech.activities;
+package com.danapps.polytech.activities.registration;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.danapps.polytech.R;
+import com.danapps.polytech.activities.AuthActivity;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -23,14 +20,10 @@ public class RegistrationEmailActivity extends AppCompatActivity {
     TextInputLayout emailTIL;
     EditText emailET;
 
-    SharedPreferences sPref;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_email);
-
-
 
         emailTIL = findViewById(R.id.reg_emailTIL);
         emailET = findViewById(R.id.reg__email_emailET);
@@ -64,5 +57,10 @@ public class RegistrationEmailActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(RegistrationEmailActivity.this, AuthActivity.class));
     }
 }
