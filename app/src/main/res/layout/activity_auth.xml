@@ -6,7 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.AuthActivity"
-    android:background="@color/PolyWhiteLight">
+    android:background="@android:color/white">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@id/emailTIL"
+        android:src="@drawable/logopolytech"
+        android:scaleType="centerInside" />
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -37,7 +47,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="10dp"
-        android:layout_above="@id/authLL"
+        android:layout_above="@id/LogBTN"
         app:hintEnabled="false"
         app:errorEnabled="true" >
 
@@ -51,46 +61,38 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <LinearLayout
-        android:id="@+id/authLL"
-        android:layout_marginBottom="10dp"
-        android:layout_above="@id/reset_pass"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="5">
-
         <Button
             android:id="@+id/LogBTN"
+            android:layout_marginBottom="15dp"
+            android:layout_above="@id/RegBTN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:text="@string/login_hint"
             android:textColor="@color/PolyGreen"
             android:textSize="14sp"
-            android:background="@drawable/log_btn"
-            android:layout_weight="3"/>
+            android:background="@drawable/log_btn"/>
 
         <Button
             android:id="@+id/RegBTN"
-            android:layout_marginLeft="10dp"
+            android:layout_above="@id/reset_pass"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/register_hint"
             android:textColor="@android:color/white"
             android:textSize="14sp"
-            android:background="@drawable/reg_btn"
-            android:layout_weight="2"/>
-
-    </LinearLayout>
+            android:background="@drawable/reg_btn" />
 
     <TextView
         android:id="@+id/reset_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
         android:textSize="15sp"
         android:textColor="@color/PolyGreen"

@@ -9,4 +9,10 @@
     <string name="login_hint">Войти</string>
     <string name="register_hint">Зарегестрироваться</string>
     <string name="reset_pass_hint">Забыли пароль?</string>
+    <string name="next_step">Продолжить</string>
+    <string name="enter_email">Введите e-mail</string>
+    <string name="email_use">Электронная почта будет использоваться для авторизации</string>
+    <string name="enter_pass">Введите пароль</string>
+    <string name="show_pass">Показать пароль</string>
+    <string name="finish_registration">Завершить регистрацию</string>
 </resources>
