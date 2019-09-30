@@ -1,4 +1,4 @@
-package com.danapps.polytech.activities;
+package com.danapps.polytech.activities.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,7 +15,7 @@ public class ResetFinishActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_finish);
 
-        findViewById(R.id.reset_finishBTN).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.reset_finish_nextBTN).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ResetFinishActivity.this, AuthActivity.class));

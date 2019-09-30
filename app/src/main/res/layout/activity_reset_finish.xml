@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.ResetFinishActivity">
+    tools:context=".activities.auth.ResetFinishActivity">
 
     <RelativeLayout
         android:layout_alignParentBottom="true"
@@ -15,10 +15,10 @@
 
 
         <TextView
-            android:id="@+id/enterPassText"
+            android:id="@+id/reset_finish_mainText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Проверьте почту"
+            android:text="@string/reset_finish_mainText"
             android:textStyle="bold"
             android:textSize="30sp"
             android:gravity="center"
@@ -27,21 +27,21 @@
             android:textColor="@color/PolyBlack"/>
 
         <TextView
-            android:id="@+id/enterPassHint"
+            android:id="@+id/reset_finish_subText"
             android:layout_marginTop="15dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
-            android:layout_below="@id/enterPassText"
+            android:layout_below="@id/reset_finish_mainText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="19sp"
             android:gravity="center"
-            android:text="Сообщение с инструкцией по сбросу пороля отправлено" />
+            android:text="@string/reset_finish_subText" />
 
     </RelativeLayout>
 
     <Button
-        android:id="@+id/reset_finishBTN"
+        android:id="@+id/reset_finish_nextBTN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -49,7 +49,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/reg_btn"
-        android:text="Авторизоваться"
+        android:text="@string/reset_finish_nextBTN"
         android:textColor="@android:color/white"
         android:textSize="16sp" />
 

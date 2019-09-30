@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.ResetPassActivity">
+    tools:context=".activities.auth.ResetPassActivity">
 
 
     <ImageView
-        android:id="@+id/reset_email_backBTN"
+        android:id="@+id/reset_pass_backBTN"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
         android:layout_width="wrap_content"
@@ -26,10 +26,10 @@
 
 
         <TextView
-            android:id="@+id/reset_enterEmailText"
+            android:id="@+id/reset_pass_mainText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/enter_email"
+            android:text="@string/reg_email_mainText"
             android:textStyle="bold"
             android:textSize="30sp"
             android:gravity="center"
@@ -38,31 +38,31 @@
             android:textColor="@color/PolyBlack"/>
 
         <TextView
-            android:id="@+id/reset_enterEmailHint"
+            android:id="@+id/rese_pass_subText"
             android:layout_marginTop="15dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
-            android:layout_below="@id/reset_enterEmailText"
+            android:layout_below="@id/reset_pass_mainText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="19sp"
             android:gravity="center"
-            android:text="@string/reset_pass_subtext" />
+            android:text="@string/reset_pass_subText" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/reset_emailTIL"
+            android:id="@+id/reset_pass_emailTIL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
-            android:layout_below="@id/reset_enterEmailHint"
+            android:layout_below="@id/rese_pass_subText"
             app:hintEnabled="false"
             app:errorEnabled="true" >
 
             <EditText
                 android:gravity="center"
-                android:id="@+id/reset_email_emailET"
+                android:id="@+id/reset_pass_emailET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress" />
@@ -72,7 +72,7 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/reset_emailBTN"
+        android:id="@+id/reset_pass_nextBTN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

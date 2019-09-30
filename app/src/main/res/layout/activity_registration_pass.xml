@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.registration.RegistrationPassActivity">
+    tools:context=".activities.auth.RegistrationPassActivity">
 
 
     <ImageView
@@ -26,10 +26,10 @@
 
 
         <TextView
-            android:id="@+id/enterPassText"
+            android:id="@+id/reg_pass_mainText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/enter_pass"
+            android:text="@string/reg_pass_mainText"
             android:textStyle="bold"
             android:textSize="30sp"
             android:gravity="center"
@@ -38,16 +38,16 @@
             android:textColor="@color/PolyBlack"/>
 
         <TextView
-            android:id="@+id/enterPassHint"
+            android:id="@+id/reg_pass_subText"
             android:layout_marginTop="15dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
-            android:layout_below="@id/enterPassText"
+            android:layout_below="@id/reg_pass_mainText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="19sp"
             android:gravity="center"
-            android:text="Используйте надёждный пароль, содержащий не менее 6 символов" />
+            android:text="@string/reg_pass_subText" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/reg_pass_passTIL"
@@ -56,7 +56,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
-            android:layout_below="@id/enterPassHint"
+            android:layout_below="@id/reg_pass_subText"
             app:hintEnabled="false"
             app:errorEnabled="true" >
 
@@ -70,10 +70,10 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/reg_showPassBTN"
+            android:id="@+id/reg_pass_showPassBTN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/show_pass"
+            android:text="@string/reg_pass_showPass"
             android:textColor="@color/PolyGreen"
             android:layout_below="@id/reg_pass_passTIL"
             android:gravity="center" />
@@ -81,7 +81,7 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/reg_passBTN"
+        android:id="@+id/reg_pass_nextBTN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

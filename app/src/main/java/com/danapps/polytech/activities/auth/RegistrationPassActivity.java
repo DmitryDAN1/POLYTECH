@@ -1,4 +1,4 @@
-package com.danapps.polytech.activities.registration;
+package com.danapps.polytech.activities.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,24 +25,24 @@ public class RegistrationPassActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_pass);
 
-        showPassBTN = findViewById(R.id.reg_showPassBTN);
+        showPassBTN = findViewById(R.id.reg_pass_showPassBTN);
         passET = findViewById(R.id.reg_pass_passET);
         passTIL = findViewById(R.id.reg_pass_passTIL);
 
         findViewById(R.id.reg_pass_backBTN).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegistrationPassActivity.this, RegistrationEmailActivity.class));
+                RegistrationPassActivity.super.onBackPressed();
             }
         });
 
-        findViewById(R.id.reg_passBTN).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.reg_pass_nextBTN).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 boolean checker = true;
 
                 if (passET.getText().toString().isEmpty()) {
-                    passTIL.setError("Вы забыли ввести пароль :)");
+                    passTIL.setError(getString(R.string.pass_error));
                     checker = false;
                 } else if (passET.getText().toString().length() < 6) {
                     passTIL.setError("Уажаюащие себя пароли содержат не менее 6 символов!");
@@ -51,7 +51,7 @@ public class RegistrationPassActivity extends AppCompatActivity {
 
                 if (checker) {
 
-                    getSharedPreferences("timePass", MODE_PRIVATE).edit().putString("timePass", passET.getText().toString()).apply();
+                    getSharedPreferences("UserTimeInfo", MODE_PRIVATE).edit().putString("timePass", passET.getText().toString()).apply();
                     startActivity(new Intent(RegistrationPassActivity.this, RegistrationFinishActivity.class));
                 }
             }
@@ -75,7 +75,7 @@ public class RegistrationPassActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(RegistrationPassActivity.this, RegistrationEmailActivity.class));
+        super.onBackPressed();
     }
 }
 

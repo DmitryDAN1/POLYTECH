@@ -11,14 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.ResetFinishActivity"></activity>
-        <activity android:name=".activities.ResetPassActivity" />
-        <activity android:name=".activities.registration.RegistrationFinishActivity" />
-        <activity android:name=".activities.registration.RegistrationPassActivity" />
-        <activity android:name=".activities.registration.RegistrationEmailActivity" />
+        <activity android:name=".activities.auth.ResetFinishActivity"></activity>
+        <activity android:name=".activities.auth.ResetPassActivity" />
+        <activity android:name=".activities.auth.RegistrationFinishActivity" />
+        <activity android:name=".activities.auth.RegistrationPassActivity" />
+        <activity android:name=".activities.auth.RegistrationEmailActivity" />
         <activity
-            android:name=".activities.AuthActivity"
-            android:noHistory="true">
+            android:name=".activities.auth.AuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

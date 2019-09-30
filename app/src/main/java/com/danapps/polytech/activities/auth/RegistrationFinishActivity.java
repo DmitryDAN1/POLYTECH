@@ -1,4 +1,4 @@
-package com.danapps.polytech.activities.registration;
+package com.danapps.polytech.activities.auth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.danapps.polytech.R;
-import com.danapps.polytech.activities.AuthActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -26,7 +25,7 @@ public class RegistrationFinishActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_finish);
 
-        mAuth.createUserWithEmailAndPassword(getSharedPreferences("timeEmail", MODE_PRIVATE).getString("timeEmail", "0"), getSharedPreferences("timePass", MODE_PRIVATE).getString("timePass", "0")).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+        mAuth.createUserWithEmailAndPassword(getSharedPreferences("UserTimeInfo", MODE_PRIVATE).getString("timeEmail", "0"), getSharedPreferences("UserTimeInfo", MODE_PRIVATE).getString("timePass", "0")).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
                 Objects.requireNonNull(authResult.getUser()).sendEmailVerification();
@@ -34,16 +33,16 @@ public class RegistrationFinishActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getBaseContext(), "К сожалению, что-то пошло не так и мы не смогли вас зарегестрировать :(\n Попробуйте позже...", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), R.string.reg_finish_error, Toast.LENGTH_LONG).show();
             }
         });
 
 
-        findViewById(R.id.reg_finishBTN).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.reg_finish_nextBTN).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSharedPreferences("timeEmail", MODE_PRIVATE).edit().remove("timeEmail").apply();
-                getSharedPreferences("timePass", MODE_PRIVATE).edit().remove("timePass").apply();
+                getSharedPreferences("UserTimeInfo", MODE_PRIVATE).edit().remove("timeEmail").apply();
+                getSharedPreferences("UserTimeInfo", MODE_PRIVATE).edit().remove("timePass").apply();
                 startActivity(new Intent(RegistrationFinishActivity.this, AuthActivity.class));
             }
         });

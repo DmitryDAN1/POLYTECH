@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.registration.RegistrationEmailActivity">
+    tools:context=".activities.auth.RegistrationEmailActivity">
 
 
     <ImageView
@@ -26,10 +26,10 @@
 
 
         <TextView
-            android:id="@+id/enterEmailText"
+            android:id="@+id/reg_email_mainText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/enter_email"
+            android:text="@string/reg_email_mainText"
             android:textStyle="bold"
             android:textSize="30sp"
             android:gravity="center"
@@ -38,31 +38,31 @@
             android:textColor="@color/PolyBlack"/>
 
         <TextView
-            android:id="@+id/enterEmailHint"
+            android:id="@+id/reg_email_subText"
             android:layout_marginTop="15dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
-            android:layout_below="@id/enterEmailText"
+            android:layout_below="@id/reg_email_mainText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="19sp"
             android:gravity="center"
-            android:text="@string/email_use" />
+            android:text="@string/reg_email_subText" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/reg_emailTIL"
+            android:id="@+id/reg_email_emailTIL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
-            android:layout_below="@id/enterEmailHint"
+            android:layout_below="@id/reg_email_subText"
             app:hintEnabled="false"
             app:errorEnabled="true" >
 
             <EditText
                 android:gravity="center"
-                android:id="@+id/reg__email_emailET"
+                android:id="@+id/reg_email_emailET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress" />
@@ -72,7 +72,7 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/reg_emailBTN"
+        android:id="@+id/reg_email_nextBTN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

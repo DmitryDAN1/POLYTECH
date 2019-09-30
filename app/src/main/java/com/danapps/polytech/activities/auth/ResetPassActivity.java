@@ -1,4 +1,4 @@
-package com.danapps.polytech.activities;
+package com.danapps.polytech.activities.auth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,17 +27,17 @@ public class ResetPassActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_pass);
 
-        emailET = findViewById(R.id.reset_email_emailET);
-        emailTIL = findViewById(R.id.reset_emailTIL);
+        emailET = findViewById(R.id.reset_pass_emailET);
+        emailTIL = findViewById(R.id.reset_pass_emailTIL);
 
-        findViewById(R.id.reset_email_backBTN).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.reset_pass_backBTN).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ResetPassActivity.this, AuthActivity.class));
             }
         });
 
-        findViewById(R.id.reset_email_backBTN).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.reset_pass_nextBTN).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (emailET.getText().toString().isEmpty())
@@ -46,7 +46,7 @@ public class ResetPassActivity extends AppCompatActivity {
                     FirebaseAuth.getInstance().sendPasswordResetEmail(emailET.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            // startActivity(new Intent(ResetPassActivity.this));
+                            startActivity(new Intent(ResetPassActivity.this, ResetFinishActivity.class));
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -57,6 +57,10 @@ public class ResetPassActivity extends AppCompatActivity {
                 }
             }
         });
+    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
