@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.danapps.polytech.R;
+import com.danapps.polytech.activities.MainActivity;
 
 public class ResetFinishActivity extends AppCompatActivity {
 
@@ -19,6 +20,7 @@ public class ResetFinishActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ResetFinishActivity.this, AuthActivity.class));
+                finish();
             }
         });
     }

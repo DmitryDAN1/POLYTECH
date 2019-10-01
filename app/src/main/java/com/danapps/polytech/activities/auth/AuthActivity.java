@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.danapps.polytech.R;
 import com.danapps.polytech.activities.MainActivity;
+import com.danapps.polytech.activities.welcome.WelcomeStartActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
@@ -62,7 +63,14 @@ public class AuthActivity extends AppCompatActivity {
                             if (Objects.requireNonNull(authResult.getUser()).isEmailVerified()) {
                                 sPref.edit().putString("UserLogin", emailET.getText().toString()).apply();
                                 sPref.edit().putString("UserPass", passET.getText().toString()).apply();
-                                startActivity(new Intent(AuthActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+                                if (sPref.getString("UserName", "").isEmpty() || sPref.getString("UserSurname", "").isEmpty() || sPref.getString("UserGroup", "").isEmpty()) {
+                                    startActivity(new Intent(AuthActivity.this, WelcomeStartActivity.class));
+                                    finish();
+                                }
+                                else {
+                                    startActivity(new Intent(AuthActivity.this, MainActivity.class));
+                                    finish();
+                                }
                             } else {
                                 Snackbar.make(v, getString(R.string.auth_main_error), Snackbar.LENGTH_LONG).show();
                             }
