@@ -1,5 +1,7 @@
 package com.danapps.polytech.schedule.date;
 
+import androidx.annotation.NonNull;
+
 public class ScheduleDate {
     private int year;
     private int month;
@@ -21,5 +23,11 @@ public class ScheduleDate {
 
     public int getDay() {
         return day;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return String.valueOf(year)+ '-' + month + '-' + day;
     }
 }

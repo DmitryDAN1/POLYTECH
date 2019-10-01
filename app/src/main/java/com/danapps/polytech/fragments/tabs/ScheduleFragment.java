@@ -13,6 +13,7 @@ import com.danapps.polytech.R;
 import com.danapps.polytech.schedule.Scheduler;
 import com.danapps.polytech.schedule.SchedulerError;
 import com.danapps.polytech.schedule.Ruz;
+import com.danapps.polytech.schedule.date.ScheduleDate;
 import com.danapps.polytech.schedule.model.Schedule;
 import com.danapps.polytech.schedule.model.Week;
 
@@ -27,7 +28,7 @@ public class ScheduleFragment extends Fragment {
         ruz = new Ruz(getContext());
         scheduler = ruz.newScheduler();
 
-        scheduler.querySchedule(28971, null, new Scheduler.Listener() {
+        scheduler.querySchedule(28971, new ScheduleDate(2019, 10, 1), new Scheduler.Listener() {
             @Override
             public void onResponseReady(Schedule schedule) {
                 Week week = schedule.getWeek();

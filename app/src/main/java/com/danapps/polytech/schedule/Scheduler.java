@@ -5,6 +5,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.danapps.polytech.schedule.date.ScheduleDate;
 import com.danapps.polytech.schedule.model.Group;
 import com.danapps.polytech.schedule.model.Schedule;
 import com.danapps.polytech.schedule.utils.Utf8StringRequest;
@@ -31,13 +32,13 @@ public class Scheduler {
         this.gson = gson;
     }
 
-    public void querySchedule(int groupId, @Nullable LocalDate date, @NotNull final Listener listener) {
+    public void querySchedule(int groupId, @Nullable ScheduleDate date, @NotNull final Listener listener) {
         String url = SCHEDULER_URL_BASE + groupId;
         if(date != null) {
             url += "?date=" + date;
         }
 
-        StringRequest request = new Utf8StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+        requestQueue.add(new Utf8StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Schedule schedule;
@@ -54,10 +55,10 @@ public class Scheduler {
             public void onErrorResponse(VolleyError error) {
                 listener.onResponseError(new SchedulerError(error.getMessage(), SchedulerErrorType.NetworkFailed));
             }
-        });
+        }));
     }
 
-    public void querySchedule(@NotNull Group group, @Nullable LocalDate date, @NotNull final Listener listener) {
+    public void querySchedule(@NotNull Group group, @Nullable ScheduleDate date, @NotNull final Listener listener) {
         querySchedule(group.getId(), date, listener);
     }
 }
