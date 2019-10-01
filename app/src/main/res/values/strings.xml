@@ -34,13 +34,14 @@
     <string name="email_error_registered">Данная электронная почта уже зарегестрирована!</string>
     <string name="pass_error">Вы забыли ввести пароль :)</string>
     <string name="pass_error_length">Пароль дожен быть не менее 6 символов!</string>
-    <string name="Welcome">Добро пожаловать!</string>
+    <string name="welcome">Добро пожаловать!</string>
     <string name="welcome_start_subText">Пожлауйста, представьтесь</string>
     <string name="surname">Фамилия</string>
     <string name="name">Имя</string>
     <string name="welcome_start_name_error">Вы не ввели ваше имя!</string>
     <string name="welcome_start_surname_error">Вы не ввели вашу фамилию!</string>
     <string name="welcome_group_subText">Введите номер вашей группы, в которой вы обучаетесь</string>
-    <string name="welcome_group_mainText">Введите группу</string>
+    <string name="welcome_group_mainText">Выберите группу</string>
     <string name="welcome_group_error">Вы не ввели номер вашей группы!</string>
+    <string name="exit">Выйти</string>
 </resources>

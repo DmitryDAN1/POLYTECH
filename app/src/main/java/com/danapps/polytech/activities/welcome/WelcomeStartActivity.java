@@ -14,8 +14,14 @@ import android.widget.Toast;
 import com.danapps.polytech.R;
 import com.danapps.polytech.activities.auth.AuthActivity;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class WelcomeStartActivity extends AppCompatActivity {
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("UserInfo");
 
     TextInputLayout nameTIL, surnameTIL;
     EditText nameET, surnameET;
@@ -42,7 +48,9 @@ public class WelcomeStartActivity extends AppCompatActivity {
                     surnameTIL.setError(getString(R.string.welcome_start_surname_error));
                 else {
                     sPref.edit().putString("UserName", nameET.getText().toString()).apply();
+                    myRef.setValue(sPref.getString("Name", ""));
                     sPref.edit().putString("UserSurname", surnameET.getText().toString()).apply();
+                    myRef.setValue(sPref.getString("Surname", ""));
                     startActivity(new Intent(WelcomeStartActivity.this, WelcomeGroupActivity.class));
                 }
             }

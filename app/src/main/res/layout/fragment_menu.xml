@@ -63,6 +63,7 @@
                         android:gravity="bottom"/>
 
                     <TextView
+                        android:id="@+id/menu_profileBlock_currentGroupTV"
                         android:layout_width="wrap_content"
                         android:layout_height="25dp"
                         android:text="3530904/90006"
@@ -149,7 +150,7 @@
                     <TextView
                         android:id="@+id/groupNumber_content_text"
                         android:layout_toEndOf="@id/groupNumber_content_icon"
-                        android:layout_toStartOf="@id/groupNumber_content_currentGroup"
+                        android:layout_toStartOf="@id/menu_settingsBlock_currentGroupTV"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginStart="10dp"
@@ -160,7 +161,7 @@
 
                     <TextView
                         android:layout_alignParentEnd="true"
-                        android:id="@+id/groupNumber_content_currentGroup"
+                        android:id="@+id/menu_settingsBlock_currentGroupTV"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="3530904/90006"
@@ -180,6 +181,26 @@
             android:layout_height="1dp"
             android:background="@color/PolyWhiteDark" />
 
+        <Button
+            android:id="@+id/exitBlock_exitBTN"
+            android:layout_below="@id/settingsBottomLine"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/exit"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="17sp"
+            android:background="@android:color/white"/>
+
+        <View
+            android:id="@+id/exitBottomLine"
+            android:layout_below="@id/exitBlock_exitBTN"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/PolyWhiteDark" />
+
+
     </RelativeLayout>
+
 
 </ScrollView>

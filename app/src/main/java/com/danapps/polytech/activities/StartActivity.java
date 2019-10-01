@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class StartActivity extends AppCompatActivity {
 
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     boolean authChecker = false;
     boolean logChecker = false;
@@ -32,18 +33,21 @@ public class StartActivity extends AppCompatActivity {
 
         sPref = getSharedPreferences("UserInfo", MODE_PRIVATE);
 
-        if (sPref.getString("UserEmail", "").isEmpty() || sPref.getString("UserPass", "").isEmpty()) {
+        if (sPref.getString("UserLogin", "").isEmpty() || sPref.getString("UserPass", "").isEmpty()) {
             authChecker = true;
         }
         else {
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(sPref.getString("UserEmail", "0"), sPref.getString("UserPass", "0")).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            mAuth.signInWithEmailAndPassword(sPref.getString("UserLogin", ""), sPref.getString("UserPass", "")).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                 @Override
                 public void onSuccess(AuthResult authResult) {
-                    logChecker = true;
+                    if (!mAuth.getCurrentUser().isEmailVerified()) {
+                        logChecker = false;
+                    }
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
+                    logChecker = true;
                     Toast.makeText(getBaseContext(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 }
             });
@@ -53,29 +57,30 @@ public class StartActivity extends AppCompatActivity {
             welcomeChecker = true;
         }
 
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if (authChecker) {
-                        if (welcomeChecker)
-                        {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                if (authChecker) {
+                    startActivity(new Intent(StartActivity.this, AuthActivity.class));
+                    finish();
+                }
+                else {
+                    if (logChecker) {
+                        startActivity(new Intent(StartActivity.this, AuthActivity.class));
+                    }
+                    else {
+                        if (welcomeChecker) {
                             startActivity(new Intent(StartActivity.this, WelcomeStartActivity.class));
                             finish();
                         }
                         else {
-                            startActivity(new Intent(StartActivity.this, AuthActivity.class));
-                            finish();
+                            startActivity(new Intent(StartActivity.this, MainActivity.class));
                         }
-                    } else if (logChecker) {
-                        startActivity(new Intent(StartActivity.this, MainActivity.class));
-                        finish();
-                    } else {
-                        startActivity(new Intent(StartActivity.this, MainActivity.class));
-                        finish();
                     }
-
-                    startActivity(new Intent(StartActivity.this, WelcomeStartActivity.class));
                 }
-            }, 3000);
+
+            }
+        }, 3000);
     }
 }

@@ -30,14 +30,12 @@ public class MainActivity extends AppCompatActivity {
     private final MenuFragment menuFragment = new MenuFragment();
     private Fragment currentFragment;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toast.makeText(getBaseContext(), "Добро пожаловать!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), getString(R.string.welcome), Toast.LENGTH_SHORT).show();
 
         fm.beginTransaction().add(R.id.frame_layout, navigationFragment, "2").hide(navigationFragment).commit();
         fm.beginTransaction().add(R.id.frame_layout, scheduleFragment, "3").hide(scheduleFragment).commit();
@@ -87,13 +85,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setTitle("Выход из приложения!").setMessage("Вы ххотите выйти из приложения?")
-                .setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+        builder.setTitle(getString(R.string.exit_from_app_mainText)).setMessage(getString(R.string.exit_from_app_subText))
+                .setNegativeButton(getString(R.string.No), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(getApplicationContext(), "Вы сделали правильный выбор!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.good_choice), Toast.LENGTH_SHORT).show();
                     }
-                }).setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                }).setPositiveButton(getString(R.string.Yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         finishAffinity();

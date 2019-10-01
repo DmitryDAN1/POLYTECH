@@ -98,6 +98,8 @@ public class AuthActivity extends AppCompatActivity {
                 startActivity(new Intent(AuthActivity.this, ResetPassActivity.class));
             }
         });
+
+
     }
 
     @Override

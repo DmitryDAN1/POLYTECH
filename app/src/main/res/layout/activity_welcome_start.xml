@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/PolyBlack"
-        android:text="@string/Welcome"
+        android:text="@string/welcome"
         android:textSize="35sp"
         android:gravity="center"
         android:textStyle="bold" />
