@@ -39,7 +39,7 @@ public class ResetPassActivity extends AppCompatActivity {
 
         findViewById(R.id.reset_pass_nextBTN).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 if (emailET.getText().toString().isEmpty())
                     emailTIL.setError("Вы забыли ввести почту :)");
                 else {

@@ -18,6 +18,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
@@ -55,31 +56,43 @@ public class NavigationFragment extends Fragment {
                 .apiKey(getString(R.string.google_maps_key))
                 .build();
 
-        view.findViewById(R.id.load_btn).setOnClickListener(v -> {
-            if(currentPolyline != null) {
-                currentPolyline.remove();
+        view.findViewById(R.id.load_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(currentPolyline != null) {
+                    currentPolyline.remove();
+                }
+
+                DirectionsApiRequest request = DirectionsApi.newRequest(geoApiContext)
+                        .origin("27.658143,85.3199503")
+                        .destination("27.667491,85.3208583")
+                        .mode(TravelMode.WALKING);
+
+                request.setCallback(new PendingResult.Callback<DirectionsResult>() {
+                    @Override
+                    public void onResult(final DirectionsResult result) {
+                        Handler mainHandler = new Handler(Looper.getMainLooper());
+                        mainHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                currentPolyline = googleMap.addPolyline(new PolylineOptions().addAll(
+                                        PolyUtil.decode(result.routes[0].overviewPolyline.getEncodedPath())));
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onFailure(Throwable e) {
+                        Handler mainHandler = new Handler(Looper.getMainLooper());
+                        mainHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getContext(), "Route failed", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
             }
-
-            DirectionsApiRequest request = DirectionsApi.newRequest(geoApiContext)
-                    .origin("27.658143,85.3199503")
-                    .destination("27.667491,85.3208583")
-                    .mode(TravelMode.WALKING);
-
-            request.setCallback(new PendingResult.Callback<DirectionsResult>() {
-                @Override
-                public void onResult(DirectionsResult result) {
-                    Handler mainHandler = new Handler(Looper.getMainLooper());
-                    mainHandler.post(() -> currentPolyline = googleMap.addPolyline(new PolylineOptions().addAll(
-                            PolyUtil.decode(result.routes[0].overviewPolyline.getEncodedPath()))
-                    ));
-                }
-
-                @Override
-                public void onFailure(Throwable e) {
-                    Handler mainHandler = new Handler(Looper.getMainLooper());
-                    mainHandler.post(() -> Toast.makeText(getContext(), "Route failed", Toast.LENGTH_SHORT).show());
-                }
-            });
         });
 
         try {
@@ -88,13 +101,16 @@ public class NavigationFragment extends Fragment {
             e.printStackTrace();
         }
 
-        mapView.getMapAsync(googleMapp -> {
-            googleMap = googleMapp;
-            googleMap.addMarker(place1);
-            googleMap.addMarker(place2);
-            //LatLng polytechMARKER = new LatLng(60.007207, 30.372812);
-            //googleMap.addMarker(new MarkerOptions().position(polytechMARKER).title("ЦЕ ГЗ")).showInfoWindow();
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place1.getPosition(), 15f));
+        mapView.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                NavigationFragment.this.googleMap = googleMap;
+                NavigationFragment.this.googleMap.addMarker(place1);
+                NavigationFragment.this.googleMap.addMarker(place2);
+                //LatLng polytechMARKER = new LatLng(60.007207, 30.372812);
+                //googleMap.addMarker(new MarkerOptions().position(polytechMARKER).title("ЦЕ ГЗ")).showInfoWindow();
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place1.getPosition(), 15f));
+            }
         });
 
         return view;

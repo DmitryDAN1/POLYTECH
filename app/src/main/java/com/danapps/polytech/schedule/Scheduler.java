@@ -37,18 +37,24 @@ public class Scheduler {
             url += "?date=" + date;
         }
 
-        StringRequest request = new Utf8StringRequest(Request.Method.GET, url, response -> {
-            Schedule schedule;
-            try {
-                schedule = gson.fromJson(response, Schedule.class);
-            } catch (JsonParseException e) {
-                listener.onResponseError(new SchedulerError(e.getMessage(), SchedulerErrorType.ParsingFailed));
-                return;
+        StringRequest request = new Utf8StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Schedule schedule;
+                try {
+                    schedule = gson.fromJson(response, Schedule.class);
+                } catch (JsonParseException e) {
+                    listener.onResponseError(new SchedulerError(e.getMessage(), SchedulerErrorType.ParsingFailed));
+                    return;
+                }
+                listener.onResponseReady(schedule);
             }
-            listener.onResponseReady(schedule);
-        }, error -> listener.onResponseError(new SchedulerError(error.getMessage(), SchedulerErrorType.NetworkFailed)));
-
-        requestQueue.add(request);
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                listener.onResponseError(new SchedulerError(error.getMessage(), SchedulerErrorType.NetworkFailed));
+            }
+        });
     }
 
     public void querySchedule(@NotNull Group group, @Nullable LocalDate date, @NotNull final Listener listener) {
