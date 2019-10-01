@@ -49,4 +49,16 @@
     <string name="menu_schedule">Расписание</string>
     <string name="menu_scheme">Схемы корпусов</string>
     <string name="menu_menu">Меню</string>
+    <string name="mainBuilding">Главное здание</string>
+    <string name="corpus1">1-й корпус</string>
+    <string name="corpus2">2-й корпус</string>
+    <string name="corpus3">3-й корпус</string>
+    <string name="corpus4">4-й корпус</string>
+    <string name="corpus5">5-й корпус</string>
+    <string name="corpus6">6-й корпус</string>
+    <string name="corpus9">9-й корпус</string>
+    <string name="corpus10">10-й корпус</string>
+    <string name="corpus11">11-й корпус</string>
+    <string name="corpus15">15-й корпус</string>
+    <string name="corpus16">16-й корпус</string>
 </resources>

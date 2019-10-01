@@ -1,12 +1,17 @@
 package com.danapps.polytech.fragments.tabs;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +25,16 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.maps.DirectionsApi;
 import com.google.maps.DirectionsApiRequest;
 import com.google.maps.GeoApiContext;
@@ -37,16 +49,32 @@ public class NavigationFragment extends Fragment {
 
     private MapView mapView;
     private GoogleMap googleMap;
-    MarkerOptions place1, place2;
+    private MarkerOptions place1, place2;
     private Polyline currentPolyline;
-    GeoApiContext geoApiContext;
+    private GeoApiContext geoApiContext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.fragment_navigation, null);
 
-        place1 = new MarkerOptions().position(new LatLng(27.658143, 85.3199503)).title("Location 1");
-        place2 = new MarkerOptions().position(new LatLng(27.667491, 85.3208583)).title("Location 2");
+
+        MarkerOptions[] places = {
+                new MarkerOptions().position(new LatLng(60.007224, 30.372821)).title(getString(R.string.mainBuilding)),
+                new MarkerOptions().position(new LatLng(60.008859, 30.372726)).title(getString(R.string.corpus1)),
+                new MarkerOptions().position(new LatLng(60.008492, 30.374974)).title(getString(R.string.corpus2)),
+                new MarkerOptions().position(new LatLng(60.007146, 30.381604)).title(getString(R.string.corpus3)),
+                new MarkerOptions().position(new LatLng(60.007449, 30.376937)).title(getString(R.string.corpus4)),
+                new MarkerOptions().position(new LatLng(59.999852, 30.374400)).title(getString(R.string.corpus5)),
+                new MarkerOptions().position(new LatLng(60.000091, 30.367683)).title(getString(R.string.corpus6)),
+                new MarkerOptions().position(new LatLng(60.000666, 30.366200)).title(getString(R.string.corpus9)),
+                new MarkerOptions().position(new LatLng(60.000582, 30.368989)).title(getString(R.string.corpus10)),
+                new MarkerOptions().position(new LatLng(60.009048, 30.377305)).title(getString(R.string.corpus11)),
+                new MarkerOptions().position(new LatLng(60.007133, 30.390397)).title(getString(R.string.corpus15)),
+                new MarkerOptions().position(new LatLng(60.007729, 30.389621)).title(getString(R.string.corpus16))
+        };
+
+        place1 = places[2];
+        place2 = places[7];
 
         mapView = view.findViewById(R.id.nav_map_view2);
         mapView.onCreate(savedInstanceState);
@@ -64,8 +92,8 @@ public class NavigationFragment extends Fragment {
                 }
 
                 DirectionsApiRequest request = DirectionsApi.newRequest(geoApiContext)
-                        .origin("27.658143,85.3199503")
-                        .destination("27.667491,85.3208583")
+                        .origin(place1.getPosition().latitude + "," + place1.getPosition().longitude)
+                        .destination(place2.getPosition().latitude + "," + place2.getPosition().longitude)
                         .mode(TravelMode.WALKING);
 
                 request.setCallback(new PendingResult.Callback<DirectionsResult>() {
@@ -104,12 +132,20 @@ public class NavigationFragment extends Fragment {
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
+                try {
+                    boolean success = googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(Objects.requireNonNull(getContext()), R.raw.mapstyle));
+                    if (!success)
+                        Log.e("MAP", "parsing failed");
+
+                } catch (Resources.NotFoundException e) {
+                    Log.e("MAP", "Can`t find style. Error" + e);
+                }
+
+                googleMap.setMyLocationEnabled(true);
                 NavigationFragment.this.googleMap = googleMap;
                 NavigationFragment.this.googleMap.addMarker(place1);
                 NavigationFragment.this.googleMap.addMarker(place2);
-                //LatLng polytechMARKER = new LatLng(60.007207, 30.372812);
-                //googleMap.addMarker(new MarkerOptions().position(polytechMARKER).title("ЦЕ ГЗ")).showInfoWindow();
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place1.getPosition(), 15f));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(places[0].getPosition(), 17f));
             }
         });
 
