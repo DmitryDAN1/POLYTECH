@@ -44,4 +44,9 @@
     <string name="welcome_group_mainText">Выберите группу</string>
     <string name="welcome_group_error">Вы не ввели номер вашей группы!</string>
     <string name="exit">Выйти</string>
+    <string name="menu_tasks">Задачи</string>
+    <string name="menu_navigation">Навигация</string>
+    <string name="menu_schedule">Расписание</string>
+    <string name="menu_scheme">Схемы корпусов</string>
+    <string name="menu_menu">Меню</string>
 </resources>
