@@ -1,4 +1,4 @@
-package com.danapps.polytech.schedule.model;
+package com.danapps.polytech.schedule.model.schedule;
 
 import com.danapps.polytech.schedule.date.ScheduleDate;
 

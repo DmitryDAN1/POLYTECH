@@ -1,5 +1,9 @@
 package com.danapps.polytech.schedule.model;
 
+import com.danapps.polytech.schedule.model.Group;
+import com.danapps.polytech.schedule.model.schedule.Day;
+import com.danapps.polytech.schedule.model.schedule.Week;
+
 import java.util.List;
 
 public class Schedule {

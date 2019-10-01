@@ -1,12 +1,12 @@
-package com.danapps.polytech.schedule.model;
+package com.danapps.polytech.schedule.model.schedule;
 
-public class Auditory {
-    private Building building;
+public class TypeObj {
+    private String abbr;
     private int id;
     private String name;
 
-    public Building getBuilding() {
-        return building;
+    public String getAbbr() {
+        return abbr;
     }
 
     public int getId() {

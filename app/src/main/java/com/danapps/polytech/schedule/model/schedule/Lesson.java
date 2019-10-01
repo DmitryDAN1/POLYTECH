@@ -1,5 +1,6 @@
-package com.danapps.polytech.schedule.model;
+package com.danapps.polytech.schedule.model.schedule;
 
+import com.danapps.polytech.schedule.model.Group;
 import com.danapps.polytech.schedule.time.ScheduleTime;
 import com.google.gson.annotations.SerializedName;
 

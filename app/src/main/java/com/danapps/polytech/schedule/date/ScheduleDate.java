@@ -2,6 +2,8 @@ package com.danapps.polytech.schedule.date;
 
 import androidx.annotation.NonNull;
 
+import java.util.Locale;
+
 public class ScheduleDate {
     private int year;
     private int month;
@@ -28,6 +30,6 @@ public class ScheduleDate {
     @NonNull
     @Override
     public String toString() {
-        return String.valueOf(year)+ '-' + month + '-' + day;
+        return String.valueOf(year) + '-' + month + '-' + day;
     }
 }

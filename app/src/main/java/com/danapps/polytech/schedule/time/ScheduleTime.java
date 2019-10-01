@@ -1,5 +1,7 @@
 package com.danapps.polytech.schedule.time;
 
+import androidx.annotation.NonNull;
+
 import java.security.InvalidParameterException;
 import java.util.Date;
 
@@ -28,5 +30,11 @@ public class ScheduleTime {
 
     public DeltaScheduleTime subtract(ScheduleTime x, ScheduleTime y) {
         return new DeltaScheduleTime(Math.abs(x.totalMinute - y.totalMinute));
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return String.valueOf(getHour()) + '-' + getMinute();
     }
 }

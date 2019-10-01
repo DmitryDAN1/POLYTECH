@@ -26,4 +26,12 @@ public class Ruz {
     public Scheduler newScheduler() {
         return new Scheduler(requestQueue, gson);
     }
+
+    public Faculties newFaculties() {
+        return new Faculties(requestQueue, gson);
+    }
+
+    public Groups newGroups() {
+        return new Groups(requestQueue, gson);
+    }
 }
