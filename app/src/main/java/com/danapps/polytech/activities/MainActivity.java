@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.danapps.polytech.R;
 import com.danapps.polytech.fragments.tabs.EventFragment;
 import com.danapps.polytech.fragments.tabs.MenuFragment;
+import com.danapps.polytech.fragments.tabs.NavigationChooseFragment;
 import com.danapps.polytech.fragments.tabs.NavigationFragment;
 import com.danapps.polytech.fragments.tabs.ScheduleFragment;
 import com.danapps.polytech.fragments.tabs.SchemeFragment;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager fm = getSupportFragmentManager();
 
     private final EventFragment eventFragment = new EventFragment();
+    private final NavigationChooseFragment navigationChooseFragment = new NavigationChooseFragment();
     private final NavigationFragment navigationFragment = new NavigationFragment();
     private final ScheduleFragment scheduleFragment = new ScheduleFragment();
     private final SchemeFragment schemeFragment = new SchemeFragment();
@@ -37,12 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(getBaseContext(), getString(R.string.welcome), Toast.LENGTH_SHORT).show();
 
-        fm.beginTransaction().add(R.id.frame_layout, navigationFragment, "2").hide(navigationFragment).commit();
-        fm.beginTransaction().add(R.id.frame_layout, scheduleFragment, "3").hide(scheduleFragment).commit();
-        fm.beginTransaction().add(R.id.frame_layout, schemeFragment, "4").hide(schemeFragment).commit();
-        fm.beginTransaction().add(R.id.frame_layout, menuFragment, "5").hide(menuFragment).commit();
-        fm.beginTransaction().add(R.id.frame_layout, eventFragment, "1").commit();
-        currentFragment = eventFragment;
+        fm.beginTransaction().replace(R.id.frame_layout, eventFragment).commit();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -52,28 +49,23 @@ public class MainActivity extends AppCompatActivity {
                 switch (menuItem.getItemId())
                 {
                     case (R.id.events_item):
-                        fm.beginTransaction().hide(currentFragment).show(eventFragment).commit();
-                        currentFragment = eventFragment;
+                        fm.beginTransaction().replace(R.id.frame_layout, eventFragment).commit();
                         break;
 
                     case (R.id.navigation_item):
-                        fm.beginTransaction().hide(currentFragment).show(navigationFragment).commit();
-                        currentFragment = navigationFragment;
+                        fm.beginTransaction().replace(R.id.frame_layout, navigationChooseFragment).commit();
                     break;
 
                     case (R.id.schedule_item):
-                        fm.beginTransaction().hide(currentFragment).show(scheduleFragment).commit();
-                        currentFragment = scheduleFragment;
+                        fm.beginTransaction().replace(R.id.frame_layout, scheduleFragment).commit();
                         break;
 
                     case (R.id.scheme_item):
-                        fm.beginTransaction().hide(currentFragment).show(schemeFragment).commit();
-                        currentFragment = schemeFragment;
+                        fm.beginTransaction().replace(R.id.frame_layout, schemeFragment).commit();
                         break;
 
                     case (R.id.menu_item):
-                        fm.beginTransaction().hide(currentFragment).show(menuFragment).commit();
-                        currentFragment = menuFragment  ;
+                        fm.beginTransaction().replace(R.id.frame_layout, menuFragment).commit();
                         break;
                 }
 

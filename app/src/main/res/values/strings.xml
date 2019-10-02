@@ -61,4 +61,8 @@
     <string name="corpus11">11-й корпус</string>
     <string name="corpus15">15-й корпус</string>
     <string name="corpus16">16-й корпус</string>
+    <string name="chooseRoute">Выберите маршрут</string>
+    <string name="navigation_choose_from_error">Вы не ввели точку отправления</string>
+    <string name="navigation_choose_to_error">Вы не ввели точку прибытия!</string>
+    <string name="navigation_choose_adress_error">Введите корректный адресс</string>
 </resources>

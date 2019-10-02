@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.tabs.NavigationChooseFragment"
+    android:background="@android:color/white" >
+
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/nav_mainText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/chooseRoute"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
+            android:textColor="@color/PolyBlack"/>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/nav_fromTIL"
+            android:gravity="center"
+            android:layout_below="@id/nav_mainText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            app:hintEnabled="false"
+            app:errorEnabled="true" >
+
+            <AutoCompleteTextView
+                android:id="@+id/nav_fromACTV"
+                android:layout_width="match_parent"
+                android:hint="Откуда"
+                android:textSize="20sp"
+                android:layout_height="wrap_content"
+                android:inputType="textAutoComplete"
+                android:completionThreshold="0" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/nav_toTIL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_below="@id/nav_fromTIL"
+            app:hintEnabled="false"
+            app:errorEnabled="true" >
+
+            <AutoCompleteTextView
+                android:id="@+id/nav_toACTV"
+                android:hint="Куда"
+                android:textSize="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textAutoComplete"
+                android:completionThreshold="1"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/nav_loadBTN"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nav_toTIL"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/log_btn"
+            android:text="Построить маршрут"
+            android:textColor="@color/PolyGreen"
+            android:textSize="17sp" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/nav_openMap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/reg_btn"
+        android:text="Открыть карту"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+</RelativeLayout>

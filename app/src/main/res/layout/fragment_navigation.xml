@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_frame_layout_base"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,17 +11,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-                <Button
-                    android:id="@+id/load_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                        android:text="load" />
-
                 <com.google.android.gms.maps.MapView
-                    android:layout_below="@id/load_btn"
                     android:id="@+id/nav_map_view2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    app:cardCornerRadius="10dp">
+
+                <ImageView
+                    android:id="@+id/nav_backBTN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_arrow_back_green"
+                    android:background="@android:color/white"/>
+
+                </androidx.cardview.widget.CardView>
         </RelativeLayout>
 </FrameLayout>

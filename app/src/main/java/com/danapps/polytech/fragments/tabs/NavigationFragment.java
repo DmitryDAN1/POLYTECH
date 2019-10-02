@@ -7,6 +7,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
@@ -51,12 +52,13 @@ public class NavigationFragment extends Fragment {
     private GoogleMap googleMap;
     private MarkerOptions place1, place2;
     private Polyline currentPolyline;
-    private GeoApiContext geoApiContext;
 
+    @SuppressLint("CommitPrefEdits")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.fragment_navigation, null);
 
+        NavigationChooseFragment navigationChooseFragment = new NavigationChooseFragment();
 
         MarkerOptions[] places = {
                 new MarkerOptions().position(new LatLng(60.007224, 30.372821)).title(getString(R.string.mainBuilding)),
@@ -73,61 +75,68 @@ public class NavigationFragment extends Fragment {
                 new MarkerOptions().position(new LatLng(60.007729, 30.389621)).title(getString(R.string.corpus16))
         };
 
-        place1 = places[2];
-        place2 = places[7];
+        SharedPreferences sPref = Objects.requireNonNull(getActivity()).getSharedPreferences("PlacesInfo", Context.MODE_PRIVATE);
+
+        if (sPref.getBoolean("isRoute", false)) {
+            place1 = places[sPref.getInt("Place1", 0)];
+            place2 = places[sPref.getInt("Place2", 1)];
+        } else {
+            place1 = places[0];
+            place2 = places[0];
+        }
+
 
         mapView = view.findViewById(R.id.nav_map_view2);
         mapView.onCreate(savedInstanceState);
         mapView.onResume();
 
-        geoApiContext = new GeoApiContext.Builder()
+        GeoApiContext geoApiContext = new GeoApiContext.Builder()
                 .apiKey(getString(R.string.google_maps_key))
                 .build();
 
-        view.findViewById(R.id.load_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(currentPolyline != null) {
-                    currentPolyline.remove();
+        if (currentPolyline != null) {
+            currentPolyline.remove();
+        }
+
+        if (sPref.getBoolean("isRoute", false)) {
+            DirectionsApiRequest request = DirectionsApi.newRequest(geoApiContext)
+                    .origin(place1.getPosition().latitude + "," + place1.getPosition().longitude)
+                    .destination(place2.getPosition().latitude + "," + place2.getPosition().longitude)
+                    .mode(TravelMode.WALKING);
+
+            request.setCallback(new PendingResult.Callback<DirectionsResult>() {
+                @Override
+                public void onResult(final DirectionsResult result) {
+                    Handler mainHandler = new Handler(Looper.getMainLooper());
+                    mainHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            currentPolyline = googleMap.addPolyline(new PolylineOptions().addAll(
+                                    PolyUtil.decode(result.routes[0].overviewPolyline.getEncodedPath())));
+                        }
+                    });
                 }
 
-                DirectionsApiRequest request = DirectionsApi.newRequest(geoApiContext)
-                        .origin(place1.getPosition().latitude + "," + place1.getPosition().longitude)
-                        .destination(place2.getPosition().latitude + "," + place2.getPosition().longitude)
-                        .mode(TravelMode.WALKING);
+                @Override
+                public void onFailure(Throwable e) {
+                    Handler mainHandler = new Handler(Looper.getMainLooper());
+                    mainHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getContext(), "Route failed", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            });
 
-                request.setCallback(new PendingResult.Callback<DirectionsResult>() {
-                    @Override
-                    public void onResult(final DirectionsResult result) {
-                        Handler mainHandler = new Handler(Looper.getMainLooper());
-                        mainHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                currentPolyline = googleMap.addPolyline(new PolylineOptions().addAll(
-                                        PolyUtil.decode(result.routes[0].overviewPolyline.getEncodedPath())));
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onFailure(Throwable e) {
-                        Handler mainHandler = new Handler(Looper.getMainLooper());
-                        mainHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(getContext(), "Route failed", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-                });
+            try {
+                MapsInitializer.initialize(Objects.requireNonNull(getActivity()).getApplicationContext());
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        });
-
-        try {
-            MapsInitializer.initialize(Objects.requireNonNull(getActivity()).getApplicationContext());
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+
+        sPref.edit().remove("isRoute").remove("Place1").remove("Place2");
 
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -136,16 +145,24 @@ public class NavigationFragment extends Fragment {
                     boolean success = googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(Objects.requireNonNull(getContext()), R.raw.mapstyle));
                     if (!success)
                         Log.e("MAP", "parsing failed");
-
-                } catch (Resources.NotFoundException e) {
+                }
+                catch (Resources.NotFoundException e) {
                     Log.e("MAP", "Can`t find style. Error" + e);
                 }
 
-                googleMap.setMyLocationEnabled(true);
+                googleMap.setBuildingsEnabled(true);
                 NavigationFragment.this.googleMap = googleMap;
                 NavigationFragment.this.googleMap.addMarker(place1);
                 NavigationFragment.this.googleMap.addMarker(place2);
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(places[0].getPosition(), 17f));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place1.getPosition(), 17f));
+            }
+        });
+
+
+        view.findViewById(R.id.nav_backBTN).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Objects.requireNonNull(getFragmentManager()).beginTransaction().replace(R.id.frame_layout, navigationChooseFragment).commit();
             }
         });
 
