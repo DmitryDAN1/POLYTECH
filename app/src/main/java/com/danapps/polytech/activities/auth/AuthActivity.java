@@ -22,6 +22,11 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
@@ -31,9 +36,10 @@ public class AuthActivity extends AppCompatActivity {
 
     TextInputLayout emailTIL, passTIL;
     EditText emailET, passET;
-
     SharedPreferences sPref;
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,16 +67,32 @@ public class AuthActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(AuthResult authResult) {
                             if (Objects.requireNonNull(authResult.getUser()).isEmailVerified()) {
+                                myRef = FirebaseDatabase.getInstance().getReference(mAuth.getCurrentUser().getUid());
                                 sPref.edit().putString("UserLogin", emailET.getText().toString()).apply();
                                 sPref.edit().putString("UserPass", passET.getText().toString()).apply();
-                                if (sPref.getString("UserName", "").isEmpty() || sPref.getString("UserSurname", "").isEmpty() || sPref.getString("UserGroup", "").isEmpty()) {
-                                    startActivity(new Intent(AuthActivity.this, WelcomeStartActivity.class));
-                                    finish();
-                                }
-                                else {
-                                    startActivity(new Intent(AuthActivity.this, MainActivity.class));
-                                    finish();
-                                }
+
+                                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        if (dataSnapshot.child("UserInfo").child("UserName").getValue() == "" || dataSnapshot.child("UserInfo").child("UserSurname").getValue() == "" || dataSnapshot.child("UserInfo").child("UserGroup").getValue() == "") {
+                                            startActivity(new Intent(AuthActivity.this, WelcomeStartActivity.class));
+                                            finish();
+                                        } else {
+                                            sPref.edit()
+                                                    .putString("UserName", dataSnapshot.child("UserInfo").child("UserName").getValue().toString())
+                                                    .putString("UserSurname", dataSnapshot.child("UserInfo").child("UserSurname").getValue().toString())
+                                                    .putString("UserGroup", dataSnapshot.child("UserInfo").child("UserGroup").getValue().toString()).apply();
+                                            startActivity(new Intent(AuthActivity.this, MainActivity.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
+
                             } else {
                                 Snackbar.make(v, getString(R.string.auth_main_error), Snackbar.LENGTH_LONG).show();
                             }

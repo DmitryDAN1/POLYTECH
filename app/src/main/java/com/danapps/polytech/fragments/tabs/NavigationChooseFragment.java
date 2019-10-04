@@ -25,6 +25,7 @@ import java.util.Objects;
 public class NavigationChooseFragment extends Fragment {
 
     private NavigationFragment navigationFragment = new NavigationFragment();
+    private SharedPreferences sPref;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,7 +53,8 @@ public class NavigationChooseFragment extends Fragment {
         fromACTV.setAdapter(placesAdapter);
         toACTV.setAdapter(placesAdapter);
 
-        SharedPreferences sPref = Objects.requireNonNull(getActivity()).getSharedPreferences("PlacesInfo", Context.MODE_PRIVATE);
+        sPref = Objects.requireNonNull(getActivity()).getSharedPreferences("PlacesInfo", Context.MODE_PRIVATE);
+        sPref.edit().remove("isRoute").remove("Place1").remove("Place2").apply();
 
         view.findViewById(R.id.nav_loadBTN).setOnClickListener(new View.OnClickListener() {
             @Override

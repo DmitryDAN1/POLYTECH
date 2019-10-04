@@ -1,13 +1,19 @@
 package com.danapps.polytech.fragments.tabs;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
@@ -20,6 +26,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.danapps.polytech.R;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -52,6 +59,7 @@ public class NavigationFragment extends Fragment {
     private GoogleMap googleMap;
     private MarkerOptions place1, place2;
     private Polyline currentPolyline;
+    SharedPreferences sPref;
 
     @SuppressLint("CommitPrefEdits")
     @Override
@@ -75,7 +83,9 @@ public class NavigationFragment extends Fragment {
                 new MarkerOptions().position(new LatLng(60.007729, 30.389621)).title(getString(R.string.corpus16))
         };
 
-        SharedPreferences sPref = Objects.requireNonNull(getActivity()).getSharedPreferences("PlacesInfo", Context.MODE_PRIVATE);
+        sPref = Objects.requireNonNull(getActivity()).getSharedPreferences("PlacesInfo", Context.MODE_PRIVATE);
+
+        Log.e("MAP", String.valueOf(sPref.getBoolean("isRoute", false)));
 
         if (sPref.getBoolean("isRoute", false)) {
             place1 = places[sPref.getInt("Place1", 0)];
@@ -98,6 +108,7 @@ public class NavigationFragment extends Fragment {
             currentPolyline.remove();
         }
 
+
         if (sPref.getBoolean("isRoute", false)) {
             DirectionsApiRequest request = DirectionsApi.newRequest(geoApiContext)
                     .origin(place1.getPosition().latitude + "," + place1.getPosition().longitude)
@@ -112,7 +123,7 @@ public class NavigationFragment extends Fragment {
                         @Override
                         public void run() {
                             currentPolyline = googleMap.addPolyline(new PolylineOptions().addAll(
-                                    PolyUtil.decode(result.routes[0].overviewPolyline.getEncodedPath())));
+                                    PolyUtil.decode(result.routes[0].overviewPolyline.getEncodedPath())).width(20));
                         }
                     });
                 }
@@ -134,27 +145,40 @@ public class NavigationFragment extends Fragment {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+
+            sPref.edit().remove("isRoute").remove("Place1").remove("Place2").apply();
         }
 
-        sPref.edit().remove("isRoute").remove("Place1").remove("Place2");
 
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
-                try {
-                    boolean success = googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(Objects.requireNonNull(getContext()), R.raw.mapstyle));
-                    if (!success)
-                        Log.e("MAP", "parsing failed");
-                }
-                catch (Resources.NotFoundException e) {
-                    Log.e("MAP", "Can`t find style. Error" + e);
+//                try {
+//                    boolean success = googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(Objects.requireNonNull(getContext()), R.raw.mapstyle));
+//                    if (!success)
+//                        Log.e("MAP", "parsing failed");
+//                }
+//                catch (Resources.NotFoundException e) {
+//                    Log.e("MAP", "Can`t find style. Error" + e);
+//                }
+
+                if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+                    } else {
+                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                    }
                 }
 
-                googleMap.setBuildingsEnabled(true);
+                googleMap.getUiSettings().setMyLocationButtonEnabled(false);
+                googleMap.setMyLocationEnabled(true);
                 NavigationFragment.this.googleMap = googleMap;
                 NavigationFragment.this.googleMap.addMarker(place1);
                 NavigationFragment.this.googleMap.addMarker(place2);
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place1.getPosition(), 17f));
+                NavigationFragment.this.googleMap.setBuildingsEnabled(true);
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place1.getPosition(), 17f));
             }
         });
 
@@ -163,6 +187,44 @@ public class NavigationFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Objects.requireNonNull(getFragmentManager()).beginTransaction().replace(R.id.frame_layout, navigationChooseFragment).commit();
+            }
+        });
+
+        view.findViewById(R.id.nav_plusZoomBTN).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mapView.getMapAsync(new OnMapReadyCallback() {
+                    @Override
+                    public void onMapReady(GoogleMap googleMap) {
+                        if (googleMap.getCameraPosition().zoom < 20)
+                            googleMap.animateCamera(CameraUpdateFactory.zoomTo(googleMap.getCameraPosition().zoom + 1));
+                    }
+                });
+            }
+        });
+
+        view.findViewById(R.id.nav_minusZoomBTN).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mapView.getMapAsync(new OnMapReadyCallback() {
+                    @Override
+                    public void onMapReady(GoogleMap googleMap) {
+                        if (googleMap.getCameraPosition().zoom > 0)
+                            googleMap.animateCamera(CameraUpdateFactory.zoomTo(googleMap.getCameraPosition().zoom - 1));
+                    }
+                });
+            }
+        });
+
+        view.findViewById(R.id.nav_myPositionBTN).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mapView.getMapAsync(new OnMapReadyCallback() {
+                    @Override
+                    public void onMapReady(GoogleMap googleMap) {
+                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(googleMap.getMyLocation().getLatitude(), googleMap.getMyLocation().getLongitude()), 17f));
+                    }
+                });
             }
         });
 

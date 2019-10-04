@@ -11,9 +11,14 @@ import android.widget.EditText;
 import com.danapps.polytech.R;
 import com.danapps.polytech.activities.MainActivity;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class WelcomeGroupActivity extends AppCompatActivity {
 
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    DatabaseReference myRef = FirebaseDatabase.getInstance().getReference(mAuth.getCurrentUser().getUid()).child("UserInfo");
     TextInputLayout groupTIL;
     EditText groupET;
 
@@ -32,6 +37,7 @@ public class WelcomeGroupActivity extends AppCompatActivity {
                     groupTIL.setError(getString(R.string.welcome_group_error));
                 else
                     getSharedPreferences("UserInfo", MODE_PRIVATE).edit().putString("UserGroup", groupET.getText().toString()).apply();
+                    myRef.child("UserGroup").setValue(getSharedPreferences("UserInfo", MODE_PRIVATE).getString("UserGroup", ""));
                     startActivity(new Intent(WelcomeGroupActivity.this, MainActivity.class));
             }
         });

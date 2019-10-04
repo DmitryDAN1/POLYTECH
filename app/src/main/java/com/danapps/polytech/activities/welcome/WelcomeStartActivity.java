@@ -48,9 +48,9 @@ public class WelcomeStartActivity extends AppCompatActivity {
                     surnameTIL.setError(getString(R.string.welcome_start_surname_error));
                 else {
                     sPref.edit().putString("UserName", nameET.getText().toString()).apply();
-                    myRef.setValue(sPref.getString("Name", ""));
                     sPref.edit().putString("UserSurname", surnameET.getText().toString()).apply();
-                    myRef.setValue(sPref.getString("Surname", ""));
+                    myRef.child("UserName").setValue(sPref.getString("UserName", ""));
+                    myRef.child("UserSurname").setValue(sPref.getString("UserSurname", ""));
                     startActivity(new Intent(WelcomeStartActivity.this, WelcomeGroupActivity.class));
                 }
             }
