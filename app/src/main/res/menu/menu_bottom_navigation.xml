@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/events_item"
+        android:id="@+id/notes_item"
         android:icon="@drawable/ic_create_black"
-        android:title="@string/menu_tasks" />
+        android:title="@string/notes_notes_item" />
 
     <item
         android:id="@+id/navigation_item"

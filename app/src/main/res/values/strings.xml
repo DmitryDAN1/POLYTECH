@@ -65,4 +65,7 @@
     <string name="navigation_choose_from_error">Вы не ввели точку отправления</string>
     <string name="navigation_choose_to_error">Вы не ввели точку прибытия!</string>
     <string name="navigation_choose_adress_error">Введите корректный адресс</string>
+    <string name="notes_notes_item">Заметки</string>
+    <string name="notes_todo_item">Задачи</string>
+    <string name="notes_homework_item">Задания</string>
 </resources>

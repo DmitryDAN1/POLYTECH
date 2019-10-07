@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/notes_notes_item"
+        android:icon="@drawable/ic_note_add_black_24dp"
+        android:title="@string/notes_notes_item" />
+
+    <item
+        android:id="@+id/notes_homework_item"
+        android:icon="@drawable/ic_book_black_24dp"
+        android:title="@string/notes_homework_item" />
+
+    <item
+        android:id="@+id/notes_todo_item"
+        android:icon="@drawable/ic_check_box_black_24dp"
+        android:title="@string/notes_todo_item" />
+
+</menu>

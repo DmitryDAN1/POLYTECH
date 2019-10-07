@@ -154,14 +154,14 @@ public class NavigationFragment extends Fragment {
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
-//                try {
-//                    boolean success = googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(Objects.requireNonNull(getContext()), R.raw.mapstyle));
-//                    if (!success)
-//                        Log.e("MAP", "parsing failed");
-//                }
-//                catch (Resources.NotFoundException e) {
-//                    Log.e("MAP", "Can`t find style. Error" + e);
-//                }
+                try {
+                    boolean success = googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(Objects.requireNonNull(getContext()), R.raw.mapstyle));
+                    if (!success)
+                        Log.e("MAP", "parsing failed");
+                }
+                catch (Resources.NotFoundException e) {
+                    Log.e("MAP", "Can`t find style. Error" + e);
+                }
 
                 if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
@@ -170,10 +170,11 @@ public class NavigationFragment extends Fragment {
                     } else {
                         ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
                     }
+                } else {
+                    googleMap.getUiSettings().setMyLocationButtonEnabled(false);
+                    googleMap.setMyLocationEnabled(true);
                 }
 
-                googleMap.getUiSettings().setMyLocationButtonEnabled(false);
-                googleMap.setMyLocationEnabled(true);
                 NavigationFragment.this.googleMap = googleMap;
                 NavigationFragment.this.googleMap.addMarker(place1);
                 NavigationFragment.this.googleMap.addMarker(place2);
@@ -222,7 +223,14 @@ public class NavigationFragment extends Fragment {
                 mapView.getMapAsync(new OnMapReadyCallback() {
                     @Override
                     public void onMapReady(GoogleMap googleMap) {
-                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(googleMap.getMyLocation().getLatitude(), googleMap.getMyLocation().getLongitude()), 17f));
+                        if (googleMap.isMyLocationEnabled())
+                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(googleMap.getMyLocation().getLatitude(), googleMap.getMyLocation().getLongitude()), 17f));
+                        else if (ContextCompat.checkSelfPermission(Objects.requireNonNull(getContext()), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                        } else {
+                            googleMap.getUiSettings().setMyLocationButtonEnabled(false);
+                            googleMap.setMyLocationEnabled(true);
+                        }
                     }
                 });
             }
