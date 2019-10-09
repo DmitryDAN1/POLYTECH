@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="wrap_content">
 
     <EditText
@@ -27,7 +28,8 @@
         android:background="@android:color/white"
         android:hint="@string/notes_subtitle"
         android:textSize="18sp"
-        android:importantForAutofill="no" />
+        android:inputType="none"
+        tools:ignore="Autofill" />
 
 
     <TextView
@@ -47,13 +49,12 @@
         android:id="@+id/notes_errorTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_marginTop="21dp"
         android:layout_below="@id/notes_subtitleET"
         android:layout_toStartOf="@id/notes_saveBTN"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="10dp"
-        android:text="Введите название заметки!"
         android:textColor="@android:color/holo_red_dark" />
 
 </RelativeLayout>
