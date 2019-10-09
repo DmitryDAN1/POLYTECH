@@ -22,6 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class StartActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -43,20 +45,14 @@ public class StartActivity extends AppCompatActivity {
             authChecker = true;
         }
         else {
-            mAuth.signInWithEmailAndPassword(sPref.getString("UserLogin", ""), sPref.getString("UserPass", "")).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                @Override
-                public void onSuccess(AuthResult authResult) {
-                    if (!mAuth.getCurrentUser().isEmailVerified()) {
-                        logChecker = false;
-                        myRef = FirebaseDatabase.getInstance().getReference(mAuth.getCurrentUser().getUid());
-                    }
+            mAuth.signInWithEmailAndPassword(sPref.getString("UserLogin", ""), sPref.getString("UserPass", "")).addOnSuccessListener(authResult -> {
+                if (!Objects.requireNonNull(mAuth.getCurrentUser()).isEmailVerified()) {
+                    logChecker = false;
+                    myRef = FirebaseDatabase.getInstance().getReference(mAuth.getCurrentUser().getUid());
                 }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    logChecker = true;
-                    Toast.makeText(getBaseContext(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-                }
+            }).addOnFailureListener(e -> {
+                logChecker = true;
+                Toast.makeText(getBaseContext(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             });
         }
 
@@ -64,51 +60,48 @@ public class StartActivity extends AppCompatActivity {
             welcomeChecker = true;
         }
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
+        new Handler().postDelayed(() -> {
 
-                if (authChecker) {
+            if (authChecker) {
+                startActivity(new Intent(StartActivity.this, AuthActivity.class));
+                finish();
+            }
+            else {
+                if (logChecker) {
                     startActivity(new Intent(StartActivity.this, AuthActivity.class));
-                    finish();
                 }
                 else {
-                    if (logChecker) {
-                        startActivity(new Intent(StartActivity.this, AuthActivity.class));
+                    if (welcomeChecker) {
+                        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.child("UserInfo").child("UserName").getValue() == null || dataSnapshot.child("UserInfo").child("UserSurname").getValue() == null || dataSnapshot.child("UserInfo").child("UserGroup").getValue() == null) {
+                                    startActivity(new Intent(StartActivity.this, WelcomeStartActivity.class));
+                                    finish();
+                                } else {
+                                    sPref.edit()
+                                            .putString("UserName", Objects.requireNonNull(dataSnapshot.child("UserInfo").child("UserName").getValue()).toString())
+                                            .putString("UserSurname", Objects.requireNonNull(dataSnapshot.child("UserInfo").child("UserSurname").getValue()).toString())
+                                            .putString("UserGroup", Objects.requireNonNull(dataSnapshot.child("UserInfo").child("UserGroup").getValue()).toString()).apply();
+                                    startActivity(new Intent(StartActivity.this, MainActivity.class));
+                                    finish();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                        startActivity(new Intent(StartActivity.this, WelcomeStartActivity.class));
+                        finish();
                     }
                     else {
-                        if (welcomeChecker) {
-                            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    if (dataSnapshot.child("UserInfo").child("UserName").getValue() == "" || dataSnapshot.child("UserInfo").child("UserSurname").getValue() == "" || dataSnapshot.child("UserInfo").child("UserGroup").getValue() == "") {
-                                        startActivity(new Intent(StartActivity.this, WelcomeStartActivity.class));
-                                        finish();
-                                    } else {
-                                        sPref.edit()
-                                                .putString("UserName", dataSnapshot.child("UserInfo").child("UserName").getValue().toString())
-                                                .putString("UserSurname", dataSnapshot.child("UserInfo").child("UserSurname").getValue().toString())
-                                                .putString("UserGroup", dataSnapshot.child("UserInfo").child("UserGroup").getValue().toString()).apply();
-                                        startActivity(new Intent(StartActivity.this, MainActivity.class));
-                                        finish();
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
-                            startActivity(new Intent(StartActivity.this, WelcomeStartActivity.class));
-                            finish();
-                        }
-                        else {
-                            startActivity(new Intent(StartActivity.this, MainActivity.class));
-                        }
+                        startActivity(new Intent(StartActivity.this, MainActivity.class));
                     }
                 }
-
             }
+
         }, 3000);
     }
 }
