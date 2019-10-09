@@ -68,4 +68,9 @@
     <string name="notes_notes_item">Заметки</string>
     <string name="notes_todo_item">Задачи</string>
     <string name="notes_homework_item">Задания</string>
+    <string name="save">Сохранить</string>
+    <string name="notes_subtitle">Содержимое заметки</string>
+    <string name="notes_title">Название заметки</string>
+    <string name="notes_error_subtitle">Введите содержимое заметки!</string>
+    <string name="notes_error_title">Введите название заметки!</string>
 </resources>

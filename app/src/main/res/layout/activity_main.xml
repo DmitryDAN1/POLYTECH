@@ -7,17 +7,6 @@
     tools:context=".activities.MainActivity"
     android:background="@android:color/white">
 
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/notes_top_navigation_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:visibility="visible"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/notes_menu_top_navigation" />
-
-
     <View
         android:id="@+id/top_navigation_view_line"
         android:layout_width="match_parent"
@@ -29,8 +18,7 @@
         android:id="@+id/frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottom_navigation_view_line"
-        android:layout_below="@id/notes_top_navigation_view"/>
+        android:layout_above="@id/bottom_navigation_view_line" />
 
     <View
         android:id="@+id/bottom_navigation_view_line"

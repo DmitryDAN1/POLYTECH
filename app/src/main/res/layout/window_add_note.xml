@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/notes_titleET"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:hint="@string/notes_title"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:inputType="textAutoComplete"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/notes_subtitleET"
+        android:layout_below="@id/notes_titleET"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:hint="@string/notes_subtitle"
+        android:textSize="18sp"
+        android:importantForAutofill="no" />
+
+
+    <TextView
+        android:id="@+id/notes_saveBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/notes_subtitleET"
+        android:layout_marginEnd="25dp"
+        android:textSize="22sp"
+        android:textColor="@color/PolyGreen" />
+
+    <TextView
+        android:id="@+id/notes_errorTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="21dp"
+        android:layout_below="@id/notes_subtitleET"
+        android:layout_toStartOf="@id/notes_saveBTN"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="10dp"
+        android:text="Введите название заметки!"
+        android:textColor="@android:color/holo_red_dark" />
+
+</RelativeLayout>
