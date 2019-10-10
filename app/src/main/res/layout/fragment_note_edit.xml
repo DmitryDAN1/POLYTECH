@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.tabs.NoteEditFragment"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:id="@+id/notes_edit_topToolbar"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
+
+        <ImageButton
+            android:id="@+id/notes_edit_backBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/ic_arrow_back_green"
+            android:background="@android:color/white"
+            tools:ignore="ContentDescription" />
+
+
+        <ImageButton
+            android:id="@+id/notes_edit_applyBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_check_green"
+            android:background="@android:color/white"
+            android:scaleType="center"
+            tools:ignore="ContentDescription" />
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/notes_edit_TitleET"
+        android:layout_below="@id/notes_edit_topToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:inputType="textAutoComplete"
+        android:layout_marginEnd="10dp"
+        android:background="@android:color/white"
+        android:text="@string/notes_notes_item"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textColor="@color/PolyBlack"
+        android:textStyle="bold"
+        tools:ignore="LabelFor"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/notes_edit_SubtitleET"
+        android:gravity="top"
+        android:layout_below="@id/notes_edit_TitleET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:inputType="none"
+        android:text="@string/notes_notes_item"
+        android:textSize="19sp"
+        android:textStyle="normal"
+        android:textColor="@color/PolyBlack"
+        android:importantForAutofill="no"
+        tools:ignore="LabelFor" />
+
+</RelativeLayout>

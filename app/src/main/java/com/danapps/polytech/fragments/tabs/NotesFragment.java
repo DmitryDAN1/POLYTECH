@@ -2,8 +2,8 @@ package com.danapps.polytech.fragments.tabs;
 
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -16,19 +16,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.danapps.polytech.R;
 import com.danapps.polytech.notes.NoteAdapter;
 import com.danapps.polytech.notes.NoteListItem;
+import com.danapps.polytech.notes.RecyclerTouchListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class NotesFragment extends Fragment{
+public class NotesFragment extends Fragment {
+
 
     private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private List<NoteListItem> listItems = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,6 +44,7 @@ public class NotesFragment extends Fragment{
         recyclerView = view.findViewById(R.id.notes_recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
 
         UpdateRV(recyclerView, sPref);
 
@@ -75,12 +81,30 @@ public class NotesFragment extends Fragment{
         });
 
 
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
+
+            @Override
+            public void onClick(View view, int position) {
+                NoteEditFragment noteEditFragment = new NoteEditFragment();
+                sPref.edit().putInt("CurrentNote", (position + 1)).apply();
+                Objects.requireNonNull(getFragmentManager()).beginTransaction().replace(R.id.frame_layout, noteEditFragment).commit();
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+                Toast.makeText(getContext(), String.valueOf(position+10), Toast.LENGTH_SHORT).show();
+            }
+        }));
+
+
         return view;
     }
 
+
+
     private void UpdateRV (RecyclerView recyclerView, SharedPreferences sPref) {
         int NotesCount = sPref.getInt("NotesCount", 0);
-        List<NoteListItem> listItems = new ArrayList<>();
+        listItems = new ArrayList<>();
 
         for (int i = 1; i <= NotesCount; i++) {
             NoteListItem listItem = new NoteListItem(
@@ -92,7 +116,7 @@ public class NotesFragment extends Fragment{
             listItems.add(listItem);
         }
 
-        RecyclerView.Adapter adapter = new NoteAdapter(listItems, getContext());
+        adapter = new NoteAdapter(listItems, getContext());
         recyclerView.setAdapter(adapter);
     }
 
