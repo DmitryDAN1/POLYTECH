@@ -6,10 +6,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -36,7 +41,8 @@ import java.util.Objects;
 
 public class NotesFragment extends Fragment {
 
-
+    private Drawable deleteIcon;
+    private ColorDrawable background = new ColorDrawable(Color.RED);
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<NoteListItem> listItems = new ArrayList<>();
@@ -48,8 +54,10 @@ public class NotesFragment extends Fragment {
         recyclerView = view.findViewById(R.id.notes_recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        deleteIcon = getContext().getDrawable(R.drawable.ic_check_green);
 
-        ItemTouchHelper.Callback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+
+        ItemTouchHelper.Callback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT ) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;
@@ -87,10 +95,25 @@ public class NotesFragment extends Fragment {
                 AlertDialog alert = builder.create();
                 alert.show();
             }
+
+            @Override
+            public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+                View itemView = viewHolder.itemView;
+
+//                if (dX > 0) {
+//                    background.setBounds(itemView.getLeft(), itemView.getTop(), (int)dX, itemView.getBottom());
+//                } else {
+                    background.setBounds(itemView.getRight() + (int)dX, itemView.getTop(), itemView.getRight(), itemView.getBottom());
+//                }
+
+                background.draw(c);
+
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+            }
         };
 
-
-        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemTouchHelperCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
 
         UpdateRV(recyclerView, sPref);
 
