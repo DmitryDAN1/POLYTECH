@@ -35,8 +35,8 @@ public class MenuFragment extends Fragment {
 
         TextView profileBlockCurrentGroupTV = view.findViewById(R.id.menu_profileBlock_currentGroupTV);
         TextView settingsBlockCurrentGroupTV = view.findViewById(R.id.menu_settingsBlock_currentGroupTV);
-        profileBlockCurrentGroupTV.setText(sPref.getString("UserGroup", ""));
-        settingsBlockCurrentGroupTV.setText(sPref.getString("UserGroup", ""));
+        profileBlockCurrentGroupTV.setText(sPref.getString("UserGroupName", ""));
+        settingsBlockCurrentGroupTV.setText(sPref.getString("UserGroupName", ""));
 
         TextView  profileBlockName = view.findViewById(R.id.profileBlock_name);
         profileBlockName.setText(sPref.getString("UserName", "Name") + " " + sPref.getString("UserSurname", "Surname"));

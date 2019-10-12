@@ -23,7 +23,7 @@
     <string name="reset_finish_mainText">Проверьте почту</string>
     <string name="reset_finish_subText">Сообщение с инструкцией по сбросу пороля отправлено</string>
     <string name="reset_finish_nextBTN">Авторизоваться</string>
-    <string name="reg_finish_error">К сожалению, что-то пошло не так и мы не смогли вас зарегестрировать :(  Попробуйте позже...</string>
+    <string name="reg_finish_error">К сожалению, что-то пошло не так и мы не смогли вас зарегестрировать :(  Попробуйте позже…</string>
     <string name="auth_main_error">Ваша учётная запись не подтверждена, проверьте свою электронную почту!</string>
     <string name="exit_from_app_mainText">Выход из приложения!</string>
     <string name="exit_from_app_subText">Вы хотите выйти из приложения?</string>
@@ -73,4 +73,6 @@
     <string name="notes_title">Название заметки</string>
     <string name="notes_error_subtitle">Введите содержимое заметки!</string>
     <string name="notes_error_title">Введите название заметки!</string>
+    <string name="connection_error">Проблема с интернет соединением, повторите попытку позже!</string>
+    <string name="group_error">Введите корректный номер группы</string>
 </resources>

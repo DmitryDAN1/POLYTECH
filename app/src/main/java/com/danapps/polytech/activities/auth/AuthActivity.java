@@ -33,114 +33,78 @@ import java.util.Objects;
 public class AuthActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    DatabaseReference myRef;
 
-    TextInputLayout emailTIL, passTIL;
-    EditText emailET, passET;
-    SharedPreferences sPref;
-
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
 
-        sPref = getSharedPreferences("UserInfo", MODE_PRIVATE);
+        SharedPreferences sPref = getSharedPreferences("UserInfo", MODE_PRIVATE);
 
-        emailET = findViewById(R.id.auth_emailET);
-        emailTIL = findViewById(R.id.auth_emailTIL);
-        passET = findViewById(R.id.auth_passET);
-        passTIL = findViewById(R.id.auth_passTIL);
+        EditText emailET = findViewById(R.id.auth_emailET), passET =  findViewById(R.id.auth_passET);
+        TextInputLayout emailTIL = findViewById(R.id.auth_emailTIL), passTIL =  findViewById(R.id.auth_passTIL);
 
-        findViewById(R.id.auth_logBTN).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                if (emailET.getText().toString().isEmpty())
-                    emailTIL.setError(getString(R.string.email_error));
-                else if (passET.getText().toString().isEmpty())
-                    passTIL.setError(getString(R.string.pass_error));
-                else if (passET.getText().toString().length() < 6)
-                    passTIL.setError(getString(R.string.pass_error_length));
-                else {
-                    mAuth.signInWithEmailAndPassword(emailET.getText().toString(), passET.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                        @SuppressLint("CommitPrefEdits")
-                        @Override
-                        public void onSuccess(AuthResult authResult) {
-                            if (Objects.requireNonNull(authResult.getUser()).isEmailVerified()) {
-                                myRef = FirebaseDatabase.getInstance().getReference(mAuth.getCurrentUser().getUid());
-                                sPref.edit().putString("UserLogin", emailET.getText().toString()).apply();
-                                sPref.edit().putString("UserPass", passET.getText().toString()).apply();
+        findViewById(R.id.auth_registerBTN).setOnClickListener(v -> startActivity(new Intent(AuthActivity.this, RegistrationEmailActivity.class)));
+        findViewById(R.id.auth_resetPassBTN).setOnClickListener(v -> startActivity(new Intent(AuthActivity.this, ResetPassActivity.class)));
 
-                                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        if (dataSnapshot.child("UserInfo").child("UserName").getValue() == "" || dataSnapshot.child("UserInfo").child("UserSurname").getValue() == "" || dataSnapshot.child("UserInfo").child("UserGroup").getValue() == "") {
-                                            startActivity(new Intent(AuthActivity.this, WelcomeStartActivity.class));
-                                            finish();
-                                        } else {
-                                            sPref.edit()
-                                                    .putString("UserName", dataSnapshot.child("UserInfo").child("UserName").getValue().toString())
-                                                    .putString("UserSurname", dataSnapshot.child("UserInfo").child("UserSurname").getValue().toString())
-                                                    .putString("UserGroup", dataSnapshot.child("UserInfo").child("UserGroup").getValue().toString()).apply();
-                                            startActivity(new Intent(AuthActivity.this, MainActivity.class));
-                                            finish();
-                                        }
-                                    }
+        findViewById(R.id.auth_logBTN).setOnClickListener(v -> {
+            if (emailET.getText().toString().isEmpty())
+                emailTIL.setError(getString(R.string.email_error));
+            else if (passET.getText().toString().isEmpty())
+                passTIL.setError(getString(R.string.pass_error));
+            else if (passET.getText().toString().length() < 6)
+                passTIL.setError(getString(R.string.pass_error_length));
+            else {
+                mAuth.signInWithEmailAndPassword(emailET.getText().toString(), passET.getText().toString())
+                .addOnFailureListener(e -> Snackbar.make(v, e.getLocalizedMessage(), Snackbar.LENGTH_SHORT).show())
+                .addOnSuccessListener(authResult -> {
+                    if (!authResult.getUser().isEmailVerified())
+                        Snackbar.make(v, getString(R.string.auth_main_error), Snackbar.LENGTH_SHORT).show();
+                    else {
+                        sPref.edit().putString("UserLogin", emailET.getText().toString())
+                        .putString("UserPass", passET.getText().toString()).apply();
 
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                    }
-                                });
-
-                            } else {
-                                Snackbar.make(v, getString(R.string.auth_main_error), Snackbar.LENGTH_LONG).show();
+                        myRef = FirebaseDatabase.getInstance().getReference(mAuth.getCurrentUser().getUid()).child("UserInfo");
+                        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.child("UserName").getValue() == null ||
+                                    dataSnapshot.child("UserSurname").getValue() == null ||
+                                    dataSnapshot.child("UserGroupName").getValue() == null ||
+                                    dataSnapshot.child("UserGroupId").getValue() == null)
+                                    startActivity(new Intent(AuthActivity.this, WelcomeStartActivity.class));
+                                else {
+                                    sPref.edit().putString("UserName", dataSnapshot.child("UserName").getValue().toString())
+                                    .putString("UserSurname", dataSnapshot.child("UserSurname").getValue().toString())
+                                    .putString("UserGroupName", dataSnapshot.child("UserGroupName").getValue().toString())
+                                    .putInt("UserGroupId", dataSnapshot.child("UserGroupId").getValue(int.class)).apply();
+                                    startActivity(new Intent(AuthActivity.this, MainActivity.class));
+                                }
                             }
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Snackbar.make(v, Objects.requireNonNull(e.getLocalizedMessage()), Snackbar.LENGTH_SHORT).show();
-                        }
-                    });
-                }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                });
             }
         });
-
-        findViewById(R.id.auth_registerBTN).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(AuthActivity.this, RegistrationEmailActivity.class));
-            }
-        });
-
-        findViewById(R.id.auth_resetPassBTN).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(AuthActivity.this, ResetPassActivity.class));
-            }
-        });
-
 
     }
 
     @Override
     public void onBackPressed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(AuthActivity.this);
-        builder.setTitle(getString(R.string.exit_from_app_mainText)).setMessage(getString(R.string.exit_from_app_subText))
-                .setNegativeButton(getString(R.string.No), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(getApplicationContext(), R.string.good_choice, Toast.LENGTH_SHORT).show();
-                    }
-                }).setPositiveButton(getString(R.string.Yes), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                finishAffinity();
-            }
-        });
+        AlertDialog.Builder builder = new AlertDialog.Builder(AuthActivity.this)
+            .setTitle(getString(R.string.exit_from_app_mainText)).setMessage(getString(R.string.exit_from_app_subText))
+            .setNegativeButton(getString(R.string.No), (dialogInterface, i) -> Toast.makeText(getApplicationContext(), R.string.good_choice, Toast.LENGTH_SHORT).show())
+            .setPositiveButton(getString(R.string.Yes), (dialogInterface, i) -> finishAffinity());
 
-        AlertDialog alert = builder.create();
-        alert.show();
+        builder.create().show();
     }
 }
+
+
+

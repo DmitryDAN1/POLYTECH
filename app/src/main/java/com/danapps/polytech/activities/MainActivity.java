@@ -8,7 +8,6 @@ import androidx.fragment.app.FragmentManager;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.danapps.polytech.R;
@@ -40,35 +39,31 @@ public class MainActivity extends AppCompatActivity {
         fm.beginTransaction().replace(R.id.frame_layout, notesFragment).commit();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_view);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
+            switch (menuItem.getItemId())
+            {
+                case (R.id.notes_item):
+                    fm.beginTransaction().replace(R.id.frame_layout, notesFragment).commit();
+                    break;
 
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId())
-                {
-                    case (R.id.notes_item):
-                        fm.beginTransaction().replace(R.id.frame_layout, notesFragment).commit();
-                        break;
+                case (R.id.navigation_item):
+                    fm.beginTransaction().replace(R.id.frame_layout, navigationChooseFragment).commit();
+                    break;
 
-                    case (R.id.navigation_item):
-                        fm.beginTransaction().replace(R.id.frame_layout, navigationChooseFragment).commit();
-                        break;
+                case (R.id.schedule_item):
+                    fm.beginTransaction().replace(R.id.frame_layout, scheduleFragment).commit();
+                    break;
 
-                    case (R.id.schedule_item):
-                        fm.beginTransaction().replace(R.id.frame_layout, scheduleFragment).commit();
-                        break;
+                case (R.id.scheme_item):
+                    fm.beginTransaction().replace(R.id.frame_layout, schemeFragment).commit();
+                    break;
 
-                    case (R.id.scheme_item):
-                        fm.beginTransaction().replace(R.id.frame_layout, schemeFragment).commit();
-                        break;
-
-                    case (R.id.menu_item):
-                        fm.beginTransaction().replace(R.id.frame_layout, menuFragment).commit();
-                        break;
-                }
-
-                return true;
+                case (R.id.menu_item):
+                    fm.beginTransaction().replace(R.id.frame_layout, menuFragment).commit();
+                    break;
             }
+
+            return true;
         });
     }
 

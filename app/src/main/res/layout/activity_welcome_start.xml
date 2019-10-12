@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/PolyBlack"
         android:text="@string/welcome"
-        android:textSize="35sp"
+        android:textSize="30sp"
         android:gravity="center"
         android:textStyle="bold" />
 
@@ -52,7 +52,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:hint="@string/name"/>
+                android:hint="@string/name"
+                tools:ignore="Autofill" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,7 +75,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:hint="@string/surname"/>
+                android:hint="@string/surname"
+                tools:ignore="Autofill" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

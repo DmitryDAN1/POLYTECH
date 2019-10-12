@@ -48,12 +48,14 @@
             app:hintEnabled="false"
             app:errorEnabled="true" >
 
-            <EditText
+            <AutoCompleteTextView
                 android:gravity="center"
                 android:id="@+id/welcome_group_groupET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="phone"  />
+                android:inputType="phone"
+                android:completionThreshold="1"
+                tools:ignore="LabelFor" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

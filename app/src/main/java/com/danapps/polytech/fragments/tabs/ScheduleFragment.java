@@ -6,21 +6,16 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.danapps.polytech.R;
-import com.danapps.polytech.activities.welcome.WelcomeFacultiesActivity;
+import com.danapps.polytech.activities.welcome.WelcomeGroupActivity;
 import com.danapps.polytech.schedule.Faculties;
 import com.danapps.polytech.schedule.Groups;
 import com.danapps.polytech.schedule.Scheduler;
-import com.danapps.polytech.schedule.SchedulerError;
 import com.danapps.polytech.schedule.Ruz;
-import com.danapps.polytech.schedule.model.Faculty;
-
-import java.util.List;
 
 public class ScheduleFragment extends Fragment {
     private Ruz ruz;
@@ -36,27 +31,6 @@ public class ScheduleFragment extends Fragment {
         faculties = ruz.newFaculties();
         groups = ruz.newGroups();
         scheduler = ruz.newScheduler();
-
-        view.findViewById(R.id.scheduleBTN).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), WelcomeFacultiesActivity.class));
-//                ruz.newFaculties().queryFaculties(new Faculties.Listener() {
-//                    @Override
-//                    public void onResponseReady(List<Faculty> faculties) {
-//                        for (int i = 0; i < faculties.size(); i++){
-//                            Log.e("Faculties", faculties.get(i).getName());
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onResponseError(SchedulerError error) {
-//
-//                    }
-//                });
-
-            }
-        });
 
 
 //        groups.queryGroups(101, new Groups.Listener() {
