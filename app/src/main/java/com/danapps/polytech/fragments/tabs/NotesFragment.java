@@ -41,7 +41,6 @@ import java.util.Objects;
 
 public class NotesFragment extends Fragment {
 
-    private Drawable deleteIcon;
     private ColorDrawable background = new ColorDrawable(Color.RED);
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -54,8 +53,6 @@ public class NotesFragment extends Fragment {
         recyclerView = view.findViewById(R.id.notes_recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        deleteIcon = getContext().getDrawable(R.drawable.ic_check_green);
-
 
         ItemTouchHelper.Callback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT ) {
             @Override
@@ -65,46 +62,32 @@ public class NotesFragment extends Fragment {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getContext()));
+                AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getContext()))
+                .setTitle("Удаление заметки")
+                .setMessage("Вы уверены, что хотите удалить заметку?")
+                .setNegativeButton(getString(R.string.No), (dialogInterface, i) -> UpdateRV(recyclerView, sPref))
+                .setPositiveButton(getString(R.string.Yes), (dialogInterface, i) -> {
+                    int noteNumber = viewHolder.getAdapterPosition() + 1;
+                    int notesCount = sPref.getInt("NotesCount", 0);
 
-                builder.setTitle("Удаление заметки")
-                        .setMessage("Вы уверены, что хотите удалить заметку?")
-                        .setNegativeButton(getString(R.string.No), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                UpdateRV(recyclerView, sPref);
-                            }
-                        })
-                        .setPositiveButton(getString(R.string.Yes), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                int noteNumber = viewHolder.getAdapterPosition() + 1;
-                                int notesCount = sPref.getInt("NotesCount", 0);
+                    for (int j = noteNumber; j < notesCount; j++) {
+                        sPref.edit().putString("Title" + j, sPref.getString("Title" + (j + 1), "None")).apply();
+                        sPref.edit().putString("Subtitle" + j, sPref.getString("Subtitle" + (j + 1), "None")).apply();
+                    }
 
-                                for (int j = noteNumber; j < notesCount; j++) {
-                                    sPref.edit().putString("Title" + j, sPref.getString("Title" + (j + 1), "None")).apply();
-                                    sPref.edit().putString("Subtitle" + j, sPref.getString("Subtitle" + (j + 1), "None")).apply();
-                                }
+                    sPref.edit().remove("Title" + notesCount).remove("Subtitle" + notesCount).putInt("NotesCount", notesCount - 1).apply();
 
-                                sPref.edit().remove("Title" + notesCount).remove("Subtitle" + notesCount).putInt("NotesCount", notesCount - 1).apply();
-
-                                UpdateRV(recyclerView, sPref);
-                            }
+                    UpdateRV(recyclerView, sPref);
                 });
 
-                AlertDialog alert = builder.create();
-                alert.show();
+                builder.create().show();
             }
 
             @Override
             public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
                 View itemView = viewHolder.itemView;
 
-//                if (dX > 0) {
-//                    background.setBounds(itemView.getLeft(), itemView.getTop(), (int)dX, itemView.getBottom());
-//                } else {
-                    background.setBounds(itemView.getRight() + (int)dX, itemView.getTop(), itemView.getRight(), itemView.getBottom());
-//                }
+                background.setBounds(itemView.getRight() + (int)dX, itemView.getTop(), itemView.getRight(), itemView.getBottom());
 
                 background.draw(c);
 

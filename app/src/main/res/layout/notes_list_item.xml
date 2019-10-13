@@ -3,41 +3,36 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="1dp"
-    android:layout_marginBottom="1dp">
+    android:layout_marginBottom="5dp"
+    android:background="@android:color/white">
 
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:id="@+id/notes_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
-                android:layout_marginTop="5dp"
                 android:id="@+id/titleTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Название заметки"
-                android:textSize="22sp"
-                android:textStyle="bold"
+                android:textSize="20sp"
+                android:fontFamily="@font/sfsemibold"
                 android:textColor="@color/PolyBlack"
                 android:layout_marginStart="10dp"/>
 
             <TextView
-                android:layout_marginBottom="5dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="10dp"
                 android:id="@+id/subtitleTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="Само содержание заметки"
-                android:textSize="18sp"
-                android:textStyle="italic"/>
-
-<!--            <View-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="1dp"-->
-<!--                android:background="@color/PolyWhiteDark" />-->
-
+                android:textSize="16sp"
+                android:fontFamily="@font/sfregular"/>
         </LinearLayout>
 
 </androidx.cardview.widget.CardView>

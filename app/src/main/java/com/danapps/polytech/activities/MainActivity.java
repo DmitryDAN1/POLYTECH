@@ -1,19 +1,15 @@
 package com.danapps.polytech.activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.danapps.polytech.R;
 import com.danapps.polytech.fragments.tabs.MenuFragment;
 import com.danapps.polytech.fragments.tabs.NavigationChooseFragment;
-import com.danapps.polytech.fragments.tabs.NavigationFragment;
 import com.danapps.polytech.fragments.tabs.ScheduleFragment;
 import com.danapps.polytech.fragments.tabs.SchemeFragment;
 import com.danapps.polytech.fragments.tabs.NotesFragment;
@@ -25,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
     private final NotesFragment notesFragment = new NotesFragment();
     private final NavigationChooseFragment navigationChooseFragment = new NavigationChooseFragment();
-    private final NavigationFragment navigationFragment = new NavigationFragment();
     private final ScheduleFragment scheduleFragment = new ScheduleFragment();
     private final SchemeFragment schemeFragment = new SchemeFragment();
     private final MenuFragment menuFragment = new MenuFragment();
@@ -69,21 +64,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setTitle(getString(R.string.exit_from_app_mainText)).setMessage(getString(R.string.exit_from_app_subText))
-                .setNegativeButton(getString(R.string.No), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(getApplicationContext(), getString(R.string.good_choice), Toast.LENGTH_SHORT).show();
-                    }
-                }).setPositiveButton(getString(R.string.Yes), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                finishAffinity();
-            }
-        });
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
+        .setTitle(getString(R.string.exit_from_app_mainText)).setMessage(getString(R.string.exit_from_app_subText))
+        .setNegativeButton(getString(R.string.No), (dialogInterface, i) -> Toast.makeText(getApplicationContext(), getString(R.string.good_choice), Toast.LENGTH_SHORT).show())
+        .setPositiveButton(getString(R.string.Yes), (dialogInterface, i) -> finishAffinity());
 
-        AlertDialog alert = builder.create();
-        alert.show();
+        builder.create().show();
     }
 }

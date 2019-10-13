@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -15,6 +14,10 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class RegistrationPassActivity extends AppCompatActivity {
 
+
+    boolean isPassHide = true;
+    EditText passET;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +25,7 @@ public class RegistrationPassActivity extends AppCompatActivity {
         SharedPreferences sPref = getSharedPreferences("TimedInfo", MODE_PRIVATE);
 
         TextView showPassBTN = findViewById(R.id.reg_pass_showPassBTN);
-        EditText passET = findViewById(R.id.reg_pass_passET);
+        passET = findViewById(R.id.reg_pass_passET);
         TextInputLayout passTIL = findViewById(R.id.reg_pass_passTIL);
 
         findViewById(R.id.reg_pass_backBTN).setOnClickListener(v -> startActivity(new Intent(RegistrationPassActivity.this, RegistrationEmailActivity.class)));
@@ -39,15 +42,16 @@ public class RegistrationPassActivity extends AppCompatActivity {
         });
 
 
-        boolean isPassShow = false;
         findViewById(R.id.reg_pass_showPassBTN).setOnClickListener(v -> {
-            if (isPassShow) {
+            if (isPassHide) {
                 passET.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                showPassBTN.setText("Спрятать пароль");
+                showPassBTN.setText("Показать пароль");
             } else {
                 passET.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                showPassBTN.setText("Показать пароль");
+                showPassBTN.setText("Спрятать пароль");
             }
+
+            isPassHide = !isPassHide;
         });
 
     }

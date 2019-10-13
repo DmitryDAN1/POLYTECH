@@ -59,14 +59,13 @@ public class NavigationFragment extends Fragment {
     private GoogleMap googleMap;
     private MarkerOptions place1, place2;
     private Polyline currentPolyline;
-    SharedPreferences sPref;
 
     @SuppressLint("CommitPrefEdits")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.fragment_navigation, null);
-
         NavigationChooseFragment navigationChooseFragment = new NavigationChooseFragment();
+        SharedPreferences sPref = Objects.requireNonNull(getActivity()).getSharedPreferences("TimedInfo", Context.MODE_PRIVATE);
 
         MarkerOptions[] places = {
                 new MarkerOptions().position(new LatLng(60.007224, 30.372821)).title(getString(R.string.mainBuilding)),
@@ -82,10 +81,6 @@ public class NavigationFragment extends Fragment {
                 new MarkerOptions().position(new LatLng(60.007133, 30.390397)).title(getString(R.string.corpus15)),
                 new MarkerOptions().position(new LatLng(60.007729, 30.389621)).title(getString(R.string.corpus16))
         };
-
-        sPref = Objects.requireNonNull(getActivity()).getSharedPreferences("PlacesInfo", Context.MODE_PRIVATE);
-
-        Log.e("MAP", String.valueOf(sPref.getBoolean("isRoute", false)));
 
         if (sPref.getBoolean("isRoute", false)) {
             place1 = places[sPref.getInt("Place1", 0)];
@@ -119,24 +114,15 @@ public class NavigationFragment extends Fragment {
                 @Override
                 public void onResult(final DirectionsResult result) {
                     Handler mainHandler = new Handler(Looper.getMainLooper());
-                    mainHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            currentPolyline = googleMap.addPolyline(new PolylineOptions().addAll(
-                                    PolyUtil.decode(result.routes[0].overviewPolyline.getEncodedPath())).width(20));
-                        }
-                    });
+                    mainHandler.post(() ->
+                            currentPolyline = googleMap.addPolyline(new PolylineOptions()
+                                .addAll(PolyUtil.decode(result.routes[0].overviewPolyline.getEncodedPath())).width(20)));
                 }
 
                 @Override
                 public void onFailure(Throwable e) {
                     Handler mainHandler = new Handler(Looper.getMainLooper());
-                    mainHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getContext(), "Route failed", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    mainHandler.post(() -> Toast.makeText(getContext(), "Route failed", Toast.LENGTH_SHORT).show());
                 }
             });
 
@@ -151,90 +137,62 @@ public class NavigationFragment extends Fragment {
         }
 
 
-        mapView.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(GoogleMap googleMap) {
-                try {
-                    boolean success = googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(Objects.requireNonNull(getContext()), R.raw.mapstyle));
-                    if (!success)
-                        Log.e("MAP", "parsing failed");
-                }
-                catch (Resources.NotFoundException e) {
-                    Log.e("MAP", "Can`t find style. Error" + e);
-                }
+        mapView.getMapAsync(googleMap -> {
+            try {
+                boolean success = googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(Objects.requireNonNull(getContext()), R.raw.mapstyle));
+                if (!success)
+                    Log.e("MAP", "parsing failed");
+            }
+            catch (Resources.NotFoundException e) {
+                Log.e("MAP", "Can`t find style. Error" + e);
+            }
 
-                if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-                    if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)) {
 
-                    } else {
-                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-                    }
                 } else {
-                    googleMap.getUiSettings().setMyLocationButtonEnabled(false);
-                    googleMap.setMyLocationEnabled(true);
+                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
                 }
-
-                NavigationFragment.this.googleMap = googleMap;
-                NavigationFragment.this.googleMap.addMarker(place1);
-                NavigationFragment.this.googleMap.addMarker(place2);
-                NavigationFragment.this.googleMap.setBuildingsEnabled(true);
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place1.getPosition(), 17f));
+            } else {
+                googleMap.getUiSettings().setMyLocationButtonEnabled(false);
+                googleMap.setMyLocationEnabled(true);
             }
+
+            NavigationFragment.this.googleMap = googleMap;
+            NavigationFragment.this.googleMap.addMarker(place1);
+            NavigationFragment.this.googleMap.addMarker(place2);
+            NavigationFragment.this.googleMap.setBuildingsEnabled(true);
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place1.getPosition(), 17f));
         });
 
 
-        view.findViewById(R.id.nav_backBTN).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Objects.requireNonNull(getFragmentManager()).beginTransaction().replace(R.id.frame_layout, navigationChooseFragment).commit();
-            }
-        });
+        view.findViewById(R.id.nav_backBTN).setOnClickListener(v ->
+                Objects.requireNonNull(getFragmentManager()).beginTransaction().replace(R.id.frame_layout, navigationChooseFragment).commit());
 
-        view.findViewById(R.id.nav_plusZoomBTN).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mapView.getMapAsync(new OnMapReadyCallback() {
-                    @Override
-                    public void onMapReady(GoogleMap googleMap) {
-                        if (googleMap.getCameraPosition().zoom < 20)
-                            googleMap.animateCamera(CameraUpdateFactory.zoomTo(googleMap.getCameraPosition().zoom + 1));
+        view.findViewById(R.id.nav_plusZoomBTN).setOnClickListener(v ->
+                mapView.getMapAsync(googleMap -> {
+                    if (googleMap.getCameraPosition().zoom < 20)
+                        googleMap.animateCamera(CameraUpdateFactory.zoomTo(googleMap.getCameraPosition().zoom + 1));
+                }));
+
+        view.findViewById(R.id.nav_minusZoomBTN).setOnClickListener(v ->
+                mapView.getMapAsync(googleMap -> {
+                    if (googleMap.getCameraPosition().zoom > 0)
+                        googleMap.animateCamera(CameraUpdateFactory.zoomTo(googleMap.getCameraPosition().zoom - 1));
+                }));
+
+        view.findViewById(R.id.nav_myPositionBTN).setOnClickListener(v ->
+                mapView.getMapAsync(googleMap -> {
+                    if (googleMap.isMyLocationEnabled())
+                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(googleMap.getMyLocation().getLatitude(), googleMap.getMyLocation().getLongitude()), 17f));
+                    else if (ContextCompat.checkSelfPermission(Objects.requireNonNull(getContext()), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                    } else {
+                        googleMap.getUiSettings().setMyLocationButtonEnabled(false);
+                        googleMap.setMyLocationEnabled(true);
                     }
-                });
-            }
-        });
-
-        view.findViewById(R.id.nav_minusZoomBTN).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mapView.getMapAsync(new OnMapReadyCallback() {
-                    @Override
-                    public void onMapReady(GoogleMap googleMap) {
-                        if (googleMap.getCameraPosition().zoom > 0)
-                            googleMap.animateCamera(CameraUpdateFactory.zoomTo(googleMap.getCameraPosition().zoom - 1));
-                    }
-                });
-            }
-        });
-
-        view.findViewById(R.id.nav_myPositionBTN).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mapView.getMapAsync(new OnMapReadyCallback() {
-                    @Override
-                    public void onMapReady(GoogleMap googleMap) {
-                        if (googleMap.isMyLocationEnabled())
-                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(googleMap.getMyLocation().getLatitude(), googleMap.getMyLocation().getLongitude()), 17f));
-                        else if (ContextCompat.checkSelfPermission(Objects.requireNonNull(getContext()), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-                        } else {
-                            googleMap.getUiSettings().setMyLocationButtonEnabled(false);
-                            googleMap.setMyLocationEnabled(true);
-                        }
-                    }
-                });
-            }
-        });
+                }));
 
         return view;
     }

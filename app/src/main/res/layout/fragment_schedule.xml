@@ -3,17 +3,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.tabs.ScheduleFragment" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.tabs.ScheduleFragment"
+    android:background="@color/PolyWhiteLight">
 
-    <Button
-        android:text="LOAD"
-        android:id="@+id/scheduleBTN"
+    <RelativeLayout
+        android:id="@+id/schedule_week_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
 
-    <ListView
-        android:id="@+id/scheduleLV"
-        android:layout_below="@id/scheduleBTN"
+        <TextView
+            android:id="@+id/schedule_weekDay"
+            android:gravity="center"
+            android:layout_toStartOf="@id/schedule_nextBTN"
+            android:layout_toEndOf="@id/schedule_backBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Среда"
+            android:textColor="@color/PolyGreen"
+            android:fontFamily="@font/sfmedium"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/schedule_SE"
+            android:layout_below="@id/schedule_weekDay"
+            android:gravity="center"
+            android:layout_toStartOf="@id/schedule_nextBTN"
+            android:layout_toEndOf="@id/schedule_backBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="07.10.2019 - 13.10.2019"
+            android:textColor="@color/PolyGreen"
+            android:fontFamily="@font/sfregular"
+            android:textSize="12sp" />
+
+        <ImageButton
+            android:id="@+id/schedule_backBTN"
+            android:layout_centerInParent="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back_green"
+            android:background="@android:color/white" />
+
+        <ImageButton
+            android:id="@+id/schedule_nextBTN"
+            android:layout_centerInParent="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_forward_green"
+            android:background="@android:color/white" />
+
+    </RelativeLayout>
+
+
+    <View
+        android:layout_below="@id/schedule_week_content"
+        android:id="@+id/schedule_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/PolyWhiteDark" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/schedule_recyclerView"
+        android:layout_below="@id/schedule_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

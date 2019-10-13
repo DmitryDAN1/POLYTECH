@@ -45,7 +45,7 @@ public class NavigationChooseFragment extends Fragment {
             getString(R.string.corpus16)
         };
 
-        ArrayAdapter<String> placesAdapter = new ArrayAdapter<String>(Objects.requireNonNull(getContext()), android.R.layout.simple_list_item_1, places);
+        ArrayAdapter<String> placesAdapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()), android.R.layout.simple_list_item_1, places);
         AutoCompleteTextView fromACTV = view.findViewById(R.id.nav_fromACTV);
         AutoCompleteTextView toACTV = view.findViewById(R.id.nav_toACTV);
         TextInputLayout fromTIL = view.findViewById(R.id.nav_fromTIL);
@@ -53,57 +53,46 @@ public class NavigationChooseFragment extends Fragment {
         fromACTV.setAdapter(placesAdapter);
         toACTV.setAdapter(placesAdapter);
 
-        sPref = Objects.requireNonNull(getActivity()).getSharedPreferences("PlacesInfo", Context.MODE_PRIVATE);
+        sPref = Objects.requireNonNull(getActivity()).getSharedPreferences("TimedInfo", Context.MODE_PRIVATE);
         sPref.edit().remove("isRoute").remove("Place1").remove("Place2").apply();
 
-        view.findViewById(R.id.nav_loadBTN).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (fromACTV.getText().toString().isEmpty())
-                    fromTIL.setError(getString(R.string.navigation_choose_from_error));
-                else if (toACTV.getText().toString().isEmpty())
-                    toTIL.setError(getString(R.string.navigation_choose_to_error));
+        view.findViewById(R.id.nav_loadBTN).setOnClickListener(v -> {
+            if (fromACTV.getText().toString().isEmpty())
+                fromTIL.setError(getString(R.string.navigation_choose_from_error));
+            else if (toACTV.getText().toString().isEmpty())
+                toTIL.setError(getString(R.string.navigation_choose_to_error));
+            else {
+                int fromInt = 0, toInt = 0;
+                boolean checkerFrom = false;
+                boolean checkerTo = false;
+
+                for (int i = 0; i < places.length; i++) {
+                    if (fromACTV.getText().toString().equals(places[i])) {
+                        checkerFrom = true;
+                        fromInt = i;
+                    }
+
+                    if (toACTV.getText().toString().equals(places[i])) {
+                        checkerTo = true;
+                        toInt = i;
+
+                    }
+                }
+
+                if (!checkerFrom)
+                    fromTIL.setError(getString(R.string.navigation_choose_adress_error));
+                else if (!checkerTo)
+                    toTIL.setError(getString(R.string.navigation_choose_adress_error));
                 else {
-
-                    boolean checkerFrom = false;
-                    boolean checkerTo = false;
-                    int fromInt = 0, toInt = 0;
-
-                    for (int i = 0; i < places.length; i++) {
-                        if (fromACTV.getText().toString().equals(places[i])) {
-                            checkerFrom = true;
-                            fromInt = i;
-                            break;
-                        }
-                    }
-
-                    for (int i = 0; i < places.length; i++) {
-                        if (toACTV.getText().toString().equals(places[i])) {
-                            checkerTo = true;
-                            toInt = i;
-                            break;
-                        }
-                    }
-
-                    if (!checkerFrom)
-                        fromTIL.setError(getString(R.string.navigation_choose_adress_error));
-                    else if (!checkerTo)
-                        toTIL.setError(getString(R.string.navigation_choose_adress_error));
-                    else {
-                        sPref.edit().putInt("Place1", fromInt).putInt("Place2", toInt).putBoolean("isRoute", true).apply();
-                        assert getFragmentManager() != null;
-                        getFragmentManager().beginTransaction().replace(R.id.frame_layout, navigationFragment).commit();
-                    }
+                    sPref.edit().putInt("Place1", fromInt).putInt("Place2", toInt).putBoolean("isRoute", true).apply();
+                    getFragmentManager().beginTransaction().replace(R.id.frame_layout, navigationFragment).commit();
                 }
             }
         });
 
-        view.findViewById(R.id.nav_openMap).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Objects.requireNonNull(getFragmentManager()).beginTransaction().replace(R.id.frame_layout, navigationFragment).commit();
-            }
-        });
+        view.findViewById(R.id.nav_openMap).setOnClickListener(v ->
+                Objects.requireNonNull(getFragmentManager()).beginTransaction()
+                .replace(R.id.frame_layout, navigationFragment).commit());
 
         return view;
     }

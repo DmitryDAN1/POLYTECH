@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
@@ -38,6 +40,8 @@ public class RegistrationFinishActivity extends AppCompatActivity {
                 .addOnSuccessListener(authResult -> Objects.requireNonNull(authResult.getUser()).sendEmailVerification()
                     .addOnFailureListener(e -> Snackbar.make(view, e.getLocalizedMessage(), Snackbar.LENGTH_SHORT).show())
                     .addOnSuccessListener(aVoid -> {
+                        FirebaseDatabase.getInstance().getReference(authResult.getUser().getUid()).child("UserInfo").child("UserLogin").setValue(sPref.getString("TimedEmail", "null"));
+                        FirebaseDatabase.getInstance().getReference(authResult.getUser().getUid()).child("UserInfo").child("UserPass").setValue(sPref.getString("TimedPass", "null"));
                         findViewById(R.id.reg_finish_nextBTN).setVisibility(View.VISIBLE);
                     }))
                 .addOnFailureListener(e -> Snackbar.make(view, getString(R.string.reg_finish_error), Snackbar.LENGTH_SHORT).show());

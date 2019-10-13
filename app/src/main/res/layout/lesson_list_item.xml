@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="1dp"
+    android:layout_marginBottom="1dp"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/schedule_list_item_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/lessonId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1."
+            android:textSize="16sp"
+            android:layout_marginStart="15dp"
+            android:textColor="@android:color/darker_gray"
+            android:fontFamily="@font/sfmedium"/>
+
+        <TextView
+            android:id="@+id/lessonType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Практика"
+            android:layout_toRightOf="@id/lessonId"
+            android:layout_marginStart="15dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/darker_gray"
+            android:fontFamily="@font/sfmedium"/>
+
+        <TextView
+            android:id="@+id/lessonTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="10:00 - 11:40"
+            android:layout_marginEnd="15dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/darker_gray"
+            android:fontFamily="@font/sfmedium"/>
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/lessonName"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_below="@id/schedule_list_item_header"
+        android:text="Высшая математика"
+        android:textSize="20sp"
+        android:textColor="@color/PolyBlack"
+        android:fontFamily="@font/sfsemibold" />
+
+    <TextView
+        android:id="@+id/lessonTeacher"
+        android:layout_below="@id/lessonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="3dp"
+        android:text="Дробинцев Павел Дмитриевич"
+        android:textSize="16sp"
+        android:textColor="@android:color/darker_gray"
+        android:fontFamily="@font/sfregular" />
+
+    <TextView
+        android:id="@+id/lessonGeo"
+        android:layout_below="@id/lessonTeacher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="20dp"
+        android:text="Главное здание, ауд. 237"
+        android:textColor="@android:color/darker_gray"
+        android:fontFamily="@font/sfmedium"
+        android:textSize="16sp" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
