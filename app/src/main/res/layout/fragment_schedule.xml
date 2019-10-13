@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Среда"
-            android:textColor="@color/PolyGreen"
+            android:textColor="@color/PolyBlack"
             android:fontFamily="@font/sfmedium"
             android:textSize="20sp" />
 
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="07.10.2019 - 13.10.2019"
-            android:textColor="@color/PolyGreen"
+            android:textColor="@color/PolyBlack"
             android:fontFamily="@font/sfregular"
             android:textSize="12sp" />
 
@@ -71,6 +71,14 @@
         android:layout_height="1dp"
         android:background="@color/PolyWhiteDark" />
 
+
+    <ImageView
+        android:id="@+id/schedule_weekend"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:src="@drawable/ic_hotel_black_100dp"
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/schedule_recyclerView"

@@ -75,4 +75,11 @@
     <string name="notes_error_title">Введите название заметки!</string>
     <string name="connection_error">Проблема с интернет соединением, повторите попытку позже!</string>
     <string name="group_error">Введите корректный номер группы</string>
+    <string name="day_sunday">Воскресенье</string>
+    <string name="day_saturday">Суббота</string>
+    <string name="day_friday">Пятница</string>
+    <string name="day_thirsday">Четверг</string>
+    <string name="day_wednesday">Среда</string>
+    <string name="day_tuesday">Вторник</string>
+    <string name="day_monday">Понедельник</string>
 </resources>

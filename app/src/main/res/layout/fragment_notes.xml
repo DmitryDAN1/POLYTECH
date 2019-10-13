@@ -17,19 +17,13 @@
         android:src="@drawable/ic_add_white"/>
 
 
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="5dp"
+        android:id="@+id/notes_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" >
+        android:layout_height="match_parent" >
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/notes_recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-        </androidx.recyclerview.widget.RecyclerView>
-
-    </ScrollView>
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 </RelativeLayout>

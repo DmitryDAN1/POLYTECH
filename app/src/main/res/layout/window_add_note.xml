@@ -12,10 +12,10 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:hint="@string/notes_title"
-        android:textStyle="bold"
+        android:fontFamily="@font/sfsemibold"
         android:textSize="22sp"
         android:inputType="textAutoComplete"
-        android:importantForAutofill="no" />
+        android:importantForAutofill="no"/>
 
     <EditText
         android:id="@+id/notes_subtitleET"
@@ -29,6 +29,7 @@
         android:hint="@string/notes_subtitle"
         android:textSize="18sp"
         android:inputType="none"
+        android:fontFamily="@font/sfregular"
         tools:ignore="Autofill" />
 
 
@@ -43,7 +44,8 @@
         android:layout_below="@id/notes_subtitleET"
         android:layout_marginEnd="25dp"
         android:textSize="22sp"
-        android:textColor="@color/PolyGreen" />
+        android:textColor="@color/PolyGreen"
+        android:fontFamily="@font/sfmedium"/>
 
     <TextView
         android:id="@+id/notes_errorTV"
@@ -55,6 +57,7 @@
         android:layout_toStartOf="@id/notes_saveBTN"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="10dp"
+        android:fontFamily="@font/sfregular"
         android:textColor="@android:color/holo_red_dark" />
 
 </RelativeLayout>

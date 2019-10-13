@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.danapps.polytech.R;
 import com.danapps.polytech.notes.NoteAdapter;
@@ -46,36 +48,33 @@ public class ScheduleFragment extends Fragment {
 
     private List<Day> dayList;
     List<Lesson> lessonList;
-
+    private DateTime dateTime;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.fragment_schedule, container, false);
         SharedPreferences sPref = getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
-        DateTime dateTime = DateTime.now();
+        dateTime = DateTime.now();
         Ruz ruz = new Ruz(getContext());
         recyclerView = view.findViewById(R.id.schedule_recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        ImageView weekendIV = view.findViewById(R.id.schedule_weekend);
+        TextView dayOfWeekTV = view.findViewById(R.id.schedule_weekDay);
+        TextView weekLongTV = view.findViewById(R.id.schedule_SE);
+        UpdateUI(dayOfWeekTV, weekLongTV, dateTime);
+        UpdateRV(recyclerView, sPref, dateTime, weekendIV);
 
-////        ruz.newScheduler().querySchedule(sPref.getInt("UserGroupId", 0), new ScheduleDate(2019, 10, 18), new Scheduler.Listener() {
-////            @Override
-////            public void onResponseReady(Schedule schedule) {
-////                List<Day> dayList = schedule.getDays();
-////                Day day = dayList.get(5);
-////                List<Lesson> lessonList = day.getLessons();
-////                Lesson lesson = lessonList.get(3);
-////                List<Auditory> auditoryList = lesson.getAuditories();
-////                Auditory auditory = auditoryList.get(1);
-////                Log.e("123", String.valueOf(auditory.getName()));
-////            }
-//
-//            @Override
-//            public void onResponseError(SchedulerError error) {
-//
-//            }
-//        });
+        view.findViewById(R.id.schedule_backBTN).setOnClickListener(v -> {
+            dateTime = dateTime.minusDays(1);
+            UpdateUI(dayOfWeekTV, weekLongTV, dateTime);
+            UpdateRV(recyclerView, sPref, dateTime, weekendIV);
+        });
 
-        UpdateRV(recyclerView, sPref, dateTime);
+        view.findViewById(R.id.schedule_nextBTN).setOnClickListener(v -> {
+            dateTime = dateTime.plusDays(1);
+            UpdateUI(dayOfWeekTV, weekLongTV, dateTime);
+            UpdateRV(recyclerView, sPref, dateTime, weekendIV);
+        });
 
 
         return view;
@@ -115,7 +114,7 @@ public class ScheduleFragment extends Fragment {
     }
 
     private String teachersStr(List<Teacher> teacherList) {
-        String result = "Тот, кого нельзя называть!";
+        String result = "Илон Маск";
 
         if (teacherList != null) {
             Teacher teacher1 = teacherList.get(0);
@@ -135,41 +134,101 @@ public class ScheduleFragment extends Fragment {
         return auditory.getBuilding().getName() + ", ауд. " + auditory.getName();
     }
 
-    private void UpdateRV (RecyclerView recyclerView, SharedPreferences sPref, DateTime dateTime) {
+    private void UpdateRV (RecyclerView recyclerView, SharedPreferences sPref, DateTime dateTimeRV, ImageView weekendIV) {
         listItems = new ArrayList<>();
-        Ruz ruz = new Ruz(getContext());
+        if (dateTimeRV.getDayOfWeek() != 7) {
+            weekendIV.setVisibility(View.GONE);
+            Ruz ruz = new Ruz(getContext());
+            ruz.newScheduler().querySchedule(sPref.getInt("UserGroupId", 0),
+                    new ScheduleDate(dateTimeRV.getYear(), dateTimeRV.getMonthOfYear(), dateTimeRV.getDayOfMonth()),
+                    new Scheduler.Listener() {
+                        @Override
+                        public void onResponseReady(Schedule schedule) {
+                            dayList = schedule.getDays();
+                            Day day = dayList.get(dateTimeRV.getDayOfWeek() - 1);
+                            lessonList = day.getLessons();
 
-        ruz.newScheduler().querySchedule(sPref.getInt("UserGroupId", 0),
-                new ScheduleDate(dateTime.getYear(), dateTime.getMonthOfYear(), dateTime.getDayOfMonth()),
-                new Scheduler.Listener() {
-                    @Override
-                    public void onResponseReady(Schedule schedule) {
-                        dayList = schedule.getDays();
-                        Day day = dayList.get(dateTime.getDayOfWeek() - 2);
-                        lessonList = day.getLessons();
-
-                        for (int i = 0; i < lessonList.size(); i++) {
-                            Lesson lesson = lessonList.get(i);
-                            ScheduleListItem lessonListItem = new ScheduleListItem(
-                                    (i + 1) + ".",
-                                    lesson.getTypeObj().getName(),
-                                    timeStr(lesson.getTimeStart(), lesson.getTimeEnd()),
-                                    lesson.getSubject(),
-                                    teachersStr(lesson.getTeachers()),
-                                    geoStr(lesson.getAuditories())
-                            );
-
-                            listItems.add(lessonListItem);
+                            for (int i = 0; i < lessonList.size(); i++) {
+                                Lesson lesson = lessonList.get(i);
+                                ScheduleListItem lessonListItem = new ScheduleListItem(
+                                        (i + 1) + ".",
+                                        lesson.getTypeObj().getName(),
+                                        timeStr(lesson.getTimeStart(), lesson.getTimeEnd()),
+                                        lesson.getSubject(),
+                                        teachersStr(lesson.getTeachers()),
+                                        geoStr(lesson.getAuditories())
+                                );
+                                listItems.add(lessonListItem);
+                                adapter = new ScheduleAdapter(listItems, getContext());
+                                recyclerView.setAdapter(adapter);
+                            }
                         }
 
-                        adapter = new ScheduleAdapter(listItems, getContext());
-                        recyclerView.setAdapter(adapter);
-                    }
+                        @Override
+                        public void onResponseError(SchedulerError error) {
 
-                    @Override
-                    public void onResponseError(SchedulerError error) {
+                        }
+                    });
+        } else {
+            adapter = new ScheduleAdapter(listItems, getContext());
+            recyclerView.setAdapter(adapter);
+            weekendIV.setVisibility(View.VISIBLE);
+        }
 
-                    }
-                });
+    }
+
+    private String weekStr(DateTime dateTime) {
+        String result = "";
+        DateTime weekStartDT = dateTime.minusDays(dateTime.getDayOfWeek() - 1);
+        DateTime weekEndDT = dateTime.plusDays(7 - dateTime.getDayOfWeek());
+
+        if (weekStartDT.getDayOfMonth() < 10)
+            result += "0";
+        result += weekStartDT.getDayOfMonth() + ".";
+
+        if (weekStartDT.getMonthOfYear() < 10)
+            result += "0";
+        result += weekStartDT.getMonthOfYear() + ".";
+        result += weekStartDT.getYear() + " - ";
+
+        if (weekEndDT.getDayOfMonth() < 10)
+            result += "0";
+        result += weekEndDT.getDayOfMonth() + ".";
+
+        if (weekEndDT.getMonthOfYear() < 10)
+            result += "0";
+        result += weekEndDT.getMonthOfYear() + ".";
+        result += weekEndDT.getYear();
+
+        return result;
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void UpdateUI(TextView dayOfWeek, TextView weekLong, DateTime dateTime) {
+        switch (dateTime.getDayOfWeek()) {
+            case (1):
+                dayOfWeek.setText(R.string.day_monday);
+                break;
+            case (2):
+                dayOfWeek.setText(R.string.day_tuesday);
+                break;
+            case (3):
+                dayOfWeek.setText(R.string.day_wednesday);
+                break;
+            case (4):
+                dayOfWeek.setText(R.string.day_thirsday);
+                break;
+            case (5):
+                dayOfWeek.setText(R.string.day_friday);
+                break;
+            case (6):
+                dayOfWeek.setText(R.string.day_saturday);
+                break;
+            case (7):
+                dayOfWeek.setText(R.string.day_sunday);
+                break;
+        }
+
+        weekLong.setText(weekStr(dateTime));
     }
 }

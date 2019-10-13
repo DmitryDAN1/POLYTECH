@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="1dp"
-    android:layout_marginBottom="1dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
     android:background="@android:color/white">
 
     <RelativeLayout
@@ -15,7 +16,7 @@
 
     <RelativeLayout
         android:id="@+id/schedule_list_item_header"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <TextView
@@ -33,7 +34,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Практика"
-            android:layout_toRightOf="@id/lessonId"
+            android:layout_toEndOf="@id/lessonId"
+            android:layout_toStartOf="@id/lessonTime"
             android:layout_marginStart="15dp"
             android:textSize="16sp"
             android:textColor="@android:color/darker_gray"
@@ -53,7 +55,7 @@
 
     </RelativeLayout>
 
-    <TextView
+        <TextView
         android:id="@+id/lessonName"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
