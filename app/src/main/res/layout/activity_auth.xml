@@ -7,10 +7,6 @@
     tools:context=".activities.auth.AuthActivity"
     android:background="@android:color/white" >
 
-
-
-
-
     <RelativeLayout
         android:layout_alignParentBottom="true"
         android:gravity="center"

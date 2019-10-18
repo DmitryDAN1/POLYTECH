@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,199 +8,280 @@
     android:background="@color/PolyWhiteLight">
 
     <RelativeLayout
-        android:id="@+id/MainRL"
+        android:id="@+id/menu_headerBlock"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:layout_marginTop="15dp">
 
 
         <RelativeLayout
-            android:id="@+id/profileBlock"
+            android:id="@+id/menu_headerUserInfoContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@android:color/white">
+            android:layout_centerInParent="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp">
 
-            <RelativeLayout
-                android:id="@+id/profileBlockContent"
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/menu_headerUserNameTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp" >
+                android:gravity="center"
+                android:text="Необходимо авторизоваться!"
+                android:textColor="@color/PolyBlack"
+                android:fontFamily="@font/sfbold"
+                android:textSize="16sp" />
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/profileAvatarCV"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    app:cardCornerRadius="50dp" >
+            <TextView
+                android:id="@+id/menu_name_header"
+                android:gravity="center"
+                android:layout_below="@id/menu_headerUserNameTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Номер группы"
+                android:fontFamily="@font/sfregular"
+                android:textSize="14sp"
+                android:layout_marginBottom="10dp"/>
 
-                    <ImageView
-                        android:id="@+id/profileAvatarIV"
-                        android:src="@android:color/black"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp" />
-
-                </androidx.cardview.widget.CardView>
-
-                <LinearLayout
-                    android:layout_toEndOf="@id/profileAvatarCV"
-                    android:layout_marginStart="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:weightSum="2"
-                    android:orientation="vertical" >
-
-                    <TextView
-                        android:id="@+id/profileBlock_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="25dp"
-                        android:text="Даниленко Дмитрий"
-                        android:textColor="@color/PolyBlack"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_weight="1"
-                        android:gravity="bottom"/>
-
-                    <TextView
-                        android:id="@+id/menu_profileBlock_currentGroupTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="25dp"
-                        android:text="3530904/90006"
-                        android:textStyle="bold"
-                        android:textSize="14sp"
-                        android:gravity="top"
-                        android:layout_weight="1"
-                        android:textColor="@android:color/darker_gray" />
-
-                </LinearLayout>
-
-            </RelativeLayout>
         </RelativeLayout>
+    </RelativeLayout>
 
-        <View
-            android:id="@+id/profileBottomLine"
-            android:layout_below="@id/profileBlock"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/PolyWhiteDark" />
+    <View
+        android:id="@+id/menu_headerLine"
+        android:layout_below="@id/menu_headerBlock"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/PolyWhiteDark" />
+
+    <RelativeLayout
+        android:id="@+id/menu_bodyBlock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:layout_below="@id/menu_headerLine" >
 
         <RelativeLayout
-            android:id="@+id/settingsBlock"
+            android:id="@+id/menu_body_notificationContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/profileBottomLine"
-            android:background="@android:color/white">
+            android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:id="@+id/notification_content"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_height="30dp" >
+            <ImageView
+                android:id="@+id/menu_body_notificationIcon"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_notifications_gray"
+                android:layout_marginStart="15dp"
+                tools:ignore="ContentDescription" />
 
-                    <ImageView
-                        android:id="@+id/notifications_content_icon"
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="15dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_notifications_gray" />
+            <TextView
+                android:id="@+id/menu_body_notificationText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/menu_body_notificationIcon"
+                android:layout_toStartOf="@id/menu_body_notificationSwitch"
+                android:layout_centerInParent="true"
+                android:text="Уведомления"
+                android:fontFamily="@font/sfregular"
+                android:textSize="16sp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp" />
 
+            <Switch
+                android:id="@+id/menu_body_notificationSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="15dp"
+                android:layout_centerInParent="true" />
 
-                    <TextView
-                        android:id="@+id/notifications_content_text"
-                        android:layout_toEndOf="@id/notifications_content_icon"
-                        android:layout_toStartOf="@id/notifications_switch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="10dp"
-                        android:text="@string/notifications"
-                        android:textColor="@color/PolyBlack"
-                        android:textSize="20sp"
-                        android:textStyle="normal"/>
-
-                    <Switch
-                        android:layout_alignParentEnd="true"
-                        android:id="@+id/notifications_switch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="15dp"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/groupNumber_content"
-                    android:layout_below="@id/notification_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginBottom="10dp">
-
-                    <ImageView
-                        android:id="@+id/groupNumber_content_icon"
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="15dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_group_gray" />
-
-                    <TextView
-                        android:id="@+id/groupNumber_content_text"
-                        android:layout_toEndOf="@id/groupNumber_content_icon"
-                        android:layout_toStartOf="@id/menu_settingsBlock_currentGroupTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="10dp"
-                        android:text="@string/group_number"
-                        android:textColor="@color/PolyBlack"
-                        android:textSize="20sp"
-                        android:textStyle="normal"/>
-
-                    <TextView
-                        android:layout_alignParentEnd="true"
-                        android:id="@+id/menu_settingsBlock_currentGroupTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="3530904/90006"
-                        android:gravity="center"
-                        android:textColor="@android:color/darker_gray"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_marginRight="15dp"/>
-
-                </RelativeLayout>
         </RelativeLayout>
 
-        <View
-            android:id="@+id/settingsBottomLine"
-            android:layout_below="@id/settingsBlock"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/PolyWhiteDark" />
-
-        <Button
-            android:id="@+id/exitBlock_exitBTN"
-            android:layout_below="@id/settingsBottomLine"
-            android:layout_marginTop="15dp"
+        <RelativeLayout
+            android:id="@+id/menu_body_groupContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/exit"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="17sp"
-            android:background="@android:color/white"/>
+            android:layout_below="@id/menu_body_notificationContent">
 
-        <View
-            android:id="@+id/exitBottomLine"
-            android:layout_below="@id/exitBlock_exitBTN"
+            <ImageView
+                android:id="@+id/menu_body_groupIcon"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_group_gray"
+                android:layout_marginStart="15dp"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/menu_body_groupText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/menu_body_groupIcon"
+                android:layout_toStartOf="@id/menu_body_groupCurrent"
+                android:layout_centerInParent="true"
+                android:text="Номер группы"
+                android:fontFamily="@font/sfregular"
+                android:textSize="16sp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp" />
+
+            <TextView
+                android:id="@+id/menu_body_groupCurrent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:text="3530904/90006"
+                android:layout_marginEnd="15dp"
+                android:fontFamily="@font/sfregular"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/menu_bodyLine"
+        android:layout_below="@id/menu_bodyBlock"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/PolyWhiteDark" />
+
+    <RelativeLayout
+        android:id="@+id/menu_authBlock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:layout_below="@id/menu_bodyLine"
+        android:visibility="invisible">
+
+        <RelativeLayout
+            android:id="@+id/menu_auth_syncContent"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/PolyWhiteDark" />
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/menu_auth_syncIcon"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_hotel_black_100dp"
+                android:layout_marginStart="15dp"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/menu_auth_syncText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/menu_auth_syncIcon"
+                android:layout_centerInParent="true"
+                android:text="Синхронизация заметок"
+                android:fontFamily="@font/sfregular"
+                android:textSize="16sp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp" />
+
+            <Switch
+                android:id="@+id/menu_auth_syncSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="15dp"
+                android:layout_centerInParent="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/menu_auth_nameContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/menu_auth_syncContent">
+
+            <ImageView
+                android:id="@+id/menu_auth_nameIcon"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_person_black_24dp"
+                android:layout_marginStart="15dp"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/menu_auth_nameText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/menu_auth_nameIcon"
+                android:layout_centerInParent="true"
+                android:text="Сменить имя профиля"
+                android:fontFamily="@font/sfregular"
+                android:textSize="16sp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/menu_auth_passContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/menu_auth_nameContent">
+
+            <ImageView
+                android:id="@+id/menu_auth_passIcon"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_textsms_gray_35dp"
+                android:layout_marginStart="15dp"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/menu_auth_passText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/menu_auth_passIcon"
+                android:layout_centerInParent="true"
+                android:text="Изменить пароль"
+                android:fontFamily="@font/sfregular"
+                android:textSize="16sp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp" />
+
+        </RelativeLayout>
+
 
 
     </RelativeLayout>
 
+    <View
+        android:id="@+id/menu_authLine"
+        android:layout_below="@id/menu_authBlock"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/PolyWhiteDark"
+        android:visibility="gone"/>
 
-</ScrollView>
+
+    <TextView
+        android:id="@+id/menu_aboutBTN"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="О приложении"
+        android:fontFamily="@font/sfsemibold"
+        android:textSize="16sp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:layout_marginBottom="15dp" />
+
+
+</RelativeLayout>

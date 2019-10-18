@@ -47,7 +47,7 @@ public class ScheduleFragment extends Fragment {
 
 
     private List<Day> dayList;
-    List<Lesson> lessonList;
+    private List<Lesson> lessonList;
     private DateTime dateTime;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

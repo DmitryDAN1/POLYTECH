@@ -34,8 +34,8 @@
     <string name="email_error_registered">Данная электронная почта уже зарегестрирована!</string>
     <string name="pass_error">Вы забыли ввести пароль :)</string>
     <string name="pass_error_length">Пароль дожен быть не менее 6 символов!</string>
-    <string name="welcome">Добро пожаловать!</string>
-    <string name="welcome_start_subText">Пожлауйста, представьтесь</string>
+    <string name="welcome">Изменение имени</string>
+    <string name="welcome_start_subText">Введети имя и фамилию, которые будет отображаться в профиле</string>
     <string name="surname">Фамилия</string>
     <string name="name">Имя</string>
     <string name="welcome_start_name_error">Вы не ввели ваше имя!</string>
@@ -82,4 +82,5 @@
     <string name="day_wednesday">Среда</string>
     <string name="day_tuesday">Вторник</string>
     <string name="day_monday">Понедельник</string>
+    <string name="change">Изменить</string>
 </resources>

@@ -17,26 +17,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".activities.welcome.WelcomeGroupActivity" />
-        <activity android:name=".activities.welcome.WelcomeStartActivity" />
-        <activity android:name=".activities.StartActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".activities.auth.ResetFinishActivity" />
         <activity android:name=".activities.auth.ResetPassActivity" />
         <activity android:name=".activities.auth.RegistrationFinishActivity" />
         <activity android:name=".activities.auth.RegistrationPassActivity" />
         <activity android:name=".activities.auth.RegistrationEmailActivity" />
-        <activity android:name=".activities.auth.AuthActivity" />
+        <activity android:name=".activities.auth.AuthActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.AUTH" />
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activities.MainActivity"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
