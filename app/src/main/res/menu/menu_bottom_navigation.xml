@@ -5,18 +5,18 @@
     <item
         android:id="@+id/notes_item"
         android:icon="@drawable/ic_create_black"
-        android:title="@string/notes_notes_item" />
+        android:title="@string/notes" />
 
     <item
         android:id="@+id/navigation_item"
         android:icon="@drawable/ic_map_black_24dp"
-        android:title="@string/menu_navigation" />
+        android:title="@string/navigation" />
 
     <item
         android:id="@+id/schedule_item"
         android:icon="@drawable/ic_access_time_black_24dp"
         app:showAsAction="always"
-        android:title="@string/menu_schedule" />
+        android:title="@string/schedule" />
 
     <item
         android:id="@+id/scheme_item"
@@ -26,6 +26,6 @@
     <item
         android:id="@+id/menu_item"
         android:icon="@drawable/ic_menu_black_24dp"
-        android:title="@string/menu_menu" />
+        android:title="@string/menu" />
 
 </menu>

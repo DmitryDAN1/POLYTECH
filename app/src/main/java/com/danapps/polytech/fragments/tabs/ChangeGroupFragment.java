@@ -15,7 +15,7 @@ public class ChangeGroupFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_change_group, container, true);
+        View view = inflater.inflate(R.layout.fragment_change_group, container, false);
 
 
         return view;

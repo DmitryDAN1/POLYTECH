@@ -53,6 +53,8 @@ public class MainActivity extends FragmentActivity {
                         .addOnSuccessListener(authResult -> Snackbar.make(view, "Вы успешно авторизовались!", Snackbar.LENGTH_SHORT).show())
                         .addOnFailureListener(e -> Snackbar.make(view, "Неудачная попытка авторизации!", Snackbar.LENGTH_SHORT).show());
             }
+            else
+                Snackbar.make(view, "Вы не авторизованы!", Snackbar.LENGTH_LONG).show();
         }
 
 

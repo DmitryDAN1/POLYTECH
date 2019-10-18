@@ -30,7 +30,7 @@ public class MenuFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.fragment_menu, null);
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.fragment_menu, container, false);
 
         view.findViewById(R.id.menu_headerBlock).setOnClickListener(v -> {
             ((MainActivity) getActivity()).LoadFragment(5);

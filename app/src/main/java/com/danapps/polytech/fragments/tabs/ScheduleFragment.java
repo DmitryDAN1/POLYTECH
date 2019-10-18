@@ -2,7 +2,6 @@ package com.danapps.polytech.fragments.tabs;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -10,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.danapps.polytech.R;
-import com.danapps.polytech.notes.NoteAdapter;
 import com.danapps.polytech.schedule.ScheduleAdapter;
 import com.danapps.polytech.schedule.ScheduleListItem;
 import com.danapps.polytech.schedule.Scheduler;
@@ -35,9 +32,7 @@ import com.danapps.polytech.schedule.time.ScheduleTime;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 public class ScheduleFragment extends Fragment {
 
@@ -207,25 +202,25 @@ public class ScheduleFragment extends Fragment {
     private void UpdateUI(TextView dayOfWeek, TextView weekLong, DateTime dateTime) {
         switch (dateTime.getDayOfWeek()) {
             case (1):
-                dayOfWeek.setText(R.string.day_monday);
+                dayOfWeek.setText(R.string.monday);
                 break;
             case (2):
-                dayOfWeek.setText(R.string.day_tuesday);
+                dayOfWeek.setText(R.string.tuesday);
                 break;
             case (3):
-                dayOfWeek.setText(R.string.day_wednesday);
+                dayOfWeek.setText(R.string.wednesday);
                 break;
             case (4):
-                dayOfWeek.setText(R.string.day_thirsday);
+                dayOfWeek.setText(R.string.thursday);
                 break;
             case (5):
-                dayOfWeek.setText(R.string.day_friday);
+                dayOfWeek.setText(R.string.friday);
                 break;
             case (6):
-                dayOfWeek.setText(R.string.day_saturday);
+                dayOfWeek.setText(R.string.saturday);
                 break;
             case (7):
-                dayOfWeek.setText(R.string.day_sunday);
+                dayOfWeek.setText(R.string.sunday);
                 break;
         }
 
