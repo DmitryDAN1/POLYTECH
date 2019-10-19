@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.danapps.polytech.R;
+import com.danapps.polytech.schedule.Ruz;
 
 public class ChangeGroupFragment extends Fragment {
 

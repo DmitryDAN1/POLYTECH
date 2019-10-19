@@ -28,13 +28,17 @@ import java.util.Objects;
 
 public class MenuFragment extends Fragment {
 
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.fragment_menu, container, false);
+        SharedPreferences sPref = getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 
-        view.findViewById(R.id.menu_headerBlock).setOnClickListener(v -> {
-            ((MainActivity) getActivity()).LoadFragment(5);
-        });
+        if (mAuth.getCurrentUser() == null)
+            view.findViewById(R.id.menu_headerBlock).setOnClickListener(v -> {
+                ((MainActivity) getActivity()).LoadFragment(5);
+            });
 
         return view;
     }

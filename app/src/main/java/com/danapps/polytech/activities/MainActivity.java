@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.danapps.polytech.R;
+import com.danapps.polytech.fragments.tabs.ChangeFacultFragment;
 import com.danapps.polytech.fragments.tabs.ChangeGroupFragment;
 import com.danapps.polytech.fragments.tabs.MenuFragment;
 import com.danapps.polytech.fragments.tabs.NavigationChooseFragment;
@@ -30,12 +31,13 @@ public class MainActivity extends FragmentActivity {
 
     private int currentFragment;
     private Fragment[] fragments = {
-            new NotesFragment(),
-            new NavigationChooseFragment(),
-            new ScheduleFragment(),
-            new SchemeFragment(),
-            new MenuFragment(),
-            new ChangeGroupFragment(),
+            new NotesFragment(),                        // 0
+            new NavigationChooseFragment(),             // 1
+            new ScheduleFragment(),                     // 2
+            new SchemeFragment(),                       // 3
+            new MenuFragment(),                         // 4
+            new ChangeGroupFragment(),                  // 5
+            new ChangeFacultFragment()                  // 6
     };
 
     @Override
@@ -75,7 +77,7 @@ public class MainActivity extends FragmentActivity {
                         LoadFragment(2);
                     }
                     else {
-                        LoadFragment(5);
+                        LoadFragment(6);
                     }
                     break;
 
