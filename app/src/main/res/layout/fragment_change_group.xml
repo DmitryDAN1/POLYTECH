@@ -7,12 +7,31 @@
     tools:context=".fragments.tabs.ChangeGroupFragment">
 
 
+    <ProgressBar
+        android:id="@+id/changeGroup_progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+
+    <ImageView
+        android:id="@+id/changeGroup_backBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_back_green"
+        android:background="@android:color/white"
+        tools:ignore="ContentDescription"
+        android:layout_margin="10dp"/>
+
     <RelativeLayout
+        android:id="@+id/changeGroup_mainRL"
+        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
         android:gravity="center">
+
 
         <TextView
             android:id="@+id/changeGroup_mainText"
@@ -75,6 +94,7 @@
         android:layout_marginBottom="25dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:visibility="invisible"/>
 
 </RelativeLayout>

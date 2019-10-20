@@ -26,6 +26,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.danapps.polytech.R;
+import com.danapps.polytech.activities.MainActivity;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -122,6 +123,7 @@ public class NavigationFragment extends Fragment {
                 @Override
                 public void onFailure(Throwable e) {
                     Handler mainHandler = new Handler(Looper.getMainLooper());
+                    Log.e("NavigationFragment", e.getLocalizedMessage());
                     mainHandler.post(() -> Toast.makeText(getContext(), "Route failed", Toast.LENGTH_SHORT).show());
                 }
             });
@@ -168,7 +170,7 @@ public class NavigationFragment extends Fragment {
 
 
         view.findViewById(R.id.nav_backBTN).setOnClickListener(v ->
-                Objects.requireNonNull(getFragmentManager()).beginTransaction().replace(R.id.frame_layout, navigationChooseFragment).commit());
+                ((MainActivity) getActivity()).LoadFragment(1));
 
         view.findViewById(R.id.nav_plusZoomBTN).setOnClickListener(v ->
                 mapView.getMapAsync(googleMap -> {

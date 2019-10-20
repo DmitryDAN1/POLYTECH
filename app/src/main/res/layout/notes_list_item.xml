@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="1dp"
@@ -17,11 +18,13 @@
                 android:id="@+id/titleTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Название заметки"
+                android:text=""
                 android:textSize="20sp"
+                android:inputType="textEmailAddress"
                 android:fontFamily="@font/sfsemibold"
                 android:textColor="@color/PolyBlack"
-                android:layout_marginStart="10dp"/>
+                android:layout_marginStart="10dp"
+                tools:ignore="TextViewEdits" />
 
             <TextView
                 android:layout_marginTop="2dp"
@@ -30,9 +33,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Само содержание заметки"
+                android:text=""
                 android:textSize="16sp"
-                android:fontFamily="@font/sfregular"/>
+                android:inputType="textEmailAddress"
+                android:fontFamily="@font/sfregular"
+                tools:ignore="TextViewEdits" />
         </LinearLayout>
 
 </androidx.cardview.widget.CardView>

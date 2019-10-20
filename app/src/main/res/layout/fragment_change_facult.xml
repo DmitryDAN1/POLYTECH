@@ -18,6 +18,11 @@
         android:gravity="center"
         android:fontFamily="@font/sfbold" />
 
+    <ProgressBar
+        android:id="@+id/changeFaculties_progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_below="@id/changeFaculties_mainText"

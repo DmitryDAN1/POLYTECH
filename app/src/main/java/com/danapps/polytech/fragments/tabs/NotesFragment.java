@@ -28,6 +28,7 @@ import com.danapps.polytech.notes.NoteAdapter;
 import com.danapps.polytech.notes.NoteListItem;
 import com.danapps.polytech.notes.RecyclerTouchListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,25 +58,18 @@ public class NotesFragment extends Fragment {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getContext()))
-                .setTitle("Удаление заметки")
-                .setMessage("Вы уверены, что хотите удалить заметку?")
-                .setNegativeButton(getString(R.string.No), (dialogInterface, i) -> UpdateRV(recyclerView, sPref))
-                .setPositiveButton(getString(R.string.Yes), (dialogInterface, i) -> {
-                    int noteNumber = viewHolder.getAdapterPosition() + 1;
-                    int notesCount = sPref.getInt("NotesCount", 0);
+                int noteNumber = viewHolder.getAdapterPosition() + 1;
+                int notesCount = sPref.getInt("NotesCount", 0);
 
-                    for (int j = noteNumber; j < notesCount; j++) {
-                        sPref.edit().putString("Title" + j, sPref.getString("Title" + (j + 1), "None")).apply();
-                        sPref.edit().putString("Subtitle" + j, sPref.getString("Subtitle" + (j + 1), "None")).apply();
-                    }
+                for (int j = noteNumber; j < notesCount; j++) {
+                    sPref.edit().putString("Title" + j, sPref.getString("Title" + (j + 1), "None")).apply();
+                    sPref.edit().putString("Subtitle" + j, sPref.getString("Subtitle" + (j + 1), "None")).apply();
+                }
 
-                    sPref.edit().remove("Title" + notesCount).remove("Subtitle" + notesCount).putInt("NotesCount", notesCount - 1).apply();
+                sPref.edit().remove("Title" + notesCount).remove("Subtitle" + notesCount).putInt("NotesCount", notesCount - 1).apply();
+                Snackbar.make(view, "Заметка удалена", Snackbar.LENGTH_SHORT).show();
 
-                    UpdateRV(recyclerView, sPref);
-                });
-
-                builder.create().show();
+                UpdateRV(recyclerView, sPref);
             }
 
             @Override

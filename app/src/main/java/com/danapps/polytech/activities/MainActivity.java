@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
@@ -46,7 +47,12 @@ public class MainActivity extends FragmentActivity {
         @SuppressLint("InflateParams") View view = LayoutInflater.from(getBaseContext()).inflate(R.layout.activity_main, null, true);
         setContentView(view);
         SharedPreferences sPref = getSharedPreferences("UserInfo", MODE_PRIVATE);
+        SharedPreferences tPref = getSharedPreferences("TimedInfo", MODE_PRIVATE);
         LoadFragment(0);
+        tPref.edit().clear().apply();
+        sPref.edit().clear().apply();
+        Log.e("TimedInfo:", tPref.getAll().toString());
+        Log.e("UserInfo:", sPref.getAll().toString());
 
         if (mAuth.getCurrentUser() == null) {
             if (!sPref.getString("UserLogin", "0").equals("0") && !sPref.getString("UserPass", "0").equals("0")) {
@@ -58,7 +64,6 @@ public class MainActivity extends FragmentActivity {
             else
                 Snackbar.make(view, "Вы не авторизованы!", Snackbar.LENGTH_LONG).show();
         }
-
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
@@ -105,6 +110,10 @@ public class MainActivity extends FragmentActivity {
 
     public void LoadFragment(int ID) {
         currentFragment = ID;
-        fm.beginTransaction().replace(R.id.frame_layout, fragments[currentFragment], String.valueOf(currentFragment)).commit();
+        if (ID == 5)
+            fm.beginTransaction().replace(R.id.frame_layout, new ChangeGroupFragment()).commit();
+        else
+            fm.beginTransaction().replace(R.id.frame_layout, fragments[currentFragment], String.valueOf(currentFragment)).commit();
+        Log.e("Fragment", "LoadFragment:" + ID);
     }
 }

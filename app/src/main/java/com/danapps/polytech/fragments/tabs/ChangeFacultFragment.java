@@ -1,6 +1,8 @@
 package com.danapps.polytech.fragments.tabs;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,12 +10,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.danapps.polytech.R;
+import com.danapps.polytech.activities.MainActivity;
 import com.danapps.polytech.faculties.FacultiesAdapter;
 import com.danapps.polytech.faculties.FacultiesListItem;
 import com.danapps.polytech.notes.RecyclerTouchListener;
@@ -40,16 +45,20 @@ public class ChangeFacultFragment extends Fragment {
         recyclerView = view.findViewById(R.id.notes_recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        SharedPreferences tPref = getActivity().getSharedPreferences("TimedInfo", Context.MODE_PRIVATE);
+
 
         faculties.queryFaculties(new Faculties.Listener() {
             @Override
             public void onResponseReady(List<Faculty> faculties) {
+                view.findViewById(R.id.changeFaculties_progressBar).setVisibility(View.GONE);
                 listItems = new ArrayList<>();
 
                 for (int i = 0; i < faculties.size(); i++) {
                     Faculty faculty = faculties.get(i);
                     FacultiesListItem listItem = new FacultiesListItem(faculty.getName());
                     listItems.add(listItem);
+                    tPref.edit().putInt(String.valueOf(i), faculty.getId()).apply();
                 }
 
                 adapter = new FacultiesAdapter(listItems, getContext());
@@ -66,7 +75,9 @@ public class ChangeFacultFragment extends Fragment {
 
             @Override
             public void onClick(View view1, int position) {
-                Snackbar.make(view, String.valueOf(position), Snackbar.LENGTH_SHORT).show();
+                tPref.edit().putInt("FacultiesId", tPref.getInt(String.valueOf(position), 0)).apply();
+                Log.e("ChangeFacultFragment", "FacultID:" + tPref.getInt(String.valueOf(position), 0));
+                ((MainActivity) getActivity()).LoadFragment(5);
             }
 
             @Override
