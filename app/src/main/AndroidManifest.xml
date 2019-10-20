@@ -21,13 +21,6 @@
         <activity android:name=".activities.auth.ResetPassActivity" />
         <activity android:name=".activities.auth.RegistrationFinishActivity" />
         <activity android:name=".activities.auth.RegistrationPassActivity" />
-        <activity android:name=".activities.auth.RegistrationEmailActivity" />
-        <activity android:name=".activities.auth.AuthActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.AUTH" />
-                <category android:name="android.intent.category.HOME" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".activities.MainActivity"
             android:noHistory="true">

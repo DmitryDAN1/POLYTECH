@@ -16,8 +16,10 @@ import android.widget.Toast;
 import com.danapps.polytech.R;
 import com.danapps.polytech.fragments.tabs.ChangeFacultFragment;
 import com.danapps.polytech.fragments.tabs.ChangeGroupFragment;
+import com.danapps.polytech.fragments.tabs.MainAuthFragment;
 import com.danapps.polytech.fragments.tabs.MenuFragment;
 import com.danapps.polytech.fragments.tabs.NavigationChooseFragment;
+import com.danapps.polytech.fragments.tabs.RegisterEmailFragment;
 import com.danapps.polytech.fragments.tabs.ScheduleFragment;
 import com.danapps.polytech.fragments.tabs.SchemeFragment;
 import com.danapps.polytech.fragments.tabs.NotesFragment;
@@ -38,7 +40,9 @@ public class MainActivity extends FragmentActivity {
             new SchemeFragment(),                       // 3
             new MenuFragment(),                         // 4
             new ChangeGroupFragment(),                  // 5
-            new ChangeFacultFragment()                  // 6
+            new ChangeFacultFragment(),                 // 6
+            new MainAuthFragment(),                     // 7
+            new RegisterEmailFragment(),                // 8
     };
 
     @Override
@@ -78,12 +82,10 @@ public class MainActivity extends FragmentActivity {
                     break;
 
                 case (R.id.schedule_item):
-                    if (sPref.getInt("UserGroupId", 0) != 0) {
+                    if (sPref.getInt("UserGroupId", 0) != 0)
                         LoadFragment(2);
-                    }
-                    else {
+                    else
                         LoadFragment(6);
-                    }
                     break;
 
                 case (R.id.scheme_item):
