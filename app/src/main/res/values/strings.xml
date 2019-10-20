@@ -13,7 +13,8 @@
     <string name="reg_email_mainText">Введите email</string>
     <string name="reg_email_subText">Электронная почта будет использоваться для авторизации</string>
     <string name="reg_pass_mainText">Введите пароль</string>
-    <string name="reg_pass_showPass">Показать пароль</string>
+    <string name="showPass">Показать пароль</string>
+    <string name="hidePass">Скрыть пароль</string>
     <string name="reg_finish_finishBTN">Завершить регистрацию</string>
     <string name="reset_pass_subText">На почту будет отправлено письмо с инструкцией по сбросу пароля</string>
     <string name="auth_mainText">Авторизируйтесь</string>

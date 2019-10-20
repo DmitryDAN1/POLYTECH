@@ -20,6 +20,8 @@ import com.danapps.polytech.fragments.tabs.MainAuthFragment;
 import com.danapps.polytech.fragments.tabs.MenuFragment;
 import com.danapps.polytech.fragments.tabs.NavigationChooseFragment;
 import com.danapps.polytech.fragments.tabs.RegisterEmailFragment;
+import com.danapps.polytech.fragments.tabs.RegisterFinishFragment;
+import com.danapps.polytech.fragments.tabs.RegisterPassFragment;
 import com.danapps.polytech.fragments.tabs.ScheduleFragment;
 import com.danapps.polytech.fragments.tabs.SchemeFragment;
 import com.danapps.polytech.fragments.tabs.NotesFragment;
@@ -43,6 +45,8 @@ public class MainActivity extends FragmentActivity {
             new ChangeFacultFragment(),                 // 6
             new MainAuthFragment(),                     // 7
             new RegisterEmailFragment(),                // 8
+            new RegisterPassFragment(),                 // 9
+            new RegisterFinishFragment()                // 10
     };
 
     @Override

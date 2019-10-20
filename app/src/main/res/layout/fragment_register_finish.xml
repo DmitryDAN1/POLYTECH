@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.auth.RegistrationEmailActivity">
+    tools:context=".fragments.tabs.RegisterFinishFragment">
 
+    <ProgressBar
+        android:visibility="visible"
+        android:id="@+id/regFinish_progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
 
     <ImageView
-        android:id="@+id/reg_email_backBTN"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
+        android:id="@+id/reg_finish_backBTN"
+        android:layout_margin="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/ic_arrow_back_green"/>
+        android:src="@drawable/ic_arrow_back_green"
+        tools:ignore="ContentDescription" />
 
     <RelativeLayout
+        android:visibility="invisible"
+        android:id="@+id/regFinish_mainRL"
         android:layout_alignParentBottom="true"
         android:gravity="center"
         android:layout_alignParentTop="true"
@@ -26,10 +33,10 @@
 
 
         <TextView
-            android:id="@+id/reg_email_mainText"
+            android:id="@+id/reg_finish_mainText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/reg_email_mainText"
+            android:text="@string/reg_finish_mainText"
             android:textStyle="bold"
             android:textSize="30sp"
             android:gravity="center"
@@ -38,41 +45,22 @@
             android:textColor="@color/PolyBlack"/>
 
         <TextView
-            android:id="@+id/reg_email_subText"
+            android:id="@+id/reg_finish_subText"
             android:layout_marginTop="15dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
-            android:layout_below="@id/reg_email_mainText"
+            android:layout_below="@id/reg_finish_mainText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="19sp"
             android:gravity="center"
-            android:text="@string/reg_email_subText" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/reg_email_emailTIL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:layout_below="@id/reg_email_subText"
-            app:hintEnabled="false"
-            app:errorEnabled="true" >
-
-            <EditText
-                android:gravity="center"
-                android:id="@+id/reg_email_emailET"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            android:text="@string/reg_finish_subText" />
 
     </RelativeLayout>
 
     <Button
-        android:id="@+id/reg_email_nextBTN"
+        android:visibility="invisible"
+        android:id="@+id/reg_finish_nextBTN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -80,7 +68,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/reg_btn"
-        android:text="@string/next"
+        android:text="@string/reg_finish_finishBTN"
         android:textColor="@android:color/white"
         android:textSize="16sp" />
 

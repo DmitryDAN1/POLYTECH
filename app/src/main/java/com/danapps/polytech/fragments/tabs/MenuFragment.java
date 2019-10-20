@@ -35,6 +35,9 @@ public class MenuFragment extends Fragment {
         if (mAuth.getCurrentUser() != null)
             myRef = database.getReference(mAuth.getCurrentUser().getUid());
 
+        view.findViewById(R.id.menu_headerBlock).setOnClickListener(v ->
+                ((MainActivity) getActivity()).LoadFragment(10));
+
         view.findViewById(R.id.menu_body_groupContent).setOnClickListener(v ->
                 ((MainActivity) getActivity()).LoadFragment(6));
 

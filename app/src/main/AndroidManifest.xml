@@ -17,10 +17,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".activities.auth.ResetFinishActivity" />
-        <activity android:name=".activities.auth.ResetPassActivity" />
-        <activity android:name=".activities.auth.RegistrationFinishActivity" />
-        <activity android:name=".activities.auth.RegistrationPassActivity" />
         <activity
             android:name=".activities.MainActivity"
             android:noHistory="true">
