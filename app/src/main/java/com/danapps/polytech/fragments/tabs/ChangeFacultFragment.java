@@ -15,10 +15,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.danapps.polytech.R;
-import com.danapps.polytech.activities.MainActivity;
+import com.danapps.polytech.MainActivity;
 import com.danapps.polytech.faculties.FacultiesAdapter;
 import com.danapps.polytech.faculties.FacultiesListItem;
 import com.danapps.polytech.notes.RecyclerTouchListener;

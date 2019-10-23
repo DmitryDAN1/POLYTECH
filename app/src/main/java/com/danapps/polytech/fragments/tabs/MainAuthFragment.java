@@ -2,7 +2,6 @@ package com.danapps.polytech.fragments.tabs;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,10 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.danapps.polytech.R;
-import com.danapps.polytech.activities.MainActivity;
+import com.danapps.polytech.MainActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,10 +31,13 @@ public class MainAuthFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_auth, container, false);
         SharedPreferences sPref = getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+//        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         view.findViewById(R.id.auth_backBTN).setOnClickListener(v ->
                 ((MainActivity) getActivity()).LoadFragment(4));
+
+        view.findViewById(R.id.auth_resetPassBTN).setOnClickListener(v ->
+                ((MainActivity) getActivity()).LoadFragment(11));
 
         view.findViewById(R.id.auth_logBTN).setOnClickListener(v -> {
             EditText emailET = view.findViewById(R.id.auth_emailET);
@@ -66,9 +67,13 @@ public class MainAuthFragment extends Fragment {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 if (dataSnapshot.child("UserGroupId").getValue() != null)
-                                    sPref.edit().putInt("UserGroupId", (int) dataSnapshot.child("UserGroupId").getValue()).apply();
+                                    sPref.edit().putInt("UserGroupId", Integer.valueOf(dataSnapshot.child("UserGroupId").getValue().toString())).apply();
                                 if (dataSnapshot.child("UserGroupName").getValue() != null)
                                     sPref.edit().putString("UserGroupName", dataSnapshot.child("UserGroupName").getValue().toString()).apply();
+                                if (dataSnapshot.child("UserName").getValue() != null)
+                                    sPref.edit().putString("UserName", dataSnapshot.child("UserName").getValue().toString()).apply();
+                                if (dataSnapshot.child("UserSurname") != null)
+                                    sPref.edit().putString("UserSurname", dataSnapshot.child("UserSurname").getValue().toString()).apply();
                             }
 
                             @Override

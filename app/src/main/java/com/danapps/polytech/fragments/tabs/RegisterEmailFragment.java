@@ -13,8 +13,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.danapps.polytech.R;
-import com.danapps.polytech.activities.MainActivity;
-import com.google.android.material.snackbar.Snackbar;
+import com.danapps.polytech.MainActivity;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -32,14 +31,15 @@ public class RegisterEmailFragment extends Fragment {
         view.findViewById(R.id.reg_email_nextBTN).setOnClickListener(v -> {
             EditText emailET = view.findViewById(R.id.reg_email_emailET);
             mAuth.signInWithEmailAndPassword(emailET.getText().toString(), "1").addOnFailureListener(e -> {
-                //TODO: Написать текст ошибки при уже зарегестрированном email
-                if (e.getMessage().equals(""))
-                    ((TextInputLayout) view.findViewById(R.id.reg_email_emailTIL)).setError(getString(R.string.email_error_registered));
-                else {
-                    SharedPreferences tPref = getActivity().getSharedPreferences("TimedInfo", Context.MODE_PRIVATE);
-                    tPref.edit().putString("TimedEmail", emailET.getText().toString()).apply();
-                    ((MainActivity) getActivity()).LoadFragment(9);
-                }
+
+                mAuth.fetchSignInMethodsForEmail(emailET.getText().toString())
+                    .addOnSuccessListener(command ->
+                        ((TextInputLayout) view.findViewById(R.id.reg_email_emailTIL)).setError(getString(R.string.email_error_registered)))
+                    .addOnFailureListener(e1 -> {
+                        SharedPreferences tPref = getActivity().getSharedPreferences("TimedInfo", Context.MODE_PRIVATE);
+                        tPref.edit().putString("TimedEmail", emailET.getText().toString()).apply();
+                        ((MainActivity) getActivity()).LoadFragment(9);
+                    });
             });
 
         });

@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.danapps.polytech.R;
-import com.danapps.polytech.activities.MainActivity;
+import com.danapps.polytech.MainActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class RegisterPassFragment extends Fragment {

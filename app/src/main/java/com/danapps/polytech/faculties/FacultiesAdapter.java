@@ -5,15 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.danapps.polytech.R;
-import com.danapps.polytech.activities.MainActivity;
-import com.danapps.polytech.notes.NoteAdapter;
-import com.danapps.polytech.notes.NoteListItem;
 
 import java.util.List;
 

@@ -3,12 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.auth.ResetFinishActivity">
+    tools:context=".fragments.tabs.ResetPassFinishFragment">
+
+
+    <ProgressBar
+        android:visibility="visible"
+        android:id="@+id/resetPass_progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
 
     <ImageView
         android:id="@+id/reset_finish_backBTN"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="5dp"
+        android:layout_margin="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -17,6 +24,8 @@
         tools:ignore="ContentDescription" />
 
     <RelativeLayout
+        android:visibility="invisible"
+        android:id="@+id/resetPass_mainRL"
         android:layout_alignParentBottom="true"
         android:gravity="center"
         android:layout_alignParentTop="true"
@@ -51,8 +60,8 @@
     </RelativeLayout>
 
     <Button
+        android:visibility="invisible"
         android:id="@+id/reset_finish_nextBTN"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

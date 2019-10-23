@@ -1,6 +1,7 @@
 package com.danapps.polytech.fragments.tabs;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,13 +9,14 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.danapps.polytech.R;
-import com.danapps.polytech.activities.MainActivity;
+import com.danapps.polytech.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,15 +30,30 @@ public class MenuFragment extends Fragment {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.fragment_menu, container, false);
         SharedPreferences sPref = getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
-        if (mAuth.getCurrentUser() != null)
+        if (mAuth.getCurrentUser() != null) {
             myRef = database.getReference(mAuth.getCurrentUser().getUid());
+            view.findViewById(R.id.menu_authBlock).setVisibility(View.VISIBLE);
+        } else
+            view.findViewById(R.id.menu_authBlock).setVisibility(View.INVISIBLE);
 
-        view.findViewById(R.id.menu_headerBlock).setOnClickListener(v ->
-                ((MainActivity) getActivity()).LoadFragment(10));
+        view.findViewById(R.id.menu_headerBlock).setOnClickListener(v -> {
+            if (mAuth.getCurrentUser() == null)
+                ((MainActivity) getActivity()).LoadFragment(7);
+            else {
+                new AlertDialog.Builder(getContext())
+                    .setTitle(getString(R.string.exit_from_app_mainText))
+                    .setMessage("Вы уверены, что хотите выйти из своего аккаунта?")
+                    .setNegativeButton(getString(R.string.No), (dialog, which) -> Log.e("Menu", "Exit NO"))
+                    .setPositiveButton(getString(R.string.Yes), (dialog, which) -> mAuth.signOut())
+                    .create()
+                    .show();
+            }
+        });
 
         view.findViewById(R.id.menu_body_groupContent).setOnClickListener(v ->
                 ((MainActivity) getActivity()).LoadFragment(6));
@@ -45,20 +62,20 @@ public class MenuFragment extends Fragment {
         ((TextView) view.findViewById(R.id.menu_headerGroup)).setText(sPref.getString("UserGroupName", "Группа не выбрана"));
 
         if (mAuth.getCurrentUser() != null)
-            myRef.child("UserInfo").addListenerForSingleValueEvent(new ValueEventListener() {
-                @SuppressLint("SetTextI18n")
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    ((TextView) view.findViewById(R.id.menu_headerUserNameTV))
-                            .setText(dataSnapshot.child("UserName").getValue().toString() + " " +
-                                     dataSnapshot.child("UserSurname").getValue().toString());
-                }
+            if (!sPref.getString("UserName", "").equals("") && !sPref.getString("UserSurname", "").equals(""))
+                ((TextView) view.findViewById(R.id.menu_headerUserNameTV))
+                        .setText(sPref.getString("UserName", "") + " " + sPref.getString("UserSurname", ""));
+            else
+                ((TextView) view.findViewById(R.id.menu_headerUserNameTV)).setText("Выберети себе имя!");
+        else
+            ((TextView) view.findViewById(R.id.menu_headerUserNameTV)).setText("Необходимо авторизоваться!");
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                }
-            });
+        view.findViewById(R.id.menu_auth_nameContent).setOnClickListener(v ->
+                ((MainActivity) getActivity()).LoadFragment(13));
+
+        view.findViewById(R.id.menu_aboutBTN).setOnClickListener(v ->
+                ((MainActivity) getActivity()).LoadFragment(14));
 
         return view;
     }

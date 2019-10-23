@@ -1,4 +1,4 @@
-package com.danapps.polytech.activities;
+package com.danapps.polytech;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
@@ -13,26 +13,33 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
-import com.danapps.polytech.R;
+import com.danapps.polytech.fragments.tabs.AboutFragment;
 import com.danapps.polytech.fragments.tabs.ChangeFacultFragment;
 import com.danapps.polytech.fragments.tabs.ChangeGroupFragment;
+import com.danapps.polytech.fragments.tabs.ChangeNameFragment;
+import com.danapps.polytech.fragments.tabs.LicenseFragment;
 import com.danapps.polytech.fragments.tabs.MainAuthFragment;
 import com.danapps.polytech.fragments.tabs.MenuFragment;
 import com.danapps.polytech.fragments.tabs.NavigationChooseFragment;
 import com.danapps.polytech.fragments.tabs.RegisterEmailFragment;
 import com.danapps.polytech.fragments.tabs.RegisterFinishFragment;
 import com.danapps.polytech.fragments.tabs.RegisterPassFragment;
+import com.danapps.polytech.fragments.tabs.ResetPassEmailFragment;
+import com.danapps.polytech.fragments.tabs.ResetPassFinishFragment;
 import com.danapps.polytech.fragments.tabs.ScheduleFragment;
 import com.danapps.polytech.fragments.tabs.SchemeFragment;
 import com.danapps.polytech.fragments.tabs.NotesFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends FragmentActivity {
 
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
     FragmentManager fm = getSupportFragmentManager();
+
+    BottomNavigationView bottomNavigationView;
 
     private int currentFragment;
     private Fragment[] fragments = {
@@ -46,7 +53,12 @@ public class MainActivity extends FragmentActivity {
             new MainAuthFragment(),                     // 7
             new RegisterEmailFragment(),                // 8
             new RegisterPassFragment(),                 // 9
-            new RegisterFinishFragment()                // 10
+            new RegisterFinishFragment(),               // 10
+            new ResetPassEmailFragment(),               // 11
+            new ResetPassFinishFragment(),              // 12
+            new ChangeNameFragment(),                   // 13
+            new AboutFragment(),                        // 14
+            new LicenseFragment()                       // 15
     };
 
     @Override
@@ -54,26 +66,20 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         @SuppressLint("InflateParams") View view = LayoutInflater.from(getBaseContext()).inflate(R.layout.activity_main, null, true);
         setContentView(view);
+        bottomNavigationView = findViewById(R.id.bottom_navigation_view);
         SharedPreferences sPref = getSharedPreferences("UserInfo", MODE_PRIVATE);
         SharedPreferences tPref = getSharedPreferences("TimedInfo", MODE_PRIVATE);
-        LoadFragment(0);
         tPref.edit().clear().apply();
-        sPref.edit().clear().apply();
+//        sPref.edit().clear().apply();
+//        mAuth.signOut();
+        LoadFragment(0);
+
         Log.e("TimedInfo:", tPref.getAll().toString());
         Log.e("UserInfo:", sPref.getAll().toString());
-
-        if (mAuth.getCurrentUser() == null) {
-            if (!sPref.getString("UserLogin", "0").equals("0") && !sPref.getString("UserPass", "0").equals("0")) {
-                mAuth.signInWithEmailAndPassword(sPref.getString("UserLogin", "0"),
-                        sPref.getString("UserPass", "0"))
-                        .addOnSuccessListener(authResult -> Snackbar.make(view, "Вы успешно авторизовались!", Snackbar.LENGTH_SHORT).show())
-                        .addOnFailureListener(e -> Snackbar.make(view, "Неудачная попытка авторизации!", Snackbar.LENGTH_SHORT).show());
-            }
-            else
-                Snackbar.make(view, "Вы не авторизованы!", Snackbar.LENGTH_LONG).show();
+        if (mAuth.getCurrentUser() != null) {
+            Log.e("FirebaseAuth", mAuth.getCurrentUser().getEmail());
         }
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
             switch (menuItem.getItemId())
             {
@@ -120,6 +126,7 @@ public class MainActivity extends FragmentActivity {
             fm.beginTransaction().replace(R.id.frame_layout, new ChangeGroupFragment()).commit();
         else
             fm.beginTransaction().replace(R.id.frame_layout, fragments[currentFragment], String.valueOf(currentFragment)).commit();
+
         Log.e("Fragment", "LoadFragment:" + ID);
     }
 }

@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.danapps.polytech.R;
-import com.danapps.polytech.activities.MainActivity;
+import com.danapps.polytech.MainActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 

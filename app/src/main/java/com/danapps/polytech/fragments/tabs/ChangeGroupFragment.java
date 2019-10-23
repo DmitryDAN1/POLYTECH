@@ -11,25 +11,30 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.danapps.polytech.R;
-import com.danapps.polytech.activities.MainActivity;
+import com.danapps.polytech.MainActivity;
 import com.danapps.polytech.schedule.Groups;
 import com.danapps.polytech.schedule.Ruz;
 import com.danapps.polytech.schedule.SchedulerError;
 import com.danapps.polytech.schedule.model.Group;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChangeGroupFragment extends Fragment {
+
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     private AutoCompleteTextView groupACTV;
     private ArrayAdapter<String> stringArrayAdapter;
@@ -78,9 +83,10 @@ public class ChangeGroupFragment extends Fragment {
                 boolean checker = true;
 
                 for (int i = 0; i < list.size(); i++) {
-                    if (list.get(i).equals(groupACTV.getText().toString()))
+                    if (list.get(i).equals(groupACTV.getText().toString())) {
                         checker = true;
                         groupId = listId.get(i);
+                    }
                 }
 
                 if (!checker)
@@ -90,8 +96,14 @@ public class ChangeGroupFragment extends Fragment {
                     sPref.edit().putInt("UserGroupId", groupId).apply();
                     Log.e("ChangeGroupFragment", "sPref<UserGroupName>: " + groupACTV.getText().toString());
                     Log.e("ChangeGroupFragment", "sPref<UserGroupId>: " + groupId);
-                    int id = ((BottomNavigationView) ((MainActivity) getActivity()).findViewById(R.id.bottom_navigation_view)).getSelectedItemId();
 
+                    if (mAuth.getCurrentUser() != null) {
+                        DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid()).child("UserInfo");
+                        myRef.child("UserGroupId").setValue(groupId);
+                        myRef.child("UserGroupName").setValue(groupACTV.getText().toString());
+                    }
+
+                    int id = ((BottomNavigationView) ((MainActivity) getActivity()).findViewById(R.id.bottom_navigation_view)).getSelectedItemId();
                     if (id == R.id.schedule_item)
                         ((MainActivity) getActivity()).LoadFragment(2);
                     else if (id == R.id.menu_item)
