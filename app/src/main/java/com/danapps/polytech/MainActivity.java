@@ -1,5 +1,6 @@
 package com.danapps.polytech;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -31,7 +32,11 @@ import com.danapps.polytech.fragments.tabs.SchemeFragment;
 import com.danapps.polytech.fragments.tabs.NotesFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends FragmentActivity {
 
@@ -73,11 +78,48 @@ public class MainActivity extends FragmentActivity {
 //        sPref.edit().clear().apply();
 //        mAuth.signOut();
         LoadFragment(0);
+//        bottomNavigationView.setSelectedItemId(R.id.notes_item);
 
         Log.e("TimedInfo:", tPref.getAll().toString());
         Log.e("UserInfo:", sPref.getAll().toString());
         if (mAuth.getCurrentUser() != null) {
             Log.e("FirebaseAuth", mAuth.getCurrentUser().getEmail());
+        }
+
+        if (mAuth.getCurrentUser() != null) {
+            DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
+
+            myRef.child("UserInfo").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.child("UserGroupId").getValue() != null)
+                        sPref.edit().putInt("UserGroupId", Integer.valueOf(dataSnapshot.child("UserGroupId").getValue().toString())).apply();
+                    if (dataSnapshot.child("UserGroupName").getValue() != null)
+                        sPref.edit().putString("UserGroupName", dataSnapshot.child("UserGroupName").getValue().toString()).apply();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
+            myRef.child("UserInfo").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.child("UserName").getValue() != null)
+                        sPref.edit().putString("UserName", dataSnapshot.child("UserName").getValue().toString()).apply();
+                    if (dataSnapshot.child("UserSurname") != null)
+                        sPref.edit().putString("UserSurname", dataSnapshot.child("UserSurname").getValue().toString()).apply();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
         }
 
         bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {

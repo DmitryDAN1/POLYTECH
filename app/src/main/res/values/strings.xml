@@ -83,4 +83,8 @@
     <string name="tuesday">Вторник</string>
     <string name="monday">Понедельник</string>
     <string name="change">Изменить</string>
+    <string name="change_password">Изменить пароль</string>
+    <string name="about_app">О приложении</string>
+    <string name="change_name">Сменить имя профиля</string>
+    <string name="app_version">Версия приложения: 0.1.0</string>
 </resources>

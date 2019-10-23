@@ -86,6 +86,23 @@ public class MainAuthFragment extends Fragment {
                         myRef.child("UserInfo").child("UserGroupName").setValue(sPref.getString("UserGroupName", "0"));
                     }
 
+                    if (sPref.getString("UserName", "").equals("")) {
+                        myRef.child("UserInfo").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.child("UserName").getValue() != null)
+                                    sPref.edit().putString("UserName", dataSnapshot.child("UserName").getValue().toString()).apply();
+                                if (dataSnapshot.child("UserSurname") != null)
+                                    sPref.edit().putString("UserSurname", dataSnapshot.child("UserSurname").getValue().toString()).apply();
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+
                     ((MainActivity) getActivity()).LoadFragment(4);
                 });
             }

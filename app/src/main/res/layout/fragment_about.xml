@@ -45,8 +45,7 @@
         <RelativeLayout
             android:id="@+id/about_contactContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/menu_auth_syncContent">
+            android:layout_height="wrap_content" >
 
             <ImageView
                 android:id="@+id/about_contactIcon"
@@ -86,8 +85,7 @@
             <RelativeLayout
                 android:id="@+id/about_rateContent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/menu_auth_syncContent">
+                android:layout_height="wrap_content" >
 
                 <ImageView
                     android:id="@+id/about_rateIcon"
@@ -127,8 +125,7 @@
             <RelativeLayout
                 android:id="@+id/about_licenseContent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/menu_auth_syncContent">
+                android:layout_height="wrap_content" >
 
                 <ImageView
                     android:id="@+id/about_licenseIcon"
@@ -161,7 +158,7 @@
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Версия приложения: 1.0.0"
+        android:text="@string/app_version"
         android:fontFamily="@font/sfregular"
         android:gravity="center"
         android:layout_marginBottom="10dp"

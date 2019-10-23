@@ -40,7 +40,7 @@
                 android:layout_below="@id/menu_headerUserNameTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Номер группы"
+                android:text="@string/group_number"
                 android:fontFamily="@font/sfregular"
                 android:textSize="14sp"
                 android:layout_marginBottom="10dp"/>
@@ -124,7 +124,7 @@
                 android:layout_toEndOf="@id/menu_body_groupIcon"
                 android:layout_toStartOf="@id/menu_body_groupCurrent"
                 android:layout_centerInParent="true"
-                android:text="Номер группы"
+                android:text="@string/group_number"
                 android:fontFamily="@font/sfregular"
                 android:textSize="16sp"
                 android:layout_marginStart="15dp"
@@ -162,48 +162,9 @@
         android:visibility="invisible">
 
         <RelativeLayout
-            android:id="@+id/menu_auth_syncContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/menu_auth_syncIcon"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:src="@drawable/ic_hotel_black_100dp"
-                android:layout_marginStart="15dp"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:id="@+id/menu_auth_syncText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/menu_auth_syncIcon"
-                android:layout_centerInParent="true"
-                android:text="Синхронизация заметок"
-                android:fontFamily="@font/sfregular"
-                android:textSize="16sp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp" />
-
-            <Switch
-                android:id="@+id/menu_auth_syncSwitch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="15dp"
-                android:layout_centerInParent="true" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
             android:id="@+id/menu_auth_nameContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/menu_auth_syncContent">
-
+            android:layout_height="wrap_content" >
             <ImageView
                 android:id="@+id/menu_auth_nameIcon"
                 android:layout_marginTop="5dp"
@@ -220,7 +181,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/menu_auth_nameIcon"
                 android:layout_centerInParent="true"
-                android:text="Сменить имя профиля"
+                android:text="@string/change_name"
                 android:fontFamily="@font/sfregular"
                 android:textSize="16sp"
                 android:layout_marginStart="15dp"
@@ -250,7 +211,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/menu_auth_passIcon"
                 android:layout_centerInParent="true"
-                android:text="Изменить пароль"
+                android:text="@string/change_password"
                 android:fontFamily="@font/sfregular"
                 android:textSize="16sp"
                 android:layout_marginStart="15dp"
@@ -276,7 +237,7 @@
         android:id="@+id/menu_aboutBTN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="О приложении"
+        android:text="@string/about_app"
         android:fontFamily="@font/sfsemibold"
         android:textSize="16sp"
         android:layout_alignParentBottom="true"

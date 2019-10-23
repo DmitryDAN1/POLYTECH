@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -18,11 +17,8 @@ import android.widget.TextView;
 import com.danapps.polytech.R;
 import com.danapps.polytech.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class MenuFragment extends Fragment {
 
@@ -49,7 +45,10 @@ public class MenuFragment extends Fragment {
                     .setTitle(getString(R.string.exit_from_app_mainText))
                     .setMessage("Вы уверены, что хотите выйти из своего аккаунта?")
                     .setNegativeButton(getString(R.string.No), (dialog, which) -> Log.e("Menu", "Exit NO"))
-                    .setPositiveButton(getString(R.string.Yes), (dialog, which) -> mAuth.signOut())
+                    .setPositiveButton(getString(R.string.Yes), (dialog, which) -> {
+                        mAuth.signOut();
+                        sPref.edit().remove("UserLogin").remove("UserPass").remove("UserName").remove("UserSurname").apply();
+                    })
                     .create()
                     .show();
             }

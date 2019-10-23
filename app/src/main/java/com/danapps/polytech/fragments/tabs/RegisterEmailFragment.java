@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 
 import com.danapps.polytech.R;
 import com.danapps.polytech.MainActivity;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -30,17 +32,18 @@ public class RegisterEmailFragment extends Fragment {
 
         view.findViewById(R.id.reg_email_nextBTN).setOnClickListener(v -> {
             EditText emailET = view.findViewById(R.id.reg_email_emailET);
-            mAuth.signInWithEmailAndPassword(emailET.getText().toString(), "1").addOnFailureListener(e -> {
-
                 mAuth.fetchSignInMethodsForEmail(emailET.getText().toString())
-                    .addOnSuccessListener(command ->
-                        ((TextInputLayout) view.findViewById(R.id.reg_email_emailTIL)).setError(getString(R.string.email_error_registered)))
-                    .addOnFailureListener(e1 -> {
-                        SharedPreferences tPref = getActivity().getSharedPreferences("TimedInfo", Context.MODE_PRIVATE);
-                        tPref.edit().putString("TimedEmail", emailET.getText().toString()).apply();
-                        ((MainActivity) getActivity()).LoadFragment(9);
-                    });
-            });
+                    .addOnSuccessListener(command -> {
+                        Log.d("RegisterEmail:", "SignInMethods:" + command.getSignInMethods().size());
+                        if (command.getSignInMethods().size() > 0)
+                            ((TextInputLayout) view.findViewById(R.id.reg_email_emailTIL)).setError(getString(R.string.email_error_registered));
+                        else {
+                            SharedPreferences tPref = getActivity().getSharedPreferences("TimedInfo", Context.MODE_PRIVATE);
+                            tPref.edit().putString("TimedEmail", emailET.getText().toString()).apply();
+                            ((MainActivity) getActivity()).LoadFragment(9);
+                        }
+
+                    }).addOnFailureListener(e1 -> Snackbar.make(view, getString(R.string.auth_main_error), Snackbar.LENGTH_SHORT).show());
 
         });
         return view;

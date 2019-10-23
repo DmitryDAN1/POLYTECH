@@ -20,11 +20,12 @@
                 android:layout_height="wrap_content"
                 android:text=""
                 android:textSize="20sp"
-                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:fontFamily="@font/sfsemibold"
                 android:textColor="@color/PolyBlack"
                 android:layout_marginStart="10dp"
-                tools:ignore="TextViewEdits" />
+                android:layout_marginEnd="10dp"/>
 
             <TextView
                 android:layout_marginTop="2dp"
@@ -33,11 +34,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:text=""
                 android:textSize="16sp"
-                android:inputType="textEmailAddress"
                 android:fontFamily="@font/sfregular"
-                tools:ignore="TextViewEdits" />
+                android:maxLines="1"
+                android:ellipsize="end" />
         </LinearLayout>
 
 </androidx.cardview.widget.CardView>
