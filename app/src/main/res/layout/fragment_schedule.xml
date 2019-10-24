@@ -7,62 +7,164 @@
     tools:context=".fragments.tabs.ScheduleFragment"
     android:background="@color/PolyWhiteLight">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/schedule_week_content"
         android:layout_width="match_parent"
         android:layout_alignParentTop="true"
         android:layout_height="wrap_content"
-        android:background="@android:color/white">
-
-        <TextView
-            android:id="@+id/schedule_weekDay"
-            android:gravity="center"
-            android:layout_toStartOf="@id/schedule_nextBTN"
-            android:layout_toEndOf="@id/schedule_backBTN"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Среда"
-            android:textColor="@color/PolyBlack"
-            android:fontFamily="@font/sfmedium"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/schedule_SE"
-            android:layout_below="@id/schedule_weekDay"
-            android:gravity="center"
-            android:layout_toStartOf="@id/schedule_nextBTN"
-            android:layout_toEndOf="@id/schedule_backBTN"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="07.10.2019 - 13.10.2019"
-            android:textColor="@color/PolyBlack"
-            android:fontFamily="@font/sfregular"
-            android:textSize="12sp" />
-
-        <ImageButton
-            android:id="@+id/schedule_backBTN"
-            android:layout_centerInParent="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="15dp"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:paddingTop="10dp">
+        <TableLayout
+            android:stretchColumns="*"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_back_green"
-            android:background="@android:color/white" />
-
+            android:layout_margin="5dp">
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="vertical">
+                <TextView
+                    android:textAlignment="center"
+                    android:text="Пн"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textAlignment="center"
+                    android:text="Вт"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textAlignment="center"
+                    android:text="Ср"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textAlignment="center"
+                    android:text="Чт"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textAlignment="center"
+                    android:text="Пт"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textAlignment="center"
+                    android:text="Сб"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textAlignment="center"
+                    android:text="Вс"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+                    <Button
+                        android:textAlignment="gravity"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:text="21"
+                        android:textColor="@color/PolyWhiteLight"
+                        android:background="@drawable/btn_circle"
+                        android:backgroundTint="@color/PolyGreenLight"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+                    <Button
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:text="22"
+                        android:textColor="@color/PolyBlack"
+                        android:background="@drawable/btn_circle"
+                        android:backgroundTint="#fff"
+                        android:stateListAnimator="@null"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+                    <Button
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:text="23"
+                        android:textColor="@color/PolyBlack"
+                        android:background="@drawable/btn_circle"
+                        android:backgroundTint="#fff"
+                        android:stateListAnimator="@null"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+                    <Button
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:text="24"
+                        android:textColor="@color/PolyBlack"
+                        android:background="@drawable/btn_circle"
+                        android:backgroundTint="#fff"
+                        android:stateListAnimator="@null"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+                    <Button
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:text="25"
+                        android:textColor="@color/PolyBlack"
+                        android:background="@drawable/btn_circle"
+                        android:backgroundTint="#fff"
+                        android:stateListAnimator="@null"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+                    <Button
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:text="26"
+                        android:textColor="@color/PolyBlack"
+                        android:background="@drawable/btn_circle"
+                        android:backgroundTint="#fff"
+                        android:stateListAnimator="@null"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+                    <Button
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:text="27"
+                        android:textColor="@color/PolyBlack"
+                        android:background="@drawable/btn_circle"
+                        android:backgroundTint="#fff"
+                        android:stateListAnimator="@null"/>
+                </LinearLayout>
+            </TableRow>
+        </TableLayout>
         <ImageButton
-            android:id="@+id/schedule_nextBTN"
-            android:layout_centerInParent="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="15dp"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_forward_green"
-            android:background="@android:color/white" />
+            android:background="@drawable/ic_keyboard_arrow_down_black_24dp"
+            android:backgroundTint="@color/PolyWhiteDark"/>
 
-    </RelativeLayout>
-
+    </LinearLayout>
 
     <View
         android:layout_below="@id/schedule_week_content"
@@ -71,19 +173,9 @@
         android:layout_height="1dp"
         android:background="@color/PolyWhiteDark" />
 
-
-    <ImageView
-        android:id="@+id/schedule_weekend"
-        android:layout_centerInParent="true"
-        android:layout_width="match_parent"
-        android:layout_height="175dp"
-        android:src="@drawable/ic_hotel_black_100dp"
-        android:visibility="gone" />
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/schedule_recyclerView"
+        android:id="@+id/schedule_recycler_view"
         android:layout_below="@id/schedule_line"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
+        android:layout_height="match_parent" />
 </RelativeLayout>

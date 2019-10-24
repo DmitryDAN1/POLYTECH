@@ -22,7 +22,8 @@ public class Scheduler {
     }
 
     private class Response extends Schedule {
-
+        boolean error;
+        String text;
     }
 
     private RequestQueue requestQueue;
@@ -42,14 +43,18 @@ public class Scheduler {
         requestQueue.add(new Utf8StringRequest(Request.Method.GET, url, new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Schedule schedule;
+                Scheduler.Response schedulerResponse;
                 try {
-                    schedule = gson.fromJson(response, Scheduler.Response.class);
+                    schedulerResponse = gson.fromJson(response, Scheduler.Response.class);
                 } catch (JsonParseException e) {
                     listener.onResponseError(new SchedulerError(e.getMessage(), SchedulerErrorType.ParsingFailed));
                     return;
                 }
-                listener.onResponseReady(schedule);
+                if(schedulerResponse.error) {
+                    listener.onResponseError(new SchedulerError(schedulerResponse.text, SchedulerErrorType.ParsingFailed));
+                }
+
+                listener.onResponseReady(schedulerResponse);
             }
         }, new com.android.volley.Response.ErrorListener() {
             @Override

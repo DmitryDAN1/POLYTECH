@@ -2,6 +2,7 @@ package com.danapps.polytech.schedule.date;
 
 import androidx.annotation.NonNull;
 
+import java.util.Calendar;
 import java.util.Locale;
 
 public class ScheduleDate {
@@ -13,6 +14,10 @@ public class ScheduleDate {
         this.year = year;
         this.month = month;
         this.day = day;
+    }
+
+    public static ScheduleDate fromCalendar(Calendar calendar) {
+        return new ScheduleDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
     }
 
     public int getYear() {

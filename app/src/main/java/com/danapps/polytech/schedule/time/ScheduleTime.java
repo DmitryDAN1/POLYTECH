@@ -2,14 +2,22 @@ package com.danapps.polytech.schedule.time;
 
 import androidx.annotation.NonNull;
 
-import java.security.InvalidParameterException;
-import java.util.Date;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class ScheduleTime {
     private int totalMinute;
 
-    ScheduleTime(int totalMinute) {
+    public ScheduleTime(int totalMinute) {
         this.totalMinute = totalMinute;
+    }
+
+    public ScheduleTime(int hour, int minute) {
+        this.totalMinute = (hour % 24) * 60 + minute % 60;
+    }
+
+    public static ScheduleTime fromCalendar(Calendar calendar) {
+        return new ScheduleTime(calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE));
     }
 
     public int getHour() {
@@ -24,17 +32,10 @@ public class ScheduleTime {
         return totalMinute;
     }
 
-    public ScheduleTime add(ScheduleTime x, DeltaScheduleTime y) {
-        return new ScheduleTime(x.totalMinute + y.getTotalMinutes());
-    }
-
-    public DeltaScheduleTime subtract(ScheduleTime x, ScheduleTime y) {
-        return new DeltaScheduleTime(Math.abs(x.totalMinute - y.totalMinute));
-    }
-
     @NonNull
     @Override
     public String toString() {
-        return String.valueOf(getHour()) + '-' + getMinute();
+        return String.valueOf(String.format(Locale.getDefault(),"%02d", getHour()))
+                + ':' + String.format(Locale.getDefault(), "%02d", getMinute());
     }
 }
