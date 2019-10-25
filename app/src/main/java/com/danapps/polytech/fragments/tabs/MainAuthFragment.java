@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,10 +71,6 @@ public class MainAuthFragment extends Fragment {
                                     sPref.edit().putInt("UserGroupId", Integer.valueOf(dataSnapshot.child("UserGroupId").getValue().toString())).apply();
                                 if (dataSnapshot.child("UserGroupName").getValue() != null)
                                     sPref.edit().putString("UserGroupName", dataSnapshot.child("UserGroupName").getValue().toString()).apply();
-                                if (dataSnapshot.child("UserName").getValue() != null)
-                                    sPref.edit().putString("UserName", dataSnapshot.child("UserName").getValue().toString()).apply();
-                                if (dataSnapshot.child("UserSurname") != null)
-                                    sPref.edit().putString("UserSurname", dataSnapshot.child("UserSurname").getValue().toString()).apply();
                             }
 
                             @Override
@@ -84,26 +81,28 @@ public class MainAuthFragment extends Fragment {
                     } else {
                         myRef.child("UserInfo").child("UserGroupId").setValue(sPref.getInt("UserGroupId", 0));
                         myRef.child("UserInfo").child("UserGroupName").setValue(sPref.getString("UserGroupName", "0"));
+
+                        if (sPref.getString("UserName", "").equals("")) {
+                            myRef.child("UserInfo").addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if (dataSnapshot.child("UserName").getValue() != null)
+                                        sPref.edit().putString("UserName", dataSnapshot.child("UserName").getValue().toString()).apply();
+                                    if (dataSnapshot.child("UserSurname") != null)
+                                        sPref.edit().putString("UserSurname", dataSnapshot.child("UserSurname").getValue().toString()).apply();
+
+                                    ((MainActivity) getActivity()).LoadFragment(4);
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                        } else {
+                            ((MainActivity) getActivity()).LoadFragment(4);
+                        }
                     }
-
-                    if (sPref.getString("UserName", "").equals("")) {
-                        myRef.child("UserInfo").addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                if (dataSnapshot.child("UserName").getValue() != null)
-                                    sPref.edit().putString("UserName", dataSnapshot.child("UserName").getValue().toString()).apply();
-                                if (dataSnapshot.child("UserSurname") != null)
-                                    sPref.edit().putString("UserSurname", dataSnapshot.child("UserSurname").getValue().toString()).apply();
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });
-                    }
-
-                    ((MainActivity) getActivity()).LoadFragment(4);
                 });
             }
 

@@ -17,14 +17,9 @@ import android.widget.TextView;
 import com.danapps.polytech.R;
 import com.danapps.polytech.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 public class MenuFragment extends Fragment {
 
-    FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -32,7 +27,6 @@ public class MenuFragment extends Fragment {
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.fragment_menu, container, false);
         SharedPreferences sPref = getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         if (mAuth.getCurrentUser() != null) {
-            myRef = database.getReference(mAuth.getCurrentUser().getUid());
             view.findViewById(R.id.menu_authBlock).setVisibility(View.VISIBLE);
         } else
             view.findViewById(R.id.menu_authBlock).setVisibility(View.INVISIBLE);
@@ -48,6 +42,8 @@ public class MenuFragment extends Fragment {
                     .setPositiveButton(getString(R.string.Yes), (dialog, which) -> {
                         mAuth.signOut();
                         sPref.edit().remove("UserLogin").remove("UserPass").remove("UserName").remove("UserSurname").apply();
+                        UpdateName(view, sPref);
+                        view.findViewById(R.id.menu_authBlock).setVisibility(View.INVISIBLE);
                     })
                     .create()
                     .show();
@@ -60,6 +56,21 @@ public class MenuFragment extends Fragment {
         ((TextView) view.findViewById(R.id.menu_body_groupCurrent)).setText(sPref.getString("UserGroupName", "Группа не выбрана"));
         ((TextView) view.findViewById(R.id.menu_headerGroup)).setText(sPref.getString("UserGroupName", "Группа не выбрана"));
 
+        UpdateName(view, sPref);
+
+        view.findViewById(R.id.menu_auth_nameContent).setOnClickListener(v ->
+                ((MainActivity) getActivity()).LoadFragment(13));
+
+        view.findViewById(R.id.menu_aboutBTN).setOnClickListener(v ->
+                ((MainActivity) getActivity()).LoadFragment(14));
+
+
+
+        return view;
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void UpdateName(View view, SharedPreferences sPref) {
         if (mAuth.getCurrentUser() != null)
             if (!sPref.getString("UserName", "").equals("") && !sPref.getString("UserSurname", "").equals(""))
                 ((TextView) view.findViewById(R.id.menu_headerUserNameTV))
@@ -69,13 +80,5 @@ public class MenuFragment extends Fragment {
         else
             ((TextView) view.findViewById(R.id.menu_headerUserNameTV)).setText("Необходимо авторизоваться!");
 
-
-        view.findViewById(R.id.menu_auth_nameContent).setOnClickListener(v ->
-                ((MainActivity) getActivity()).LoadFragment(13));
-
-        view.findViewById(R.id.menu_aboutBTN).setOnClickListener(v ->
-                ((MainActivity) getActivity()).LoadFragment(14));
-
-        return view;
     }
 }

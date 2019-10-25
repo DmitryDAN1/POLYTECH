@@ -39,6 +39,9 @@ public class AboutFragment extends Fragment {
         view.findViewById(R.id.about_licenseContent).setOnClickListener(v ->
             ((MainActivity) getActivity()).LoadFragment(15));
 
+        view.findViewById(R.id.about_backBTN).setOnClickListener(v ->
+            ((MainActivity) getActivity()).LoadFragment(4));
+
         return view;
     }
 

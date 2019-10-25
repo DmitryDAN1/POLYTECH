@@ -77,11 +77,11 @@ public class MainActivity extends FragmentActivity {
         tPref.edit().clear().apply();
 //        sPref.edit().clear().apply();
 //        mAuth.signOut();
-        LoadFragment(0);
-//        bottomNavigationView.setSelectedItemId(R.id.notes_item);
-
+        LoadFragment(2);
+        bottomNavigationView.setSelectedItemId(R.id.schedule_item);
         Log.e("TimedInfo:", tPref.getAll().toString());
         Log.e("UserInfo:", sPref.getAll().toString());
+
         if (mAuth.getCurrentUser() != null) {
             Log.e("FirebaseAuth", mAuth.getCurrentUser().getEmail());
         }
