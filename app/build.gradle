@@ -26,6 +26,10 @@ android {
 }
 
 repositories {
+    jcenter()
+    maven {
+        url "https://jitpack.io"
+    }
     maven {
         url "http://maven.google.com/"
     }
@@ -60,4 +64,6 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
 
     implementation 'com.android.support:multidex:1.0.3'
+
+    implementation 'com.github.BlackDizel:recyclerview-dotsindicator:1.0.3'
 }

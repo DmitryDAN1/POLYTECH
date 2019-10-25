@@ -43,7 +43,7 @@
             android:gravity="center"
             android:layout_marginRight="25dp"
             android:layout_marginLeft="25dp"
-            android:textColor="@color/PolyBlack"/>
+            android:textColor="@color/polyBlack"/>
 
         <TextView
             android:id="@+id/reset_finish_subText"

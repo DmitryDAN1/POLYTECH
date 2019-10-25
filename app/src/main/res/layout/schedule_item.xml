@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp" >
+    <include layout="@layout/schedule_lessons"
+        android:id="@+id/schedule_lessons"/>
+    <include layout="@layout/schedule_window"
+        android:id="@+id/schedule_window"/>
+</LinearLayout>

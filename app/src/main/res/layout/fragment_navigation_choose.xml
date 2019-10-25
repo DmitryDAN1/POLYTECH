@@ -25,7 +25,7 @@
             android:gravity="center"
             android:layout_marginRight="25dp"
             android:layout_marginLeft="25dp"
-            android:textColor="@color/PolyBlack"/>
+            android:textColor="@color/polyBlack"/>
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -83,7 +83,7 @@
             android:layout_marginRight="25dp"
             android:background="@drawable/log_btn"
             android:text="Построить маршрут"
-            android:textColor="@color/PolyGreen"
+            android:textColor="@color/polyGreen"
             android:textSize="17sp" />
 
     </RelativeLayout>

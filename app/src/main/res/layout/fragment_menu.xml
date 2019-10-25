@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.tabs.MenuFragment"
     android:background="@color/PolyWhiteLight">
 
@@ -30,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text=""
-                android:textColor="@color/PolyBlack"
+                android:textColor="@color/polyBlack"
                 android:fontFamily="@font/sfbold"
                 android:textSize="16sp" />
 
@@ -54,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginBottom="15dp"
-        android:background="@color/PolyWhiteDark" />
+        android:background="@color/polyWhiteDark" />
 
     <RelativeLayout
         android:id="@+id/menu_bodyBlock"
@@ -151,7 +150,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginBottom="15dp"
-        android:background="@color/PolyWhiteDark" />
+        android:background="@color/polyWhiteDark" />
 
     <RelativeLayout
         android:id="@+id/menu_authBlock"
@@ -229,7 +228,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginBottom="15dp"
-        android:background="@color/PolyWhiteDark"
+        android:background="@color/polyWhiteDark"
         android:visibility="gone"/>
 
 

@@ -44,7 +44,7 @@
         android:layout_below="@id/notes_subtitleET"
         android:layout_marginEnd="25dp"
         android:textSize="22sp"
-        android:textColor="@color/PolyGreen"
+        android:textColor="@color/polyGreen"
         android:fontFamily="@font/sfmedium"/>
 
     <TextView

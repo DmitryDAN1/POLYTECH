@@ -34,13 +34,13 @@ public class Scheduler {
         this.gson = gson;
     }
 
-    public void querySchedule(int groupId, @Nullable ScheduleDate date, @NotNull final Listener listener) {
+    public Request querySchedule(int groupId, @Nullable ScheduleDate date, @NotNull final Listener listener) {
         String url = SCHEDULER_URL_BASE + groupId;
         if(date != null) {
             url += "?date=" + date;
         }
 
-        requestQueue.add(new Utf8StringRequest(Request.Method.GET, url, new com.android.volley.Response.Listener<String>() {
+        Request request = new Utf8StringRequest(Request.Method.GET, url, new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Scheduler.Response schedulerResponse;
@@ -61,7 +61,11 @@ public class Scheduler {
             public void onErrorResponse(VolleyError error) {
                 listener.onResponseError(new SchedulerError(error.getMessage(), SchedulerErrorType.NetworkFailed));
             }
-        }));
+        });
+
+        requestQueue.add(request);
+
+        return request;
     }
 
     public void querySchedule(@NotNull Group group, @Nullable ScheduleDate date, @NotNull final Listener listener) {

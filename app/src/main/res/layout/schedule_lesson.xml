@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:elevation="1dp"
-    android:layout_margin="5dp"
-    android:background="@android:color/white">
-
-    <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    android:layout_height="wrap_content" >
 
     <RelativeLayout
         android:id="@+id/schedule_list_item_header"
@@ -19,79 +10,69 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/lessonNumber"
+            android:id="@+id/lesson_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1"
-            android:textSize="16sp"
-            android:layout_marginStart="15dp"
+            android:textSize="14sp"
             android:textColor="@android:color/darker_gray"
             android:fontFamily="@font/sfmedium"/>
 
         <TextView
-            android:id="@+id/lessonType"
+            android:id="@+id/lesson_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:text="Практика"
-            android:layout_toEndOf="@id/lessonNumber"
-            android:layout_toStartOf="@id/lessonTime"
-            android:layout_marginStart="15dp"
-            android:textSize="16sp"
+            android:layout_toEndOf="@id/lesson_number"
+            android:layout_toStartOf="@id/lesson_time"
+            android:textSize="14sp"
             android:textColor="@android:color/darker_gray"
             android:fontFamily="@font/sfmedium"/>
 
         <TextView
-            android:id="@+id/lessonTime"
+            android:id="@+id/lesson_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="10:00 - 11:40"
-            android:layout_marginEnd="15dp"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textColor="@android:color/darker_gray"
             android:fontFamily="@font/sfmedium"/>
 
 
     </RelativeLayout>
-
-        <TextView
-        android:id="@+id/lessonName"
+    <TextView
+        android:id="@+id/lesson_subject"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
         android:layout_below="@id/schedule_list_item_header"
         android:text="Высшая математика"
-        android:textSize="20sp"
-        android:textColor="@color/PolyBlack"
+        android:textSize="16sp"
+        android:textColor="@color/polyBlack"
         android:fontFamily="@font/sfsemibold" />
 
     <TextView
-        android:id="@+id/lessonTeacher"
-        android:layout_below="@id/lessonName"
+        android:id="@+id/lesson_teacher"
+        android:layout_below="@id/lesson_subject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
         android:layout_marginTop="3dp"
         android:text="Дробинцев Павел Дмитриевич"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textColor="@android:color/darker_gray"
         android:fontFamily="@font/sfregular" />
 
     <TextView
-        android:id="@+id/lessonGeo"
-        android:layout_below="@id/lessonTeacher"
+        android:id="@+id/lesson_location"
+        android:layout_below="@id/lesson_teacher"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
         android:layout_marginTop="20dp"
         android:text="Главное здание, ауд. 237"
         android:textColor="@android:color/darker_gray"
         android:fontFamily="@font/sfmedium"
-        android:textSize="16sp" />
+        android:textSize="14sp" />
 
-    </RelativeLayout>
-</androidx.cardview.widget.CardView>
+</RelativeLayout>

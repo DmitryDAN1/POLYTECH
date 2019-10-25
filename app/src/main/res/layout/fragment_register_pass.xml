@@ -33,7 +33,7 @@
             android:gravity="center"
             android:layout_marginRight="25dp"
             android:layout_marginLeft="25dp"
-            android:textColor="@color/PolyBlack"/>
+            android:textColor="@color/polyBlack"/>
 
         <TextView
             android:id="@+id/reg_pass_subText"
@@ -72,7 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/showPass"
-            android:textColor="@color/PolyGreen"
+            android:textColor="@color/polyGreen"
             android:layout_below="@id/reg_pass_passTIL"
             android:gravity="center" />
 

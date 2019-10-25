@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/PolyGreen</color>
-    <color name="colorPrimaryDark">@color/PolyGreenDark</color>
-    <color name="colorAccent">@color/PolyGreen</color>
+    <color name="colorPrimary">@color/polyGreen</color>
+    <color name="colorPrimaryDark">@color/polyGreenDark</color>
+    <color name="colorAccent">@color/polyGreen</color>
 
-    <color name="PolyWhiteDark">#dbdbdb</color>
+    <color name="polyWhiteDark">#dbdbdb</color>
     <color name="PolyWhiteLight">#F3F2F2</color>
 
-    <color name="PolyGreen">#319b3d</color>
-    <color name="PolyGreenDark">#267a30</color>
-    <color name="PolyGreenLight">#37b34a</color>
+    <color name="polyGreen">#319b3d</color>
+    <color name="polyGreenDark">#267a30</color>
+    <color name="polyGreenLight">#37b34a</color>
 
-    <color name="PolyBlack">#2E2E2E</color>
-    <color name="PolyGray">#6D6D6D</color>
+    <color name="polyBlack">#2E2E2E</color>
+    <color name="polyGray">#6D6D6D</color>
 </resources>

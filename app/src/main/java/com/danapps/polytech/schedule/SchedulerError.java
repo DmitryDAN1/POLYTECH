@@ -1,5 +1,7 @@
 package com.danapps.polytech.schedule;
 
+import androidx.annotation.NonNull;
+
 public class SchedulerError {
 
     private String message;
@@ -16,5 +18,11 @@ public class SchedulerError {
 
     public SchedulerErrorType getType() {
         return type;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return String.format("%s %s", type, message);
     }
 }

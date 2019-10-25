@@ -12,7 +12,7 @@
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/PolyBlack"
+        android:textColor="@color/polyBlack"
         android:text="Выберите институт"
         android:textSize="30sp"
         android:gravity="center"

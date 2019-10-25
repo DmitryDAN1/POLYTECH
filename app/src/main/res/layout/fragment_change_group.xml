@@ -37,7 +37,7 @@
             android:id="@+id/changeGroup_mainText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/PolyBlack"
+            android:textColor="@color/polyBlack"
             android:text="@string/welcome_group_mainText"
             android:textSize="35sp"
             android:gravity="center"
