@@ -41,7 +41,7 @@ public class ChangeNameFragment extends Fragment {
                 DatabaseReference myRef = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("UserInfo");
                 myRef.child("UserName").setValue(nameET.getText().toString());
                 myRef.child("UserSurname").setValue(surnameET.getText().toString());
-                ((MainActivity) getActivity()).LoadFragment(4);
+                ((MainActivity) getActivity()).loadFragment(4);
             }
         });
 

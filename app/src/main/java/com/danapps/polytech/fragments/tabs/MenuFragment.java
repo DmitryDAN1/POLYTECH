@@ -33,7 +33,7 @@ public class MenuFragment extends Fragment {
 
         view.findViewById(R.id.menu_headerBlock).setOnClickListener(v -> {
             if (mAuth.getCurrentUser() == null)
-                ((MainActivity) getActivity()).LoadFragment(7);
+                ((MainActivity) getActivity()).loadFragment(7);
             else {
                 new AlertDialog.Builder(getContext())
                     .setTitle(getString(R.string.exit_from_app_mainText))
@@ -51,7 +51,7 @@ public class MenuFragment extends Fragment {
         });
 
         view.findViewById(R.id.menu_body_groupContent).setOnClickListener(v ->
-                ((MainActivity) getActivity()).LoadFragment(6));
+                ((MainActivity) getActivity()).loadFragment(6));
 
         ((TextView) view.findViewById(R.id.menu_body_groupCurrent)).setText(sPref.getString("UserGroupName", "Группа не выбрана"));
         ((TextView) view.findViewById(R.id.menu_headerGroup)).setText(sPref.getString("UserGroupName", "Группа не выбрана"));
@@ -59,10 +59,10 @@ public class MenuFragment extends Fragment {
         UpdateName(view, sPref);
 
         view.findViewById(R.id.menu_auth_nameContent).setOnClickListener(v ->
-                ((MainActivity) getActivity()).LoadFragment(13));
+                ((MainActivity) getActivity()).loadFragment(13));
 
         view.findViewById(R.id.menu_aboutBTN).setOnClickListener(v ->
-                ((MainActivity) getActivity()).LoadFragment(14));
+                ((MainActivity) getActivity()).loadFragment(14));
 
 
 

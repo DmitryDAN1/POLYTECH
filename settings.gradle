@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':ruz'
 rootProject.name='POLYTECH'

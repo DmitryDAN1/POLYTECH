@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +26,7 @@ public class ResetPassEmailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_reset_pass_email, container, false);
 
         view.findViewById(R.id.reset_pass_backBTN).setOnClickListener(v ->
-                ((MainActivity) getActivity()).LoadFragment(7));
+                ((MainActivity) getActivity()).loadFragment(7));
 
         view.findViewById(R.id.reset_pass_nextBTN).setOnClickListener(v -> {
             EditText editText = view.findViewById(R.id.reset_pass_emailET);
@@ -39,7 +38,7 @@ public class ResetPassEmailFragment extends Fragment {
                         .addOnSuccessListener(command -> {
                             SharedPreferences tPref = getActivity().getSharedPreferences("TimedInfo", Context.MODE_PRIVATE);
                             tPref.edit().putString("TimedEmail", editText.getText().toString()).apply();
-                            ((MainActivity) getActivity()).LoadFragment(12);
+                            ((MainActivity) getActivity()).loadFragment(12);
                         })
                         .addOnFailureListener(e ->
                             ((TextInputLayout) view.findViewById(R.id.reset_pass_emailTIL))

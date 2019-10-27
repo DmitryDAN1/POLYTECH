@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import com.danapps.polytech.MainActivity;
 import com.danapps.polytech.R;
 
-import java.net.HttpURLConnection;
 import java.util.List;
 
 public class AboutFragment extends Fragment {
@@ -37,10 +36,10 @@ public class AboutFragment extends Fragment {
         });
 
         view.findViewById(R.id.about_licenseContent).setOnClickListener(v ->
-            ((MainActivity) getActivity()).LoadFragment(15));
+            ((MainActivity) getActivity()).loadFragment(15));
 
         view.findViewById(R.id.about_backBTN).setOnClickListener(v ->
-            ((MainActivity) getActivity()).LoadFragment(4));
+            ((MainActivity) getActivity()).loadFragment(4));
 
         return view;
     }

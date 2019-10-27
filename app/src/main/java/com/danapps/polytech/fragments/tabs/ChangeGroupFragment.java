@@ -18,48 +18,55 @@ import android.widget.RelativeLayout;
 
 import com.danapps.polytech.R;
 import com.danapps.polytech.MainActivity;
-import com.danapps.polytech.schedule.Groups;
-import com.danapps.polytech.schedule.Ruz;
-import com.danapps.polytech.schedule.SchedulerError;
-import com.danapps.polytech.schedule.model.Group;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.venvw.spbstu.ruz.RuzService;
+import com.venvw.spbstu.ruz.api.FacultiesApi;
+import com.venvw.spbstu.ruz.models.Group;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ChangeGroupFragment extends Fragment {
 
-    FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private FirebaseAuth auth = FirebaseAuth.getInstance();
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+    private FacultiesApi facultiesApi;
 
     private AutoCompleteTextView groupACTV;
     private ArrayAdapter<String> stringArrayAdapter;
-    private RelativeLayout mainRL;
-    private Button nextBTN;
+    private RelativeLayout mainRelativeLayout;
+    private Button nextButton;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_change_group, container, false);
         SharedPreferences tPref = getActivity().getSharedPreferences("TimedInfo", Context.MODE_PRIVATE);
         SharedPreferences sPref = getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
-        Ruz ruz = new Ruz(getContext());
-        Groups groups = ruz.newGroups();
+        facultiesApi = RuzService.getInstance().getFacultiesApi();
         List<String> list = new ArrayList<>();
         List<Integer> listId = new ArrayList<>();
         TextInputLayout groupTIL = view.findViewById(R.id.changeGroup_groupTIL);
         groupACTV = view.findViewById(R.id.changeGroup_groupET);
-        mainRL = view.findViewById(R.id.changeGroup_mainRL);
-        nextBTN = view.findViewById(R.id.changeGroup_nextBTN);
+        mainRelativeLayout = view.findViewById(R.id.changeGroup_mainRL);
+        nextButton = view.findViewById(R.id.changeGroup_nextBTN);
 
-        groups.queryGroups(tPref.getInt("FacultiesId", 0), new Groups.Listener() {
+        facultiesApi.getGroups(tPref.getInt("FacultiesId", 0)).enqueue(new Callback<FacultiesApi.GetGroupsResponse>() {
             @Override
-            public void onResponseReady(List<Group> groups) {
+            public void onResponse(Call<FacultiesApi.GetGroupsResponse> call, Response<FacultiesApi.GetGroupsResponse> response) {
                 view.findViewById(R.id.changeGroup_progressBar).setVisibility(View.GONE);
-                nextBTN.setVisibility(View.VISIBLE);
-                mainRL.setVisibility(View.VISIBLE);
+                nextButton.setVisibility(View.VISIBLE);
+                mainRelativeLayout.setVisibility(View.VISIBLE);
+
+                List<Group> groups = response.body().getGroups();
                 for (int i = 0; i < groups.size(); i++) {
                     list.add(groups.get(i).getName());
                     listId.add(groups.get(i).getId());
@@ -67,7 +74,7 @@ public class ChangeGroupFragment extends Fragment {
             }
 
             @Override
-            public void onResponseError(SchedulerError error) {
+            public void onFailure(Call<FacultiesApi.GetGroupsResponse> call, Throwable t) {
 
             }
         });
@@ -97,24 +104,24 @@ public class ChangeGroupFragment extends Fragment {
                     Log.e("ChangeGroupFragment", "sPref<UserGroupName>: " + groupACTV.getText().toString());
                     Log.e("ChangeGroupFragment", "sPref<UserGroupId>: " + groupId);
 
-                    if (mAuth.getCurrentUser() != null) {
-                        DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid()).child("UserInfo");
+                    if (auth.getCurrentUser() != null) {
+                        DatabaseReference myRef = database.getReference(auth.getCurrentUser().getUid()).child("UserInfo");
                         myRef.child("UserGroupId").setValue(groupId);
                         myRef.child("UserGroupName").setValue(groupACTV.getText().toString());
                     }
 
                     int id = ((BottomNavigationView) ((MainActivity) getActivity()).findViewById(R.id.bottom_navigation_view)).getSelectedItemId();
                     if (id == R.id.schedule_item)
-                        ((MainActivity) getActivity()).LoadFragment(2);
+                        ((MainActivity) getActivity()).loadFragment(2);
                     else if (id == R.id.menu_item)
-                        ((MainActivity) getActivity()).LoadFragment(4);
+                        ((MainActivity) getActivity()).loadFragment(4);
                 }
             }
 
         });
 
         view.findViewById(R.id.changeGroup_backBTN).setOnClickListener(v ->
-                ((MainActivity) getActivity()).LoadFragment(6)
+                ((MainActivity) getActivity()).loadFragment(6)
         );
 
         return view;

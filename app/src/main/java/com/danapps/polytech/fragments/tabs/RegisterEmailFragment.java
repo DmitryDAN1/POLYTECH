@@ -28,7 +28,7 @@ public class RegisterEmailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_register_email, container, false);
 
         view.findViewById(R.id.reg_email_backBTN).setOnClickListener(v ->
-                ((MainActivity) getActivity()).LoadFragment(7));
+                ((MainActivity) getActivity()).loadFragment(7));
 
         view.findViewById(R.id.reg_email_nextBTN).setOnClickListener(v -> {
             EditText emailET = view.findViewById(R.id.reg_email_emailET);
@@ -40,7 +40,7 @@ public class RegisterEmailFragment extends Fragment {
                         else {
                             SharedPreferences tPref = getActivity().getSharedPreferences("TimedInfo", Context.MODE_PRIVATE);
                             tPref.edit().putString("TimedEmail", emailET.getText().toString()).apply();
-                            ((MainActivity) getActivity()).LoadFragment(9);
+                            ((MainActivity) getActivity()).loadFragment(9);
                         }
 
                     }).addOnFailureListener(e1 -> Snackbar.make(view, getString(R.string.auth_main_error), Snackbar.LENGTH_SHORT).show());

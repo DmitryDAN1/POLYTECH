@@ -26,7 +26,7 @@ public class RegisterFinishFragment extends Fragment {
         SharedPreferences tPref = getActivity().getSharedPreferences("TimedInfo", Context.MODE_PRIVATE);
 
         view.findViewById(R.id.reg_finish_backBTN).setOnClickListener(v ->
-                ((MainActivity) getActivity()).LoadFragment(7));
+                ((MainActivity) getActivity()).loadFragment(7));
 
         mAuth.createUserWithEmailAndPassword(tPref.getString("TimedEmail", "0"), tPref.getString("TimedPass", "0"))
             .addOnFailureListener( e ->
@@ -39,7 +39,7 @@ public class RegisterFinishFragment extends Fragment {
             });
 
         view.findViewById(R.id.reg_finish_nextBTN).setOnClickListener(v ->
-                ((MainActivity) getActivity()).LoadFragment(7));
+                ((MainActivity) getActivity()).loadFragment(7));
 
         return view;
     }

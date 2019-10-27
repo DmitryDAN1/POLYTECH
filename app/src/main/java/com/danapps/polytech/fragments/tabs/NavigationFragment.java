@@ -157,7 +157,7 @@ public class NavigationFragment extends Fragment {
 
 
         view.findViewById(R.id.nav_backBTN).setOnClickListener(v ->
-                ((MainActivity) getActivity()).LoadFragment(1));
+                ((MainActivity) getActivity()).loadFragment(1));
 
         view.findViewById(R.id.nav_plusZoomBTN).setOnClickListener(v ->
                 mapView.getMapAsync(googleMap -> {

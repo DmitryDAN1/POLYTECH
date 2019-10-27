@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.danapps.polytech.fragments.tabs.AboutFragment;
-import com.danapps.polytech.fragments.tabs.ChangeFacultFragment;
+import com.danapps.polytech.fragments.tabs.ChangeFacultyFragment;
 import com.danapps.polytech.fragments.tabs.ChangeGroupFragment;
 import com.danapps.polytech.fragments.tabs.ChangeNameFragment;
 import com.danapps.polytech.fragments.tabs.LicenseFragment;
@@ -54,7 +54,7 @@ public class MainActivity extends FragmentActivity {
             new SchemeFragment(),                       // 3
             new MenuFragment(),                         // 4
             new ChangeGroupFragment(),                  // 5
-            new ChangeFacultFragment(),                 // 6
+            new ChangeFacultyFragment(),                 // 6
             new MainAuthFragment(),                     // 7
             new RegisterEmailFragment(),                // 8
             new RegisterPassFragment(),                 // 9
@@ -77,7 +77,7 @@ public class MainActivity extends FragmentActivity {
         tPref.edit().clear().apply();
 //        sPref.edit().clear().apply();
 //        mAuth.signOut();
-        LoadFragment(2);
+        loadFragment(2);
         bottomNavigationView.setSelectedItemId(R.id.schedule_item);
         Log.e("TimedInfo:", tPref.getAll().toString());
         Log.e("UserInfo:", sPref.getAll().toString());
@@ -126,26 +126,26 @@ public class MainActivity extends FragmentActivity {
             switch (menuItem.getItemId())
             {
                 case (R.id.notes_item):
-                    LoadFragment(0);
+                    loadFragment(0);
                     break;
 
                 case (R.id.navigation_item):
-                    LoadFragment(1);
+                    loadFragment(1);
                     break;
 
                 case (R.id.schedule_item):
                     if (sPref.getInt("UserGroupId", 0) != 0)
-                        LoadFragment(2);
+                        loadFragment(2);
                     else
-                        LoadFragment(6);
+                        loadFragment(6);
                     break;
 
                 case (R.id.scheme_item):
-                    LoadFragment(3);
+                    loadFragment(3);
                     break;
 
                 case (R.id.menu_item):
-                    LoadFragment(4);
+                    loadFragment(4);
                     break;
             }
 
@@ -162,13 +162,13 @@ public class MainActivity extends FragmentActivity {
         builder.create().show();
     }
 
-    public void LoadFragment(int ID) {
-        currentFragment = ID;
-        if (ID == 5)
+    public void loadFragment(int id) {
+        currentFragment = id;
+        if (id == 5)
             fm.beginTransaction().replace(R.id.frame_layout, new ChangeGroupFragment()).commit();
         else
             fm.beginTransaction().replace(R.id.frame_layout, fragments[currentFragment], String.valueOf(currentFragment)).commit();
 
-        Log.e("Fragment", "LoadFragment:" + ID);
+        Log.e("Fragment", "loadFragment:" + id);
     }
 }

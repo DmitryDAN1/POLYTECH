@@ -66,4 +66,9 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
 
     implementation 'com.github.BlackDizel:recyclerview-dotsindicator:1.0.3'
+    api 'joda-time:joda-time:2.10.5'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
+
+    implementation project(path: ':ruz')
 }

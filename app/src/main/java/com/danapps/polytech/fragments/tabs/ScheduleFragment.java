@@ -23,24 +23,26 @@ import android.widget.RelativeLayout;
 
 import com.android.volley.Request;
 import com.danapps.polytech.R;
-import com.danapps.polytech.schedule.Ruz;
-import com.danapps.polytech.schedule.ScheduleAdapter;
-import com.danapps.polytech.schedule.Scheduler;
-import com.danapps.polytech.schedule.SchedulerError;
-import com.danapps.polytech.schedule.date.ScheduleDate;
-import com.danapps.polytech.schedule.model.Schedule;
-import com.danapps.polytech.schedule.utils.ScheduleUtils;
+import com.danapps.polytech.adapters.ScheduleAdapter;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.annotations.NotNull;
+import com.venvw.spbstu.ruz.RuzService;
+import com.venvw.spbstu.ruz.api.SchedulerApi;
+import com.venvw.spbstu.ruz.models.Schedule;
+
+import org.joda.time.LocalDate;
 
 import java.util.Calendar;
+
+import retrofit2.Call;
+import retrofit2.Response;
 
 public class ScheduleFragment extends Fragment {
     private static final String TAG = "ScheduleFragment";
 
     private SharedPreferences userInfo;
-    private Scheduler scheduler;
-    private Request scheduleRequest;
+    private SchedulerApi scheduler;
+    private Call<SchedulerApi.GetScheduleResponse> scheduleRequest;
 
     private RelativeLayout scheduleProgressBarLayout;
 
@@ -59,15 +61,13 @@ public class ScheduleFragment extends Fragment {
         });
     }
 
-    private void querySchedule(@NonNull ScheduleDate date) {
-        if(scheduleRequest != null) {
-            return;
-        }
+    private void querySchedule(@NonNull LocalDate date) {
+        int weekday = date.getDayOfWeek() - 1;
 
         Schedule current = scheduleAdapter.getSchedule();
         if(current != null) {
-            int weekday = ScheduleUtils.getWeekday(current, date);
-            if(weekday > -1) {
+            if(date.equals(current.getWeek().getDateStart()) || date.equals(current.getWeek().getDateEnd()) ||
+                    date.isAfter(current.getWeek().getDateStart()) && date.isBefore(current.getWeek().getDateEnd())) {
                 scheduleRecyclerView.smoothScrollToPosition(weekday);
                 return;
             }
@@ -76,38 +76,29 @@ public class ScheduleFragment extends Fragment {
         scheduleProgressBarLayout.setVisibility(View.VISIBLE);
 
         int groupId = userInfo.getInt("UserGroupId", 0);
-        scheduleRequest = scheduler.querySchedule(groupId, date, new Scheduler.Listener() {
+        scheduleRequest = scheduler.getSchedule(groupId, date);
+        scheduleRequest.enqueue(new retrofit2.Callback<SchedulerApi.GetScheduleResponse>() {
             @Override
-            public void onResponseReady(Schedule schedule) {
-                scheduleAdapter.setSchedule(schedule);
-                scheduleRecyclerView.scrollToPosition(ScheduleUtils.getWeekday(schedule, date));
-
-                scheduleRequest = null;
+            public void onResponse(@NonNull Call<SchedulerApi.GetScheduleResponse> call, @NonNull Response<SchedulerApi.GetScheduleResponse> response) {
+                if(response.body().isError()) {
+                    Snackbar.make(getView(), getString(R.string.schedule_parsing_failed), Snackbar.LENGTH_SHORT);
+                } else {
+                    scheduleAdapter.setSchedule(response.body());
+                    scheduleRecyclerView.scrollToPosition(weekday);
+                }
                 hideProgressBar();
             }
 
             @Override
-            public void onResponseError(SchedulerError error) {
-                Log.e(TAG, error.toString());
-                switch (error.getType()) {
-                    case NetworkFailed:
-                        Snackbar.make(getView(), R.string.schedule_network_failed,
-                                Snackbar.LENGTH_SHORT).show();
-                        break;
-                    case ParsingFailed:
-                        Snackbar.make(getView(), R.string.schedule_parsing_failed,
-                                Snackbar.LENGTH_SHORT).show();
-                        break;
-                }
-
-                scheduleRequest = null;
+            public void onFailure(@NonNull Call<SchedulerApi.GetScheduleResponse> call, @NonNull Throwable t) {
+                t.printStackTrace();
                 hideProgressBar();
             }
         });
     }
 
     private void querySchedule(@NotNull Calendar calendar) {
-        querySchedule(ScheduleDate.fromCalendar(calendar));
+        querySchedule(LocalDate.fromCalendarFields(calendar));
     }
 
     private void querySchedule() {
@@ -120,12 +111,29 @@ public class ScheduleFragment extends Fragment {
 
     private void initScheduleRecyclerView(RecyclerView view) {
         scheduleRecyclerView = view;
+        scheduleRecyclerView.setHasFixedSize(true);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
         scheduleRecyclerView.setLayoutManager(linearLayoutManager);
 
         scheduleRecyclerView.setAdapter(scheduleAdapter);
+
+        scheduleRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                Schedule schedule = scheduleAdapter.getSchedule();
+                if(schedule != null) {
+                    int index = linearLayoutManager.findFirstVisibleItemPosition();
+                    if(index > -1) {
+                        LocalDate date = scheduleAdapter.getSchedule().getWeek().getDateStart().plusDays(index);
+                        datePickerDialog.updateDate(date.getYear(), date.getMonthOfYear() - 1, date.getDayOfMonth());
+                    }
+                }
+            }
+        });
 
         new PagerSnapHelper().attachToRecyclerView(scheduleRecyclerView);
     }
@@ -135,7 +143,7 @@ public class ScheduleFragment extends Fragment {
         datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                ScheduleDate date = new ScheduleDate(year, month + 1, dayOfMonth);
+                LocalDate date = new LocalDate(year, month + 1, dayOfMonth);
                 querySchedule(date);
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
@@ -154,7 +162,7 @@ public class ScheduleFragment extends Fragment {
 
         userInfo = getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         scheduleAdapter = new ScheduleAdapter(getContext());
-        scheduler = new Ruz(getContext()).newScheduler();
+        scheduler = RuzService.getInstance().getSchedulerApi();
 
         initScheduleRecyclerView(view.findViewById(R.id.schedule_recycler_view));
         initCalendarButton(view.findViewById(R.id.schedule_show_calendar));

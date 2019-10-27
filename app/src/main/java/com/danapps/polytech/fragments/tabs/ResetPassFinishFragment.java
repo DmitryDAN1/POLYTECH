@@ -25,7 +25,7 @@ public class ResetPassFinishFragment extends Fragment {
         SharedPreferences tPref = getActivity().getSharedPreferences("TimedInfo", Context.MODE_PRIVATE);
 
         view.findViewById(R.id.reset_finish_backBTN).setOnClickListener(v ->
-                ((MainActivity) getActivity()).LoadFragment(7));
+                ((MainActivity) getActivity()).loadFragment(7));
 
         mAuth.sendPasswordResetEmail(tPref.getString("TimedEmail", "0"))
                 .addOnSuccessListener(aVoid -> {
@@ -35,7 +35,7 @@ public class ResetPassFinishFragment extends Fragment {
                 });
 
         view.findViewById(R.id.reset_finish_nextBTN).setOnClickListener(v ->
-            ((MainActivity) getActivity()).LoadFragment(7));
+            ((MainActivity) getActivity()).loadFragment(7));
 
         return view;
     }

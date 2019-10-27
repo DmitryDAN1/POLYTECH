@@ -25,7 +25,7 @@ public class RegisterPassFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_register_pass, container, false);
 
         view.findViewById(R.id.reg_pass_backBTN).setOnClickListener(v ->
-                ((MainActivity) getActivity()).LoadFragment(8));
+                ((MainActivity) getActivity()).loadFragment(8));
 
         view.findViewById(R.id.reg_pass_showPassBTN).setOnClickListener(v -> {
             TextView textView = view.findViewById(R.id.reg_pass_showPassBTN);
@@ -49,7 +49,7 @@ public class RegisterPassFragment extends Fragment {
             else {
                 SharedPreferences tPref = getActivity().getSharedPreferences("TimedInfo", Context.MODE_PRIVATE);
                 tPref.edit().putString("TimedPass", passET.getText().toString()).apply();
-                ((MainActivity) getActivity()).LoadFragment(10);
+                ((MainActivity) getActivity()).loadFragment(10);
             }
         });
 

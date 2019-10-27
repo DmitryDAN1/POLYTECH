@@ -7,7 +7,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,10 +34,10 @@ public class MainAuthFragment extends Fragment {
 //        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         view.findViewById(R.id.auth_backBTN).setOnClickListener(v ->
-                ((MainActivity) getActivity()).LoadFragment(4));
+                ((MainActivity) getActivity()).loadFragment(4));
 
         view.findViewById(R.id.auth_resetPassBTN).setOnClickListener(v ->
-                ((MainActivity) getActivity()).LoadFragment(11));
+                ((MainActivity) getActivity()).loadFragment(11));
 
         view.findViewById(R.id.auth_logBTN).setOnClickListener(v -> {
             EditText emailET = view.findViewById(R.id.auth_emailET);
@@ -91,7 +90,7 @@ public class MainAuthFragment extends Fragment {
                                     if (dataSnapshot.child("UserSurname") != null)
                                         sPref.edit().putString("UserSurname", dataSnapshot.child("UserSurname").getValue().toString()).apply();
 
-                                    ((MainActivity) getActivity()).LoadFragment(4);
+                                    ((MainActivity) getActivity()).loadFragment(4);
                                 }
 
                                 @Override
@@ -100,7 +99,7 @@ public class MainAuthFragment extends Fragment {
                                 }
                             });
                         } else {
-                            ((MainActivity) getActivity()).LoadFragment(4);
+                            ((MainActivity) getActivity()).loadFragment(4);
                         }
                     }
                 });
@@ -109,7 +108,7 @@ public class MainAuthFragment extends Fragment {
         });
 
         view.findViewById(R.id.auth_registerBTN).setOnClickListener(v ->
-            ((MainActivity) getActivity()).LoadFragment(8));    // MainRegisterFragment
+            ((MainActivity) getActivity()).loadFragment(8));    // MainRegisterFragment
 
 
         return view;
