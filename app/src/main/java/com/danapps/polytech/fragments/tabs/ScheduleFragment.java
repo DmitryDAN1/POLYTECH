@@ -12,23 +12,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
-import com.android.volley.Request;
 import com.danapps.polytech.R;
 import com.danapps.polytech.adapters.ScheduleAdapter;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.database.annotations.NotNull;
 import com.venvw.spbstu.ruz.RuzService;
 import com.venvw.spbstu.ruz.api.SchedulerApi;
 import com.venvw.spbstu.ruz.models.Schedule;
+import com.venvw.spbstu.ruz.utils.WeekUtils;
 
 import org.joda.time.LocalDate;
 
@@ -66,8 +63,7 @@ public class ScheduleFragment extends Fragment {
 
         Schedule current = scheduleAdapter.getSchedule();
         if(current != null) {
-            if(date.equals(current.getWeek().getDateStart()) || date.equals(current.getWeek().getDateEnd()) ||
-                    date.isAfter(current.getWeek().getDateStart()) && date.isBefore(current.getWeek().getDateEnd())) {
+            if(WeekUtils.isIncludes(current.getWeek(), date)) {
                 scheduleRecyclerView.smoothScrollToPosition(weekday);
                 return;
             }
@@ -84,6 +80,7 @@ public class ScheduleFragment extends Fragment {
                     Snackbar.make(getView(), getString(R.string.schedule_parsing_failed), Snackbar.LENGTH_SHORT);
                 } else {
                     scheduleAdapter.setSchedule(response.body());
+                    datePickerDialog.updateDate(date.getYear(), date.getMonthOfYear(), date.getDayOfMonth());
                     scheduleRecyclerView.scrollToPosition(weekday);
                 }
                 hideProgressBar();
@@ -97,12 +94,11 @@ public class ScheduleFragment extends Fragment {
         });
     }
 
-    private void querySchedule(@NotNull Calendar calendar) {
-        querySchedule(LocalDate.fromCalendarFields(calendar));
-    }
-
     private void querySchedule() {
-        querySchedule(Calendar.getInstance());
+        LocalDate date = LocalDate.fromCalendarFields(Calendar.getInstance());
+        if(date.getDayOfWeek() == 7) {
+            querySchedule(date.plusDays(1));
+        }
     }
 
     private void initScheduleProgressBarLayout(RelativeLayout view) {
