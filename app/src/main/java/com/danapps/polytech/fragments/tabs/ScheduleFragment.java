@@ -21,7 +21,6 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
-import com.android.volley.Request;
 import com.danapps.polytech.R;
 import com.danapps.polytech.adapters.ScheduleAdapter;
 import com.google.android.material.snackbar.Snackbar;

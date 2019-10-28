@@ -10,21 +10,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.danapps.polytech.R;
 import com.venvw.spbstu.ruz.models.Day;
 import com.venvw.spbstu.ruz.models.Lesson;
 
-import org.byters.dotsindicator.ViewDotsIndicator;
 import org.joda.time.Duration;
 import org.joda.time.LocalTime;
-import org.joda.time.Minutes;
-import org.joda.time.Period;
-import org.joda.time.convert.DurationConverter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator;
 
 public class ScheduleDayAdapter extends RecyclerView.Adapter<ScheduleDayAdapter.ViewHolder> {
     static class StructuredDay {
@@ -117,18 +116,7 @@ public class ScheduleDayAdapter extends RecyclerView.Adapter<ScheduleDayAdapter.
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.schedule_item, parent, false);
-
-        ViewHolder viewHolder = new ViewHolder(view);
-
-        RecyclerView lessonsRecyclerView = viewHolder.lessonsViewHolder.lessonsRecyclerView;
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-        linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
-        lessonsRecyclerView.setLayoutManager(linearLayoutManager);
-        lessonsRecyclerView.setNestedScrollingEnabled(false);
-        lessonsRecyclerView.setAdapter(new ScheduleLessonsAdapter(context));
-
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     private void bindLessons(@NonNull LessonsViewHolder holder, @NonNull List<Lesson> lessons) {
@@ -136,16 +124,16 @@ public class ScheduleDayAdapter extends RecyclerView.Adapter<ScheduleDayAdapter.
         adapter.setLessons(lessons);
         if(lessons.size() < 2) {
             holder.switchButton.setVisibility(View.GONE);
-            holder.viewDotsIndicator.setVisibility(View.GONE);
+            holder.indicator.setVisibility(View.GONE);
         } else {
             holder.switchButton.setVisibility(View.VISIBLE);
-            holder.viewDotsIndicator.setVisibility(View.VISIBLE);
+            holder.indicator.setVisibility(View.VISIBLE);
             LinearLayoutManager linearLayoutManager = (LinearLayoutManager) holder.lessonsRecyclerView.getLayoutManager();
             int position = linearLayoutManager.findFirstVisibleItemPosition();
             if(position < 0) {
                 position = 0;
             }
-            holder.viewDotsIndicator.updateData(lessons.size(), position);
+            //holder.indicator.updateData(lessons.size(), position);
         }
     }
 
@@ -186,14 +174,25 @@ public class ScheduleDayAdapter extends RecyclerView.Adapter<ScheduleDayAdapter.
     class LessonsViewHolder extends RecyclerView.ViewHolder {
         final RecyclerView lessonsRecyclerView;
         final Button switchButton;
-        final ViewDotsIndicator viewDotsIndicator;
+        final ScrollingPagerIndicator indicator;
 
         LessonsViewHolder(@NonNull View lessonsView) {
             super(lessonsView);
             lessonsRecyclerView = lessonsView.findViewById(R.id.schedule_lessons_recycler_view);
+
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+            linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+            lessonsRecyclerView.setLayoutManager(linearLayoutManager);
+            lessonsRecyclerView.setAdapter(new ScheduleLessonsAdapter(context));
+            lessonsRecyclerView.setNestedScrollingEnabled(false);
+
+            PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
+            pagerSnapHelper.attachToRecyclerView(lessonsRecyclerView);
+
+            indicator = lessonsView.findViewById(R.id.schedule_lessons_indicator);
+            indicator.attachToRecyclerView(lessonsRecyclerView);
+
             switchButton = lessonsView.findViewById(R.id.schedule_lessons_switch_button);
-            viewDotsIndicator = lessonsView.findViewById(R.id.schedule_lessons_dots_indicator);
-            viewDotsIndicator.init(lessonsRecyclerView);
 
             switchButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -208,7 +207,6 @@ public class ScheduleDayAdapter extends RecyclerView.Adapter<ScheduleDayAdapter.
                             }
 
                             lessonsRecyclerView.smoothScrollToPosition(position);
-                            viewDotsIndicator.updateData(lessonsRecyclerView.getAdapter().getItemCount(), position);
                         }
                     });
                 }

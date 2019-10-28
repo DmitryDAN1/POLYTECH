@@ -60,15 +60,15 @@ dependencies {
     implementation 'org.slf4j:slf4j-simple:1.7.25'
     implementation 'com.google.maps.android:android-maps-utils:0.5'
 
-    implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.google.code.gson:gson:2.8.5'
 
     implementation 'com.android.support:multidex:1.0.3'
 
-    implementation 'com.github.BlackDizel:recyclerview-dotsindicator:1.0.3'
     api 'joda-time:joda-time:2.10.5'
 
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
+
+    implementation "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:1.0.6"
 
     implementation project(path: ':ruz')
 }

@@ -19,34 +19,35 @@
             android:layout_height="wrap_content"
             android:clickable="false"
             android:padding="15dp"/>
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-20dp"
             android:paddingStart="3dp"
             android:paddingEnd="15dp">
+
             <Button
                 android:id="@+id/schedule_lessons_switch_button"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
                 android:text="@string/button_switch"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:textColor="@color/polyGreenLight" />
+                android:textColor="@color/polyGreenLight"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <org.byters.dotsindicator.ViewDotsIndicator
-                android:id="@+id/schedule_lessons_dots_indicator"
+            <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
+                android:id="@+id/schedule_lessons_indicator"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="end"
-                app:drawableSelected="@drawable/dot_accent">
-            </org.byters.dotsindicator.ViewDotsIndicator>
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:spi_dotSelectedColor="@color/polyGreenLight"
+                app:spi_dotColor="@color/polyWhiteDark"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
