@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.tabs.ScheduleFragment" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.tabs.ScheduleFragment">
 
     <RelativeLayout
         android:id="@+id/schedule"
@@ -18,148 +19,11 @@
             android:background="@android:color/white"
             android:orientation="vertical"
             android:paddingTop="10dp">
-            <TableLayout
-                android:stretchColumns="*"
-                android:layout_width="wrap_content"
+
+            <com.danapps.polytech.calendar.ScheduleCalendarView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp">
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:orientation="vertical">
-                    <TextView
-                        android:textAlignment="center"
-                        android:text="Пн"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:textAlignment="center"
-                        android:text="Вт"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:textAlignment="center"
-                        android:text="Ср"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:textAlignment="center"
-                        android:text="Чт"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:textAlignment="center"
-                        android:text="Пт"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:textAlignment="center"
-                        android:text="Сб"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:textAlignment="center"
-                        android:text="Вс"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                </TableRow>
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center">
-                        <Button
-                            android:textAlignment="gravity"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:text="21"
-                            android:textColor="@color/PolyWhiteLight"
-                            android:background="@drawable/btn_circle"
-                            android:backgroundTint="@color/polyGreenLight"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center">
-                        <Button
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:text="22"
-                            android:textColor="@color/polyBlack"
-                            android:background="@drawable/btn_circle"
-                            android:backgroundTint="#fff"
-                            android:stateListAnimator="@null"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center">
-                        <Button
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:text="23"
-                            android:textColor="@color/polyBlack"
-                            android:background="@drawable/btn_circle"
-                            android:backgroundTint="#fff"
-                            android:stateListAnimator="@null"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center">
-                        <Button
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:text="24"
-                            android:textColor="@color/polyBlack"
-                            android:background="@drawable/btn_circle"
-                            android:backgroundTint="#fff"
-                            android:stateListAnimator="@null"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center">
-                        <Button
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:text="25"
-                            android:textColor="@color/polyBlack"
-                            android:background="@drawable/btn_circle"
-                            android:backgroundTint="#fff"
-                            android:stateListAnimator="@null"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center">
-                        <Button
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:text="26"
-                            android:textColor="@color/polyBlack"
-                            android:background="@drawable/btn_circle"
-                            android:backgroundTint="#fff"
-                            android:stateListAnimator="@null"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center">
-                        <Button
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:text="27"
-                            android:textColor="@color/polyBlack"
-                            android:background="@drawable/btn_circle"
-                            android:backgroundTint="#fff"
-                            android:stateListAnimator="@null"/>
-                    </LinearLayout>
-                </TableRow>
-            </TableLayout>
+                app:minSpaceBetweenDates="1dp" />
 
             <ImageButton
                 android:id="@+id/schedule_show_calendar"

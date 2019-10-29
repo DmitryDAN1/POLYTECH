@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ScheduleCalendarView">
+        <attr name="backgroundColor" format="color"/>
+        <attr name="android:textSize"/>
+        <attr name="android:fontFamily" />
+        <attr name="weekdayColor" format="color" />
+        <attr name="dateColor" format="color" />
+        <attr name="highlightedDateColor" format="color" />
+        <attr name="indicatorColor" format="color" />
+        <attr name="indicatorRadius" format="dimension" />
+        <attr name="minSpaceBetweenDates" format="dimension" />
+        <attr name="minSpaceBetweenWeekdayAndDate" format="dimension" />
+    </declare-styleable>
+</resources>
