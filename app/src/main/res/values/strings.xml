@@ -95,4 +95,13 @@
     <string name="schedule_delta_time_format">%d ч. %d мин.</string>
     <string name="button_switch">переключить</string>
     <string name="schedule_day_no_lessons">В этот день занятий не обнаружено</string>
+    <string-array name="calendar_short_weekdays">
+        <item>Пн</item>
+        <item>Вт</item>
+        <item>Ср</item>
+        <item>Чт</item>
+        <item>Пт</item>
+        <item>Сб</item>
+        <item>Вс</item>
+    </string-array>
 </resources>

@@ -6,6 +6,7 @@
 
     <color name="polyWhiteDark">#dbdbdb</color>
     <color name="PolyWhiteLight">#F3F2F2</color>
+    <color name="polyClearWhite">#FFFFFF</color>
 
     <color name="polyGreen">#319b3d</color>
     <color name="polyGreenDark">#267a30</color>

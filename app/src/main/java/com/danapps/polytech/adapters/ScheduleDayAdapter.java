@@ -128,12 +128,6 @@ public class ScheduleDayAdapter extends RecyclerView.Adapter<ScheduleDayAdapter.
         } else {
             holder.switchButton.setVisibility(View.VISIBLE);
             holder.indicator.setVisibility(View.VISIBLE);
-            LinearLayoutManager linearLayoutManager = (LinearLayoutManager) holder.lessonsRecyclerView.getLayoutManager();
-            int position = linearLayoutManager.findFirstVisibleItemPosition();
-            if(position < 0) {
-                position = 0;
-            }
-            //holder.indicator.updateData(lessons.size(), position);
         }
     }
 
@@ -194,23 +188,18 @@ public class ScheduleDayAdapter extends RecyclerView.Adapter<ScheduleDayAdapter.
 
             switchButton = lessonsView.findViewById(R.id.schedule_lessons_switch_button);
 
-            switchButton.setOnClickListener(new View.OnClickListener() {
+            switchButton.setOnClickListener(v -> lessonsRecyclerView.post(new Runnable() {
                 @Override
-                public void onClick(View v) {
-                    lessonsRecyclerView.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            LinearLayoutManager linearLayoutManager = (LinearLayoutManager) lessonsRecyclerView.getLayoutManager();
-                            int position = linearLayoutManager.findFirstVisibleItemPosition() + 1;
-                            if (position >= lessonsRecyclerView.getAdapter().getItemCount()) {
-                                position = 0;
-                            }
+                public void run() {
+                    LinearLayoutManager linearLayoutManager1 = (LinearLayoutManager) lessonsRecyclerView.getLayoutManager();
+                    int position = linearLayoutManager1.findFirstVisibleItemPosition() + 1;
+                    if (position >= lessonsRecyclerView.getAdapter().getItemCount()) {
+                        position = 0;
+                    }
 
-                            lessonsRecyclerView.smoothScrollToPosition(position);
-                        }
-                    });
+                    lessonsRecyclerView.smoothScrollToPosition(position);
                 }
-            });
+            }));
         }
     }
 
