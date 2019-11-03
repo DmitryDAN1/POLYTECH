@@ -3,18 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.tabs.SchemeFragment"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="@color/PolyWhiteLight"
+    tools:context=".fragments.tabs.SchemeFragment">
 
-    <HorizontalScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent" >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="25dp"
+        android:fontFamily="@font/sfmedium"
+        android:gravity="center"
+        android:text="Данный раздел в разработке!"
+        android:textSize="25sp"
+        tools:ignore="HardcodedText" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/plan" />
-
-    </HorizontalScrollView>
 </RelativeLayout>

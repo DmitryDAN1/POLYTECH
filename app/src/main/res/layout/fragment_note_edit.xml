@@ -3,16 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.tabs.NoteEditFragment"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    tools:context=".fragments.tabs.NoteEditFragment">
 
     <RelativeLayout
         android:id="@+id/notes_edit_topToolbar"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         tools:ignore="UselessParent">
 
         <ImageButton
@@ -20,8 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:src="@drawable/ic_arrow_back_green"
             android:background="@android:color/white"
+            android:src="@drawable/ic_arrow_back_green"
             tools:ignore="ContentDescription" />
 
 
@@ -30,48 +30,48 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_check_green"
             android:background="@android:color/white"
             android:scaleType="center"
+            android:src="@drawable/ic_check_green"
             tools:ignore="ContentDescription" />
 
     </RelativeLayout>
 
     <EditText
         android:id="@+id/notes_edit_TitleET"
-        android:layout_below="@id/notes_edit_topToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_below="@id/notes_edit_topToolbar"
         android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
-        android:inputType="none"
         android:background="@android:color/white"
-        android:text="@string/notes"
         android:gravity="center"
-        android:textSize="24sp"
+        android:importantForAutofill="no"
+        android:inputType="none"
+        android:text="@string/notes"
         android:textColor="@color/polyBlack"
+        android:textSize="24sp"
         android:textStyle="bold"
-        tools:ignore="LabelFor"
-        android:importantForAutofill="no" />
+        tools:ignore="LabelFor" />
 
     <EditText
         android:id="@+id/notes_edit_SubtitleET"
-        android:gravity="top"
-        android:layout_below="@id/notes_edit_TitleET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
+        android:layout_below="@id/notes_edit_TitleET"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
+        android:background="@android:color/white"
+        android:gravity="top"
+        android:importantForAutofill="no"
         android:inputType="none"
         android:text="@string/notes"
+        android:textColor="@color/polyBlack"
         android:textSize="19sp"
         android:textStyle="normal"
-        android:textColor="@color/polyBlack"
-        android:importantForAutofill="no"
         tools:ignore="LabelFor" />
 
 </RelativeLayout>

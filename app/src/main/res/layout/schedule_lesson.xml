@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/schedule_list_item_header"
@@ -13,66 +12,67 @@
             android:id="@+id/lesson_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/sfmedium"
             android:text="1"
-            android:textSize="14sp"
             android:textColor="@android:color/darker_gray"
-            android:fontFamily="@font/sfmedium"/>
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/lesson_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="Практика"
-            android:layout_toEndOf="@id/lesson_number"
             android:layout_toStartOf="@id/lesson_time"
-            android:textSize="14sp"
+            android:layout_toEndOf="@id/lesson_number"
+            android:fontFamily="@font/sfmedium"
+            android:text="Практика"
             android:textColor="@android:color/darker_gray"
-            android:fontFamily="@font/sfmedium"/>
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/lesson_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:fontFamily="@font/sfmedium"
             android:text="10:00 - 11:40"
-            android:textSize="14sp"
             android:textColor="@android:color/darker_gray"
-            android:fontFamily="@font/sfmedium"/>
+            android:textSize="14sp" />
 
 
     </RelativeLayout>
+
     <TextView
         android:id="@+id/lesson_subject"
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/schedule_list_item_header"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/sfsemibold"
         android:text="Высшая математика"
-        android:textSize="16sp"
         android:textColor="@color/polyBlack"
-        android:fontFamily="@font/sfsemibold" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/lesson_teacher"
-        android:layout_below="@id/lesson_subject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/lesson_subject"
         android:layout_marginTop="3dp"
+        android:fontFamily="@font/sfregular"
         android:text="Дробинцев Павел Дмитриевич"
-        android:textSize="14sp"
         android:textColor="@android:color/darker_gray"
-        android:fontFamily="@font/sfregular" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/lesson_location"
-        android:layout_below="@id/lesson_teacher"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/lesson_teacher"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/sfmedium"
         android:text="Главное здание, ауд. 237"
         android:textColor="@android:color/darker_gray"
-        android:fontFamily="@font/sfmedium"
         android:textSize="14sp" />
 
 </RelativeLayout>

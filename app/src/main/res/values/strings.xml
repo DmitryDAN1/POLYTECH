@@ -25,7 +25,7 @@
     <string name="reset_finish_subText">Сообщение с инструкцией по сбросу пароля отправлено</string>
     <string name="reset_finish_nextBTN">Авторизоваться</string>
     <string name="reg_finish_error">К сожалению, что-то пошло не так и мы не смогли вас зарегестрировать :(  Попробуйте позже…</string>
-    <string name="auth_main_error">Ваша учётная запись не подтверждена, проверьте свою электронную почту!</string>
+    <string name="auth_main_error">Неудачная попытка входа!</string>
     <string name="exit_from_app_mainText">Выход из приложения!</string>
     <string name="exit_from_app_subText">Вы хотите выйти из приложения?</string>
     <string name="good_choice">Правильный выбор, детка!</string>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.tabs.ScheduleFragment">
 
     <RelativeLayout
@@ -11,11 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/PolyWhiteLight">
+
         <LinearLayout
             android:id="@+id/schedule_week_content"
             android:layout_width="match_parent"
-            android:layout_alignParentTop="true"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:background="@android:color/white"
             android:orientation="vertical"
             android:paddingTop="10dp">
@@ -24,17 +25,17 @@
                 android:id="@+id/calendar_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:spaceBetweenDatesWeekdays="20dp"
-                app:weekdayTextColor="@color/polyGray"
-                app:dateTextColor="@color/polyBlack"
-                app:dateTextSize="15sp"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                app:indicatorRadius="22.5dp"
                 app:dateHighlightedTextColor="@color/polyClearWhite"
+                app:dateTextColor="@color/polyBlack"
+                app:dateTextSize="15sp"
+                app:dateTodayTextColor="@color/polyGreenLight"
                 app:indicatorColor="@color/polyGreenLight"
-                app:weekdayTextSize="15sp"
-                app:dateTodayTextColor="@color/polyGreenLight"/>
+                app:indicatorRadius="22.5dp"
+                app:spaceBetweenDatesWeekdays="20dp"
+                app:weekdayTextColor="@color/polyGray"
+                app:weekdayTextSize="15sp" />
 
             <ImageButton
                 android:id="@+id/schedule_show_calendar"
@@ -49,17 +50,17 @@
         </LinearLayout>
 
         <View
-            android:layout_below="@id/schedule_week_content"
             android:id="@+id/schedule_line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_below="@id/schedule_week_content"
             android:background="@color/polyWhiteDark" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/schedule_recycler_view"
-            android:layout_below="@id/schedule_line"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_below="@id/schedule_line" />
     </RelativeLayout>
 
     <RelativeLayout

@@ -1,167 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.tabs.AboutFragment"
-    android:background="@color/PolyWhiteLight">
-
-
-    <ImageView
-        android:id="@+id/about_backBTN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_arrow_back_green"
-        android:background="@color/PolyWhiteLight"
-        tools:ignore="ContentDescription"
-        android:layout_margin="10dp"/>
-
-    <ImageView
-        android:id="@+id/about_logoIV"
-        android:layout_below="@id/about_backBTN"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/logopolytech"
-        android:layout_marginTop="15dp"
-        tools:ignore="ContentDescription" />
+    android:background="@color/PolyWhiteLight"
+    tools:context=".fragments.tabs.AboutFragment">
 
     <RelativeLayout
-        android:id="@+id/about_mainBlock"
-        android:layout_marginTop="25dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/about_logoIV">
+        android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/about_backBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/PolyWhiteLight"
+            android:src="@drawable/ic_arrow_back_green"
+            tools:ignore="ContentDescription" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/about_contactBlock"
+        <ImageView
+            android:id="@+id/about_logoIV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:background="@android:color/white"
-            app:cardCornerRadius="5dp">
+            android:layout_below="@id/about_backBTN"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="50dp"
+            android:src="@drawable/ic_logo_main"
+            tools:ignore="ContentDescription" />
+
         <RelativeLayout
-            android:id="@+id/about_contactContent"
+            android:id="@+id/about_mainBlock"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="match_parent"
+            android:layout_below="@id/about_logoIV"
+            android:layout_marginTop="25dp">
 
-            <ImageView
-                android:id="@+id/about_contactIcon"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:src="@drawable/ic_email_gray"
-                android:layout_marginStart="15dp"
-                tools:ignore="ContentDescription" />
 
-            <TextView
-                android:id="@+id/about_contactText"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/about_contactBlock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/about_contactIcon"
-                android:layout_centerInParent="true"
-                android:text="Связаться с разработчиком"
-                android:fontFamily="@font/sfregular"
-                android:textSize="16sp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp" />
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@android:color/white"
+                app:cardCornerRadius="5dp">
+
+                <RelativeLayout
+                    android:id="@+id/about_contactContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/about_contactIcon"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:src="@drawable/ic_email_gray_24dp"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/about_contactText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_toEndOf="@id/about_contactIcon"
+                        android:fontFamily="@font/sfregular"
+                        android:text="Связаться с разработчиком"
+                        android:textSize="16sp" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/about_rateBlock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/about_contactBlock"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@android:color/white"
+                app:cardCornerRadius="5dp">
+
+                <RelativeLayout
+                    android:id="@+id/about_rateContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/about_rateIcon"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:src="@drawable/ic_star_gray"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/about_rateText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_toEndOf="@id/about_rateIcon"
+                        android:fontFamily="@font/sfregular"
+                        android:text="Оценить приложение в Google Play"
+                        android:textSize="16sp" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/about_licenseBlock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/about_rateBlock"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@android:color/white"
+                app:cardCornerRadius="5dp">
+
+                <RelativeLayout
+                    android:id="@+id/about_licenseContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/about_licenseIcon"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:src="@drawable/ic_copyright_gray"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/about_licenseText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_toEndOf="@id/about_licenseIcon"
+                        android:fontFamily="@font/sfregular"
+                        android:text="Лицензии"
+                        android:textSize="16sp" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
 
         </RelativeLayout>
-        </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/about_rateBlock"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:background="@android:color/white"
-            android:layout_below="@id/about_contactBlock"
-            android:layout_marginTop="10dp"
-            app:cardCornerRadius="5dp">
-            <RelativeLayout
-                android:id="@+id/about_rateContent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/about_rateIcon"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/ic_star_gray"
-                    android:layout_marginStart="15dp"
-                    tools:ignore="ContentDescription" />
-
-                <TextView
-                    android:id="@+id/about_rateText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/about_rateIcon"
-                    android:layout_centerInParent="true"
-                    android:text="Оценить приложение в Google Play"
-                    android:fontFamily="@font/sfregular"
-                    android:textSize="16sp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp" />
-
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/about_licenseBlock"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:background="@android:color/white"
-            android:layout_below="@id/about_rateBlock"
-            android:layout_marginTop="10dp"
-            app:cardCornerRadius="5dp">
-            <RelativeLayout
-                android:id="@+id/about_licenseContent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/about_licenseIcon"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/ic_copyright_gray"
-                    android:layout_marginStart="15dp"
-                    tools:ignore="ContentDescription" />
-
-                <TextView
-                    android:id="@+id/about_licenseText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/about_licenseIcon"
-                    android:layout_centerInParent="true"
-                    android:text="Лицензии"
-                    android:fontFamily="@font/sfregular"
-                    android:textSize="16sp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp" />
-
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+            android:layout_below="@id/about_mainBlock"
+            android:layout_alignParentBottom="true"
+            android:fontFamily="@font/sfregular"
+            android:gravity="center"
+            android:paddingTop="25dp"
+            android:paddingBottom="10dp"
+            android:text="@string/app_version"
+            android:textSize="16sp" />
 
     </RelativeLayout>
-
-    <TextView
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/app_version"
-        android:fontFamily="@font/sfregular"
-        android:gravity="center"
-        android:layout_marginBottom="10dp"
-        android:textSize="16sp" />
-
-</RelativeLayout>
+</ScrollView>

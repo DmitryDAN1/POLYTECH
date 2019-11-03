@@ -26,6 +26,8 @@ public class ChangeNameFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_change_name, container, false);
         SharedPreferences sPref = getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 
+        view.findViewById(R.id.changeName_backBTN).setOnClickListener(v ->
+                ((MainActivity) getActivity()).loadFragment(4));
 
         view.findViewById(R.id.changeName_nextBTN).setOnClickListener(v -> {
             TextView nameET = view.findViewById(R.id.changeName_nameET);

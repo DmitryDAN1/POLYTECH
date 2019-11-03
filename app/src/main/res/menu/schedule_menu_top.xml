@@ -22,8 +22,8 @@
         android:id="@+id/schedule_friday_item"
         android:title="ПТ" />
 
-<!--    <item-->
-<!--        android:id="@+id/schedule_saturday_item"-->
-<!--        android:title="СБ" />-->
+    <!--    <item-->
+    <!--        android:id="@+id/schedule_saturday_item"-->
+    <!--        android:title="СБ" />-->
 
 </menu>

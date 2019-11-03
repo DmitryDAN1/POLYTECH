@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    tools:context=".MainActivity">
 
     <View
         android:id="@+id/top_navigation_view_line"

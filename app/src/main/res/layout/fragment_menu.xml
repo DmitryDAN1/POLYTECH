@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.tabs.MenuFragment"
-    android:background="@color/PolyWhiteLight">
+    android:background="@color/PolyWhiteLight"
+    tools:context=".fragments.tabs.MenuFragment">
 
     <RelativeLayout
         android:id="@+id/menu_headerBlock"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="15dp"
+        android:background="@android:color/white">
 
 
         <RelativeLayout
@@ -20,38 +20,39 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp">
+            android:layout_marginEnd="15dp"
+            tools:ignore="UselessParent">
 
             <TextView
-                android:layout_marginTop="10dp"
                 android:id="@+id/menu_headerUserNameTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/sfbold"
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/polyBlack"
-                android:fontFamily="@font/sfbold"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/menu_headerGroup"
-                android:gravity="center"
-                android:layout_below="@id/menu_headerUserNameTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/group_number"
+                android:layout_below="@id/menu_headerUserNameTV"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/sfregular"
-                android:textSize="14sp"
-                android:layout_marginBottom="10dp"/>
+                android:gravity="center"
+                android:text="@string/group_number"
+                android:textSize="14sp" />
 
         </RelativeLayout>
     </RelativeLayout>
 
     <View
         android:id="@+id/menu_headerLine"
-        android:layout_below="@id/menu_headerBlock"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_below="@id/menu_headerBlock"
         android:layout_marginBottom="15dp"
         android:background="@color/polyWhiteDark" />
 
@@ -59,8 +60,8 @@
         android:id="@+id/menu_bodyBlock"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:layout_below="@id/menu_headerLine" >
+        android:layout_below="@id/menu_headerLine"
+        android:background="@android:color/white">
 
         <RelativeLayout
             android:id="@+id/menu_body_notificationContent"
@@ -69,34 +70,36 @@
 
             <ImageView
                 android:id="@+id/menu_body_notificationIcon"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:src="@drawable/ic_notifications_gray"
                 android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:src="@drawable/ic_notifications_gray"
                 tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/menu_body_notificationText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/menu_body_notificationIcon"
-                android:layout_toStartOf="@id/menu_body_notificationSwitch"
                 android:layout_centerInParent="true"
-                android:text="Уведомления"
-                android:fontFamily="@font/sfregular"
-                android:textSize="16sp"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp" />
+                android:layout_marginEnd="15dp"
+                android:layout_toStartOf="@id/menu_body_notificationSwitch"
+                android:layout_toEndOf="@id/menu_body_notificationIcon"
+                android:fontFamily="@font/sfregular"
+                android:text="@string/notifications"
+                android:textSize="16sp" />
 
             <Switch
                 android:id="@+id/menu_body_notificationSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="15dp"
-                android:layout_centerInParent="true" />
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="15dp" />
 
         </RelativeLayout>
 
@@ -108,26 +111,28 @@
 
             <ImageView
                 android:id="@+id/menu_body_groupIcon"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:src="@drawable/ic_group_gray"
                 android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:src="@drawable/ic_group_gray"
                 tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/menu_body_groupText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/menu_body_groupIcon"
-                android:layout_toStartOf="@id/menu_body_groupCurrent"
                 android:layout_centerInParent="true"
-                android:text="@string/group_number"
-                android:fontFamily="@font/sfregular"
-                android:textSize="16sp"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp" />
+                android:layout_marginEnd="15dp"
+                android:layout_toStartOf="@id/menu_body_groupCurrent"
+                android:layout_toEndOf="@id/menu_body_groupIcon"
+                android:fontFamily="@font/sfregular"
+                android:text="@string/group_number"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/menu_body_groupCurrent"
@@ -135,7 +140,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
-                android:text="3530904/90006"
                 android:layout_marginEnd="15dp"
                 android:fontFamily="@font/sfregular"
                 android:textSize="16sp" />
@@ -146,9 +150,9 @@
 
     <View
         android:id="@+id/menu_bodyLine"
-        android:layout_below="@id/menu_bodyBlock"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_below="@id/menu_bodyBlock"
         android:layout_marginBottom="15dp"
         android:background="@color/polyWhiteDark" />
 
@@ -156,35 +160,38 @@
         android:id="@+id/menu_authBlock"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
         android:layout_below="@id/menu_bodyLine"
-        android:visibility="invisible">
+        android:background="@android:color/white"
+        android:visibility="visible">
 
         <RelativeLayout
             android:id="@+id/menu_auth_nameContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
+
             <ImageView
                 android:id="@+id/menu_auth_nameIcon"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:src="@drawable/ic_person_black_24dp"
                 android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:src="@drawable/ic_person_gray_24dp"
                 tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/menu_auth_nameText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/menu_auth_nameIcon"
                 android:layout_centerInParent="true"
-                android:text="@string/change_name"
-                android:fontFamily="@font/sfregular"
-                android:textSize="16sp"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp" />
+                android:layout_marginEnd="15dp"
+                android:layout_toEndOf="@id/menu_auth_nameIcon"
+                android:fontFamily="@font/sfregular"
+                android:text="@string/change_name"
+                android:textSize="16sp" />
 
         </RelativeLayout>
 
@@ -196,52 +203,52 @@
 
             <ImageView
                 android:id="@+id/menu_auth_passIcon"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:src="@drawable/ic_textsms_gray_35dp"
                 android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:src="@drawable/ic_lock_gray_24dp"
                 tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/menu_auth_passText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/menu_auth_passIcon"
                 android:layout_centerInParent="true"
-                android:text="@string/change_password"
-                android:fontFamily="@font/sfregular"
-                android:textSize="16sp"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp" />
+                android:layout_marginEnd="15dp"
+                android:layout_toEndOf="@id/menu_auth_passIcon"
+                android:fontFamily="@font/sfregular"
+                android:text="@string/change_password"
+                android:textSize="16sp" />
 
         </RelativeLayout>
-
-
 
     </RelativeLayout>
 
     <View
         android:id="@+id/menu_authLine"
-        android:layout_below="@id/menu_authBlock"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_below="@id/menu_authBlock"
         android:layout_marginBottom="15dp"
         android:background="@color/polyWhiteDark"
-        android:visibility="gone"/>
+        android:visibility="visible" />
 
 
     <TextView
         android:id="@+id/menu_aboutBTN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/about_app"
-        android:fontFamily="@font/sfsemibold"
-        android:textSize="16sp"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="@font/sfsemibold"
         android:gravity="center"
-        android:layout_marginBottom="15dp" />
+        android:text="@string/about_app"
+        android:textSize="16sp" />
 
 
 </RelativeLayout>

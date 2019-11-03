@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <EditText
         android:id="@+id/notes_titleET"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="15dp"
         android:background="@android:color/white"
-        android:hint="@string/notes_title"
         android:fontFamily="@font/sfsemibold"
-        android:textSize="22sp"
+        android:hint="@string/notes_title"
+        android:importantForAutofill="no"
         android:inputType="textAutoComplete"
-        android:importantForAutofill="no"/>
+        android:textSize="22sp" />
 
     <EditText
         android:id="@+id/notes_subtitleET"
-        android:layout_below="@id/notes_titleET"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/notes_titleET"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
         android:background="@android:color/white"
-        android:hint="@string/notes_subtitle"
-        android:textSize="18sp"
-        android:inputType="none"
         android:fontFamily="@font/sfregular"
+        android:hint="@string/notes_subtitle"
+        android:inputType="none"
+        android:textSize="18sp"
         tools:ignore="Autofill" />
 
 
@@ -37,26 +38,26 @@
         android:id="@+id/notes_saveBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/save"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="25dp"
-        android:layout_alignParentEnd="true"
         android:layout_below="@id/notes_subtitleET"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="25dp"
-        android:textSize="22sp"
+        android:layout_marginBottom="25dp"
+        android:fontFamily="@font/sfmedium"
+        android:text="@string/save"
         android:textColor="@color/polyGreen"
-        android:fontFamily="@font/sfmedium"/>
+        android:textSize="22sp" />
 
     <TextView
         android:id="@+id/notes_errorTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="21dp"
         android:layout_below="@id/notes_subtitleET"
-        android:layout_toStartOf="@id/notes_saveBTN"
+        android:layout_alignParentStart="true"
         android:layout_marginStart="15dp"
+        android:layout_marginTop="21dp"
         android:layout_marginEnd="10dp"
+        android:layout_toStartOf="@id/notes_saveBTN"
         android:fontFamily="@font/sfregular"
         android:textColor="@android:color/holo_red_dark" />
 

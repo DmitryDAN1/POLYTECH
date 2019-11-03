@@ -1,58 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/PolyWhiteLight"
     tools:context=".fragments.tabs.ChangeNameFragment">
 
-
+    <ImageView
+        android:id="@+id/changeName_backBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/PolyWhiteLight"
+        android:src="@drawable/ic_arrow_back_green"
+        tools:ignore="ContentDescription" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:gravity="center">
 
         <TextView
             android:id="@+id/welcome_start_mainText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/polyBlack"
-            android:text="@string/welcome"
-            android:textSize="30sp"
             android:gravity="center"
+            android:text="@string/welcome"
+            android:textColor="@color/polyBlack"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/welcome_start_subText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:layout_below="@id/welcome_start_mainText"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
             android:text="@string/welcome_start_subText"
-            android:textSize="18sp"
-            android:gravity="center" />
+            android:textSize="18sp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/changeName_nameTIL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
             android:layout_below="@id/welcome_start_subText"
-            app:hintEnabled="false"
-            app:errorEnabled="true" >
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="25dp"
+            app:errorEnabled="true"
+            app:hintEnabled="false">
 
             <EditText
-                android:gravity="center"
                 android:id="@+id/changeName_nameET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:gravity="center"
                 android:hint="@string/name"
+                android:inputType="textPersonName"
                 tools:ignore="Autofill" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -62,20 +70,20 @@
             android:id="@+id/changeName_surnameTIL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
             android:layout_below="@id/changeName_nameTIL"
-            app:hintEnabled="false"
-            app:errorEnabled="true" >
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="25dp"
+            app:errorEnabled="true"
+            app:hintEnabled="false">
 
             <EditText
                 android:id="@+id/changeName_surnameET"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:gravity="center"
                 android:hint="@string/surname"
+                android:inputType="textPersonName"
                 tools:ignore="Autofill" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -85,15 +93,15 @@
 
     <Button
         android:id="@+id/changeName_nextBTN"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/reg_btn"
-        android:text="@string/save"
-        android:textSize="16sp"
-        android:layout_marginBottom="25dp"
+        android:layout_alignParentBottom="true"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:textColor="@android:color/white" />
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/reg_btn"
+        android:text="@string/save"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
 
 </RelativeLayout>

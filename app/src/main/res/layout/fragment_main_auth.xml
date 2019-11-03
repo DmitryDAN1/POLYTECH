@@ -1,58 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.tabs.MainAuthFragment"
-    android:background="@android:color/white">
+    android:background="@color/PolyWhiteLight"
+    tools:context=".fragments.tabs.MainAuthFragment">
 
+
+    <ProgressBar
+        android:id="@+id/auth_progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"/>
 
     <ImageView
         android:id="@+id/auth_backBTN"
-        android:layout_margin="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_margin="5dp"
         android:src="@drawable/ic_arrow_back_green"
         tools:ignore="ContentDescription" />
 
 
     <RelativeLayout
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:layout_alignParentTop="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
 
 
         <ImageView
             android:id="@+id/auth_logo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/logopolytech"
-            android:layout_marginBottom="25dp"
-            android:scaleType="center" />
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="15dp"
+            android:src="@drawable/ic_logo_main"
+            tools:ignore="ContentDescription" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/auth_emailTIL"
-            android:gravity="center"
-            android:layout_below="@id/auth_logo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_below="@id/auth_logo"
             android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="25dp"
-            app:hintEnabled="false"
-            app:errorEnabled="true" >
+            android:gravity="center"
+            app:errorEnabled="true"
+            app:hintEnabled="false">
 
             <EditText
-                android:gravity="center"
                 android:id="@+id/auth_emailET"
                 android:layout_width="match_parent"
-                android:hint="@string/email"
                 android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="@string/email"
                 android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -61,18 +70,18 @@
             android:id="@+id/auth_passTIL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/auth_emailTIL"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
-            android:layout_below="@id/auth_emailTIL"
-            app:hintEnabled="false"
-            app:errorEnabled="true" >
+            app:errorEnabled="true"
+            app:hintEnabled="false">
 
             <EditText
-                android:gravity="center"
                 android:id="@+id/auth_passET"
-                android:hint="@string/pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="@string/pass"
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -80,11 +89,11 @@
 
         <Button
             android:id="@+id/auth_logBTN"
-            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/auth_passTIL"
             android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="25dp"
             android:background="@drawable/log_btn"
             android:text="@string/login"
@@ -94,12 +103,12 @@
 
         <TextView
             android:id="@+id/auth_resetPassBTN"
-            android:layout_below="@id/auth_logBTN"
-            android:gravity="center"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/auth_logBTN"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="50dp"
+            android:gravity="center"
             android:text="@string/reset_pass_hint"
             android:textColor="@color/polyGreen" />
 

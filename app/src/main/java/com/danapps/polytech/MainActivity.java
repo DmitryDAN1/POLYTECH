@@ -54,7 +54,7 @@ public class MainActivity extends FragmentActivity {
             new SchemeFragment(),                       // 3
             new MenuFragment(),                         // 4
             new ChangeGroupFragment(),                  // 5
-            new ChangeFacultyFragment(),                 // 6
+            new ChangeFacultyFragment(),                // 6
             new MainAuthFragment(),                     // 7
             new RegisterEmailFragment(),                // 8
             new RegisterPassFragment(),                 // 9
@@ -77,7 +77,10 @@ public class MainActivity extends FragmentActivity {
         tPref.edit().clear().apply();
 //        sPref.edit().clear().apply();
 //        mAuth.signOut();
-        loadFragment(2);
+        if (sPref.getInt("UserGroupId", 0) != 0)
+            loadFragment(2);
+        else
+            loadFragment(6);
         bottomNavigationView.setSelectedItemId(R.id.schedule_item);
         Log.e("TimedInfo:", tPref.getAll().toString());
         Log.e("UserInfo:", sPref.getAll().toString());
@@ -96,21 +99,10 @@ public class MainActivity extends FragmentActivity {
                         sPref.edit().putInt("UserGroupId", Integer.valueOf(dataSnapshot.child("UserGroupId").getValue().toString())).apply();
                     if (dataSnapshot.child("UserGroupName").getValue() != null)
                         sPref.edit().putString("UserGroupName", dataSnapshot.child("UserGroupName").getValue().toString()).apply();
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-
-
-            myRef.child("UserInfo").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.child("UserName").getValue() != null)
                         sPref.edit().putString("UserName", dataSnapshot.child("UserName").getValue().toString()).apply();
-                    if (dataSnapshot.child("UserSurname") != null)
+                    if (dataSnapshot.child("UserSurname").getValue() != null)
                         sPref.edit().putString("UserSurname", dataSnapshot.child("UserSurname").getValue().toString()).apply();
                 }
 
@@ -119,7 +111,6 @@ public class MainActivity extends FragmentActivity {
 
                 }
             });
-
         }
 
         bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {

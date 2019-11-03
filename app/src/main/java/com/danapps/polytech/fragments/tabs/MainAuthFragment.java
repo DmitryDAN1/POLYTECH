@@ -10,7 +10,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.danapps.polytech.R;
 import com.danapps.polytech.MainActivity;
@@ -25,13 +27,16 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainAuthFragment extends Fragment {
 
-    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private Button logBTN;
+    private ProgressBar progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_auth, container, false);
         SharedPreferences sPref = getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
-//        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        logBTN = view.findViewById(R.id.auth_logBTN);
+        progressBar = view.findViewById(R.id.auth_progressBar);
 
         view.findViewById(R.id.auth_backBTN).setOnClickListener(v ->
                 ((MainActivity) getActivity()).loadFragment(4));
@@ -50,11 +55,15 @@ public class MainAuthFragment extends Fragment {
             else if (passET.getText().toString().length() < 6)
                 ((TextInputLayout) view.findViewById(R.id.auth_passTIL)).setError(getString(R.string.pass_error_length));
             else {
+                logBTN.setClickable(false);
+                progressBar.setVisibility(View.VISIBLE);
                 mAuth.signInWithEmailAndPassword(
                         ((EditText) view.findViewById(R.id.auth_emailET)).getText().toString(),
                         ((EditText) view.findViewById(R.id.auth_passET)).getText().toString()
                 ).addOnFailureListener(e -> {
                     Snackbar.make(view, getString(R.string.auth_main_error), Snackbar.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
+                    logBTN.setClickable(true);
                 }).addOnSuccessListener(authResult -> {
                     DatabaseReference myRef = FirebaseDatabase.getInstance().getReference(authResult.getUser().getUid());
                     myRef.child("UserInfo").child("UserLogin").setValue(emailET.getText().toString());
@@ -70,6 +79,10 @@ public class MainAuthFragment extends Fragment {
                                     sPref.edit().putInt("UserGroupId", Integer.valueOf(dataSnapshot.child("UserGroupId").getValue().toString())).apply();
                                 if (dataSnapshot.child("UserGroupName").getValue() != null)
                                     sPref.edit().putString("UserGroupName", dataSnapshot.child("UserGroupName").getValue().toString()).apply();
+
+                                progressBar.setVisibility(View.INVISIBLE);
+                                logBTN.setClickable(true);
+                                ((MainActivity) getActivity()).loadFragment(4);
                             }
 
                             @Override
@@ -79,28 +92,33 @@ public class MainAuthFragment extends Fragment {
                         });
                     } else {
                         myRef.child("UserInfo").child("UserGroupId").setValue(sPref.getInt("UserGroupId", 0));
-                        myRef.child("UserInfo").child("UserGroupName").setValue(sPref.getString("UserGroupName", "0"));
+                        myRef.child("UserInfo").child("UserGroupName").setValue(sPref.getString("UserGroupName", "0"))
+                                .addOnSuccessListener(aVoid -> {
+                                    if (sPref.getString("UserName", "").equals("")) {
+                                        myRef.child("UserInfo").addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                if (dataSnapshot.child("UserName").getValue() != null)
+                                                    sPref.edit().putString("UserName", dataSnapshot.child("UserName").getValue().toString()).apply();
+                                                if (dataSnapshot.child("UserSurname") != null)
+                                                    sPref.edit().putString("UserSurname", dataSnapshot.child("UserSurname").getValue().toString()).apply();
 
-                        if (sPref.getString("UserName", "").equals("")) {
-                            myRef.child("UserInfo").addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    if (dataSnapshot.child("UserName").getValue() != null)
-                                        sPref.edit().putString("UserName", dataSnapshot.child("UserName").getValue().toString()).apply();
-                                    if (dataSnapshot.child("UserSurname") != null)
-                                        sPref.edit().putString("UserSurname", dataSnapshot.child("UserSurname").getValue().toString()).apply();
+                                                progressBar.setVisibility(View.INVISIBLE);
+                                                logBTN.setClickable(true);
+                                                ((MainActivity) getActivity()).loadFragment(4);
+                                            }
 
-                                    ((MainActivity) getActivity()).loadFragment(4);
-                                }
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
-                        } else {
-                            ((MainActivity) getActivity()).loadFragment(4);
-                        }
+                                            }
+                                        });
+                                    } else {
+                                        progressBar.setVisibility(View.INVISIBLE);
+                                        logBTN.setClickable(true);
+                                        ((MainActivity) getActivity()).loadFragment(4);
+                                    }
+                                });
                     }
                 });
             }
@@ -108,7 +126,7 @@ public class MainAuthFragment extends Fragment {
         });
 
         view.findViewById(R.id.auth_registerBTN).setOnClickListener(v ->
-            ((MainActivity) getActivity()).loadFragment(8));    // MainRegisterFragment
+            ((MainActivity) getActivity()).loadFragment(8));
 
 
         return view;

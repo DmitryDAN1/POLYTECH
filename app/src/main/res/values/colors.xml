@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">@color/polyGreen</color>
-    <color name="colorPrimaryDark">@color/polyGreenDark</color>
+    <color name="colorPrimaryDark">@color/polyBlack</color>
     <color name="colorAccent">@color/polyGreen</color>
 
     <color name="polyWhiteDark">#dbdbdb</color>

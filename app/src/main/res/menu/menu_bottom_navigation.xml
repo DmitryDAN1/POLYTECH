@@ -15,8 +15,8 @@
     <item
         android:id="@+id/schedule_item"
         android:icon="@drawable/ic_access_time_black_24dp"
-        app:showAsAction="always"
-        android:title="@string/schedule" />
+        android:title="@string/schedule"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/scheme_item"

@@ -3,20 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.tabs.ChangeFacultyFragment"
-    android:background="@color/PolyWhiteLight">
+    android:background="@color/PolyWhiteLight"
+    tools:context=".fragments.tabs.ChangeFacultyFragment">
 
 
     <TextView
         android:id="@+id/changeFaculties_mainText"
-        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/polyBlack"
-        android:text="Выберите институт"
-        android:textSize="30sp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/sfbold"
         android:gravity="center"
-        android:fontFamily="@font/sfbold" />
+        android:text="Выберите институт"
+        android:textColor="@color/polyBlack"
+        android:textSize="30sp" />
 
     <ProgressBar
         android:id="@+id/changeFaculties_progressBar"
@@ -25,11 +25,11 @@
         android:layout_centerInParent="true" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@id/changeFaculties_mainText"
-        android:layout_marginTop="5dp"
         android:id="@+id/notes_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:layout_below="@id/changeFaculties_mainText"
+        android:layout_marginTop="5dp">
 
     </androidx.recyclerview.widget.RecyclerView>
 
