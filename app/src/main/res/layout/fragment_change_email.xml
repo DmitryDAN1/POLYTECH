@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/PolyWhiteLight"
+    tools:context=".fragments.tabs.ChangePassFragment">
+
+    <ImageView
+        android:id="@+id/changeEmail_backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/PolyWhiteLight"
+        android:src="@drawable/ic_arrow_back_green"
+        tools:ignore="ContentDescription" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="15dp">
+
+        <TextView
+            android:id="@+id/changeEmail_mainText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfbold"
+            android:gravity="center"
+            android:text="@string/change_email2"
+            android:textColor="@color/polyBlack"
+            android:textSize="30sp" />
+
+        <EditText
+            android:id="@+id/changeEmail_oldPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/changeEmail_mainText"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/sfregular"
+            android:gravity="center"
+            android:hint="@string/current_pass"
+            android:inputType="textPassword"
+            tools:ignore="Autofill,TextFields" />
+
+        <EditText
+            android:id="@+id/changeEmail_newEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/changeEmail_oldPass"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/sfregular"
+            android:gravity="center"
+            android:hint="@string/new_email"
+            android:inputType="textEmailAddress"
+            tools:ignore="Autofill" />
+
+        <Button
+            android:id="@+id/changeEmail_saveBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/changeEmail_newEmail"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/reg_btn"
+            android:text="@string/change"
+            android:textColor="@color/PolyWhiteLight"
+            android:textSize="16sp" />
+
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/changeEmail_progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
+
+</RelativeLayout>

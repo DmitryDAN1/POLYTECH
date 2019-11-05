@@ -196,10 +196,42 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/menu_auth_passContent"
+            android:id="@+id/menu_auth_emailContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/menu_auth_nameContent">
+
+            <ImageView
+                android:id="@+id/menu_auth_emailIcon"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:src="@drawable/ic_at_gray_24dp"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/menu_auth_emailText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_toEndOf="@id/menu_auth_emailIcon"
+                android:fontFamily="@font/sfregular"
+                android:text="@string/change_email"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/menu_auth_passContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/menu_auth_emailContent">
 
             <ImageView
                 android:id="@+id/menu_auth_passIcon"

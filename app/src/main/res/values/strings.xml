@@ -95,6 +95,18 @@
     <string name="schedule_delta_time_format">%d ч. %d мин.</string>
     <string name="button_switch">переключить</string>
     <string name="schedule_day_no_lessons">В этот день занятий не обнаружено</string>
+    <string name="old_pass">Старый пароль</string>
+    <string name="new_pass">Новый пароль</string>
+    <string name="change_pass_succesful">Пароль успешно изменён!</string>
+    <string name="change_pass_error">Неудалось изменить пароль!</string>
+    <string name="change_pass_error_oldPass">Введён неверный пароль!</string>
+    <string name="change_email">Изменить электронную почту</string>
+    <string name="new_email">Новая электронная почта</string>
+    <string name="current_pass">Текущий пароль</string>
+    <string name="change_email_succesfull">Электронная почта успешно изменена!</string>
+    <string name="change_email_error">Неудалось изменить электронную почту!</string>
+    <string name="change_pass">Изменение пароля</string>
+    <string name="change_email2">Изменение электронной почты</string>
     <string-array name="calendar_short_weekdays">
         <item>Пн</item>
         <item>Вт</item>

@@ -28,9 +28,11 @@ public class MenuFragment extends Fragment {
         SharedPreferences sPref = getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         if (mAuth.getCurrentUser() != null) {
             view.findViewById(R.id.menu_authBlock).setVisibility(View.VISIBLE);
-        } else
+            view.findViewById(R.id.menu_authLine).setVisibility(View.VISIBLE);
+        } else {
             view.findViewById(R.id.menu_authBlock).setVisibility(View.INVISIBLE);
-
+            view.findViewById(R.id.menu_authLine).setVisibility(View.INVISIBLE);
+        }
         view.findViewById(R.id.menu_headerBlock).setOnClickListener(v -> {
             if (mAuth.getCurrentUser() == null)
                 ((MainActivity) getActivity()).loadFragment(7);
@@ -44,6 +46,7 @@ public class MenuFragment extends Fragment {
                         sPref.edit().remove("UserLogin").remove("UserPass").remove("UserName").remove("UserSurname").apply();
                         UpdateName(view, sPref);
                         view.findViewById(R.id.menu_authBlock).setVisibility(View.INVISIBLE);
+                        view.findViewById(R.id.menu_authLine).setVisibility(View.INVISIBLE);
                     })
                     .create()
                     .show();
@@ -64,8 +67,11 @@ public class MenuFragment extends Fragment {
         view.findViewById(R.id.menu_aboutBTN).setOnClickListener(v ->
                 ((MainActivity) getActivity()).loadFragment(14));
 
+        view.findViewById(R.id.menu_auth_passContent).setOnClickListener(v ->
+                ((MainActivity) getActivity()).loadFragment(16));
 
-
+        view.findViewById(R.id.menu_auth_emailContent).setOnClickListener(v ->
+                ((MainActivity) getActivity()).loadFragment(17));
         return view;
     }
 

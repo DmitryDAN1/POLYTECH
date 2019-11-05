@@ -18,6 +18,7 @@ import com.danapps.polytech.fragments.tabs.AboutFragment;
 import com.danapps.polytech.fragments.tabs.ChangeFacultyFragment;
 import com.danapps.polytech.fragments.tabs.ChangeGroupFragment;
 import com.danapps.polytech.fragments.tabs.ChangeNameFragment;
+import com.danapps.polytech.fragments.tabs.ChangePassFragment;
 import com.danapps.polytech.fragments.tabs.LicenseFragment;
 import com.danapps.polytech.fragments.tabs.MainAuthFragment;
 import com.danapps.polytech.fragments.tabs.MenuFragment;
@@ -63,7 +64,9 @@ public class MainActivity extends FragmentActivity {
             new ResetPassFinishFragment(),              // 12
             new ChangeNameFragment(),                   // 13
             new AboutFragment(),                        // 14
-            new LicenseFragment()                       // 15
+            new LicenseFragment(),                      // 15
+            new ChangePassFragment(),                   // 16
+            new ChangeEmailFragment()                   // 17
     };
 
     @Override
