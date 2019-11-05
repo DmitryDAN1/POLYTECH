@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.tabs.LicenseFragment">
+    android:orientation="horizontal"
+    android:background="@color/PolyWhiteLight"
+    tools:context=".fragments.tabs.SchemeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="25dp"
+        android:fontFamily="@font/sfmedium"
+        android:gravity="center"
+        android:text="Данный раздел в разработке!"
+        android:textSize="25sp"
+        tools:ignore="HardcodedText" />
 
-</FrameLayout>
+</RelativeLayout>
