@@ -68,7 +68,6 @@ public class SchedulePresenter {
                     schedule = response.body();
 
                     view.setSchedule(schedule);
-                    //view.smoothScrollToWeekday(weekday);
                     view.setDate(date);
                 }
                 finishScheduleCall();

@@ -9,6 +9,8 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.util.AttributeSet;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.danapps.polytech.R;
+import com.google.firebase.database.annotations.NotNull;
 
 import org.joda.time.LocalDate;
 
@@ -52,6 +55,8 @@ public class ScheduleCalendarView extends View {
     private RecyclerView.OnScrollListener onScrollListener;
 
     private float relativeIndicatorPosition;
+
+    private GestureDetector gestureDetector;
 
     public ScheduleCalendarView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -154,6 +159,34 @@ public class ScheduleCalendarView extends View {
             }
         };
 
+        gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onDown(MotionEvent e) {
+                return true;
+            }
+
+            @Override
+            public boolean onSingleTapUp(MotionEvent e) {
+                float x = e.getX();
+                if(x < getPaddingStart() || x > getPaddingStart() + getWidth()) {
+                    return false;
+                }
+
+                float width = getWidth();
+                float start = getPaddingStart();
+                float end = getPaddingEnd();
+
+                int weekday = Math.min(6, Math.max(0, Math.round(x / ((width - start - end) / 7f) - 1)));
+
+                if(ScheduleCalendarView.this.onDateSelectedListener != null) {
+                    ScheduleCalendarView.this.onDateSelectedListener.onDateSelected(
+                            date.minusDays(date.getDayOfWeek() - 1).plusDays(weekday));
+                }
+
+                return true;
+            }
+        });
+
         if(isInEditMode()) {
             invalidate();
         }
@@ -163,10 +196,18 @@ public class ScheduleCalendarView extends View {
         this.onDateSelectedListener = onDateSelectedListener;
     }
 
-    public void setDay(LocalDate date) {
+    public void setWeekday(int weekday) {
+        if(weekday < 0 ||weekday > 6) {
+            throw new IndexOutOfBoundsException();
+        }
+        setDay(date.minusDays(date.getDayOfWeek() - 1).plusDays(weekday));
+        invalidate();
+    }
+
+    public void setDay(@NotNull LocalDate date) {
         this.date = date;
         relativeIndicatorPosition = date.getDayOfWeek() - 1;
-        datePickerDialog.updateDate(date.getYear(), date.getMonthOfYear(), date.getDayOfMonth());
+        datePickerDialog.updateDate(date.getYear(), date.getMonthOfYear() - 1, date.getDayOfMonth());
         invalidate();
     }
 
@@ -224,6 +265,11 @@ public class ScheduleCalendarView extends View {
                             ? dateTodayTextPaint : datePaint));
             dayPositionX += offsetX;
         }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return gestureDetector.onTouchEvent(event);
     }
 
     private float getWeekWidth() {

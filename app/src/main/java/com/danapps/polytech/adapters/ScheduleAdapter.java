@@ -16,6 +16,8 @@ import com.google.firebase.database.annotations.NotNull;
 import com.venvw.spbstu.ruz.models.Day;
 import com.venvw.spbstu.ruz.models.Schedule;
 
+import org.joda.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,8 +38,21 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
     public void setSchedule(@Nullable Schedule schedule) {
         this.schedule = schedule;
         structuredDays.clear();
-        for(Day day : schedule.getDays()) {
-            structuredDays.add(new ScheduleDayAdapter.StructuredDay(day));
+        for (LocalDate date = schedule.getWeek().getDateStart();
+             !date.minusDays(1).equals(schedule.getWeek().getDateEnd());
+             date = date.plusDays(1)) {
+
+            ScheduleDayAdapter.StructuredDay day = null;
+            if(schedule != null && schedule.getDays() != null) {
+                for (Day d : schedule.getDays()) {
+                    if(d.getDate().equals(date)) {
+                        day = new ScheduleDayAdapter.StructuredDay(d);
+                        break;
+                    }
+                }
+            }
+
+            structuredDays.add(day);
         }
         notifyDataSetChanged();
     }
@@ -54,14 +69,16 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ScheduleDayAdapter.StructuredDay day = null;
-        if(schedule != null && position < schedule.getDays().size()) {
-            day = structuredDays.get(position);
-            holder.text.setVisibility(View.GONE);
-        } else {
-            holder.text.setVisibility(View.VISIBLE);
+        if(position < structuredDays.size()) {
+            ScheduleDayAdapter.StructuredDay day = structuredDays.get(position);
+            if(day != null) {
+                ((ScheduleDayAdapter) holder.itemsRecycler.getAdapter()).setStructuredDay(day);
+                holder.text.setVisibility(View.GONE);
+                return;
+            }
         }
-        ((ScheduleDayAdapter) holder.itemsRecycler.getAdapter()).setStructuredDay(day);
+        ((ScheduleDayAdapter) holder.itemsRecycler.getAdapter()).setStructuredDay(null);
+        holder.text.setVisibility(View.VISIBLE);
     }
 
     @Override

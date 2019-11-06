@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,14 +22,11 @@ import com.danapps.polytech.R;
 import com.danapps.polytech.adapters.ScheduleAdapter;
 import com.danapps.polytech.calendar.ScheduleCalendarView;
 import com.danapps.polytech.presenters.SchedulePresenter;
-import com.danapps.polytech.repositories.UserPreferencesRepository;
 import com.danapps.polytech.views.ScheduleView;
 import com.google.android.material.snackbar.Snackbar;
 import com.venvw.spbstu.ruz.models.Schedule;
 
 import org.joda.time.LocalDate;
-
-import java.util.Calendar;
 
 public class ScheduleFragment extends Fragment implements ScheduleView {
 
@@ -84,6 +82,7 @@ public class ScheduleFragment extends Fragment implements ScheduleView {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+        linearLayoutManager.setInitialPrefetchItemCount(7);
         scheduleRecyclerView.setLayoutManager(linearLayoutManager);
 
         scheduleAdapter = new ScheduleAdapter(getContext());

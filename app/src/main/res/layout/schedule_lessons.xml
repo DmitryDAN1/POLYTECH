@@ -22,7 +22,7 @@
             android:clickable="false"
             android:padding="15dp" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-20dp"
@@ -37,19 +37,15 @@
                 android:text="@string/button_switch"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
-                android:textColor="@color/polyGreenLight"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textColor="@color/polyGreenLight"/>
 
             <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
                 android:id="@+id/schedule_lessons_indicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="end|center_vertical"
                 app:spi_dotColor="@color/polyWhiteDark"
                 app:spi_dotSelectedColor="@color/polyGreenLight" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

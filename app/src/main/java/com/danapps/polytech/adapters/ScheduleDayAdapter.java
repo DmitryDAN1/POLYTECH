@@ -18,6 +18,7 @@ import com.venvw.spbstu.ruz.models.Day;
 import com.venvw.spbstu.ruz.models.Lesson;
 
 import org.joda.time.Duration;
+import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 
 import java.util.ArrayList;
@@ -61,9 +62,12 @@ public class ScheduleDayAdapter extends RecyclerView.Adapter<ScheduleDayAdapter.
         }
 
         private final List<Item> items;
+        private final LocalDate date;
 
         StructuredDay(Day day) {
+            date = day.getDate();
             items = new ArrayList<>();
+
             if(day.getLessons() == null || day.getLessons().size() < 1) {
                 return;
             }
@@ -89,11 +93,13 @@ public class ScheduleDayAdapter extends RecyclerView.Adapter<ScheduleDayAdapter.
                 }
             }
             items.add(new Item(previousLessons));
+
         }
 
         final List<Item> getItems() {
             return items;
         }
+        final LocalDate getDate() { return date; }
     }
 
     private final Context context;
