@@ -139,7 +139,7 @@ public class NavigationFragment extends Fragment {
             if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
                 if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)) {
-
+                    //TODO: что то тут должно быть но что не моя забота
                 } else {
                     ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
                 }
@@ -173,7 +173,7 @@ public class NavigationFragment extends Fragment {
 
         view.findViewById(R.id.nav_myPositionBTN).setOnClickListener(v ->
                 mapView.getMapAsync(googleMap -> {
-                    if (googleMap.isMyLocationEnabled())
+                    if (googleMap.isMyLocationEnabled() && googleMap.getMyLocation() != null)
                         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(googleMap.getMyLocation().getLatitude(), googleMap.getMyLocation().getLongitude()), 17f));
                     else if (ContextCompat.checkSelfPermission(Objects.requireNonNull(getContext()), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);

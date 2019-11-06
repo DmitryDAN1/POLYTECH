@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/polyGreen</color>
-    <color name="colorPrimaryDark">@color/polyBlack</color>
-    <color name="colorAccent">@color/polyGreen</color>
+    <color name="colorPrimary">#37B34A</color>
+    <color name="colorPrimaryDark">#319B3D</color>
+    <color name="colorAccent">#42D153</color>
 
-    <color name="polyWhiteDark">#dbdbdb</color>
-    <color name="PolyWhiteLight">#F3F2F2</color>
-    <color name="polyClearWhite">#FFFFFF</color>
+    <color name="icColor">#808080</color>
+    <color name="textColor">#808080</color>
 
-    <color name="polyGreen">#319b3d</color>
-    <color name="polyGreenDark">#267a30</color>
-    <color name="polyGreenLight">#37b34a</color>
+    <color name="primaryBackgroundColor">#EFEFEF</color>
+    <color name="secondaryBackgroundColor">#FFFFFF</color>
+    <color name="navbarBackgroundColor">@color/secondaryBackgroundColor</color>
 
-    <color name="polyBlack">#2E2E2E</color>
-    <color name="polyGray">#6D6D6D</color>
+    <color name="calendarWeekdayColor">#505050</color>
+    <color name="calendarDateColor">#505050</color>
+    <color name="calendarHighlightedDateColor">#FFFFFF</color>
+    <color name="calendarShowDialogColor">#AFAFAF</color>
 </resources>

@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/PolyWhiteLight"
     tools:context=".fragments.tabs.ChangePassFragment">
 
     <ImageView
@@ -11,7 +10,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@color/PolyWhiteLight"
         android:src="@drawable/ic_arrow_back_green"
         tools:ignore="ContentDescription" />
 
@@ -28,7 +26,6 @@
             android:fontFamily="@font/sfbold"
             android:gravity="center"
             android:text="@string/change_pass"
-            android:textColor="@color/polyBlack"
             android:textSize="30sp" />
 
         <EditText
@@ -63,7 +60,6 @@
             android:layout_marginTop="25dp"
             android:background="@drawable/reg_btn"
             android:text="@string/change"
-            android:textColor="@color/PolyWhiteLight"
             android:textSize="16sp" />
 
 

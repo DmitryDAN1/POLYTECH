@@ -3,18 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/PolyWhiteLight"
     tools:context=".fragments.tabs.NotesFragment">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="25dp"
-        android:src="@drawable/ic_notebook"
-        tools:ignore="ContentDescription" />
+<!--    <ImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_marginStart="100dp"-->
+<!--        android:layout_marginTop="25dp"-->
+<!--        android:layout_marginEnd="100dp"-->
+<!--        android:layout_marginBottom="25dp"-->
+<!--        android:tint="@color/icColor"-->
+<!--        android:src="@drawable/ic_notebook"-->
+<!--        tools:ignore="ContentDescription" />-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/notes_notes_addBTN"
@@ -24,7 +24,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:src="@drawable/ic_add_white" />
+        android:src="@drawable/ic_add_white"
+        android:backgroundTint="@color/colorPrimary" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/notes_recyclerView"

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/PolyWhiteLight"
     tools:context=".fragments.tabs.NavigationChooseFragment">
 
     <RelativeLayout
@@ -23,7 +22,6 @@
             android:layout_marginRight="25dp"
             android:gravity="center"
             android:text="@string/chooseRoute"
-            android:textColor="@color/polyBlack"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -45,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:completionThreshold="0"
-                android:hint="Откуда"
+                android:hint="@string/navigation_origin"
                 android:inputType="textAutoComplete"
                 android:textSize="20sp" />
 
@@ -66,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:completionThreshold="1"
-                android:hint="Куда"
+                android:hint="@string/navigation_destination"
                 android:inputType="textAutoComplete"
                 android:textSize="20sp" />
 
@@ -82,8 +80,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginRight="25dp"
             android:background="@drawable/log_btn"
-            android:text="Построить маршрут"
-            android:textColor="@color/polyGreen"
+            android:text="@string/navigation_request_route"
             android:textSize="17sp" />
 
     </RelativeLayout>
@@ -97,7 +94,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/reg_btn"
-        android:text="Открыть карту"
+        android:text="@string/navigation_show_map"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 

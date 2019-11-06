@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/PolyWhiteLight"
     tools:context=".fragments.tabs.MainAuthFragment">
 
 
@@ -62,7 +61,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:hint="@string/email"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                tools:ignore="Autofill" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,7 +82,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:hint="@string/pass"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                tools:ignore="Autofill" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -97,7 +98,6 @@
             android:layout_marginRight="25dp"
             android:background="@drawable/log_btn"
             android:text="@string/login"
-            android:textColor="@color/polyGreen"
             android:textSize="16sp" />
 
 
@@ -109,8 +109,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="50dp"
             android:gravity="center"
-            android:text="@string/reset_pass_hint"
-            android:textColor="@color/polyGreen" />
+            android:text="@string/reset_pass_hint" />
 
     </RelativeLayout>
 

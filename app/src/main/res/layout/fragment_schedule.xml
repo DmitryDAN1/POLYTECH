@@ -9,43 +9,44 @@
     <RelativeLayout
         android:id="@+id/schedule"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/PolyWhiteLight">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/schedule_week_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:background="@android:color/white"
             android:orientation="vertical"
-            android:paddingTop="10dp">
-
+            android:paddingTop="10dp"
+            android:background="@color/secondaryBackgroundColor">
             <com.danapps.polytech.calendar.ScheduleCalendarView
                 android:id="@+id/calendar_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                app:dateHighlightedTextColor="@color/polyClearWhite"
-                app:dateTextColor="@color/polyBlack"
+                app:dateTextColor="@color/calendarDateColor"
+                app:weekdayTextColor="@color/calendarWeekdayColor"
+                app:dateHighlightedTextColor="@color/calendarHighlightedDateColor"
                 app:dateTextSize="15sp"
-                app:dateTodayTextColor="@color/polyGreenLight"
-                app:indicatorColor="@color/polyGreenLight"
+                app:dateTodayTextColor="@color/colorPrimary"
+                app:indicatorColor="@color/colorPrimary"
                 app:indicatorRadius="22.5dp"
                 app:spaceBetweenDatesWeekdays="20dp"
-                app:weekdayTextColor="@color/polyGray"
-                app:weekdayTextSize="15sp" />
+                app:weekdayTextSize="15sp"/>
 
             <ImageButton
                 android:id="@+id/schedule_show_calendar"
-                style="@style/Widget.AppCompat.Button.Borderless"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:adjustViewBounds="false"
                 android:scaleType="center"
-                android:src="@drawable/ic_keyboard_arrow_down_gray_24dp" />
+                android:layout_marginTop="-10dp"
+                android:tint="@color/icColor"
+                android:src="@drawable/ic_keyboard_arrow_down_gray_24dp"
+                tools:ignore="ContentDescription" />
 
         </LinearLayout>
 
@@ -53,8 +54,7 @@
             android:id="@+id/schedule_line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/schedule_week_content"
-            android:background="@color/polyWhiteDark" />
+            android:layout_below="@id/schedule_week_content"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/schedule_recycler_view"
@@ -67,7 +67,6 @@
         android:id="@+id/schedule_progress_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/PolyWhiteLight"
         android:visibility="gone">
 
         <ProgressBar

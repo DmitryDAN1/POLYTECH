@@ -19,7 +19,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@android:color/white"
         android:src="@drawable/ic_arrow_back_green"
         tools:ignore="ContentDescription" />
 
@@ -40,7 +39,6 @@
             android:fontFamily="@font/sfbold"
             android:gravity="center"
             android:text="@string/welcome_group_mainText"
-            android:textColor="@color/polyBlack"
             android:textSize="35sp" />
 
         <TextView

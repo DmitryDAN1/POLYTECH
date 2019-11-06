@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/PolyWhiteLight"
     tools:context=".fragments.tabs.ChangeFacultyFragment">
 
 
@@ -14,8 +13,7 @@
         android:layout_marginTop="15dp"
         android:fontFamily="@font/sfbold"
         android:gravity="center"
-        android:text="Выберите институт"
-        android:textColor="@color/polyBlack"
+        android:text="@string/choose_faculty"
         android:textSize="30sp" />
 
     <ProgressBar

@@ -24,13 +24,14 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
-            app:cardCornerRadius="10dp">
+            app:cardCornerRadius="10dp"
+            app:cardBackgroundColor="@color/primaryBackgroundColor">
 
             <ImageView
                 android:id="@+id/nav_backBTN"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:background="@android:color/white"
+                android:background="@color/secondaryBackgroundColor"
                 android:padding="5dp"
                 android:src="@drawable/ic_arrow_back_green"
                 tools:ignore="ContentDescription" />
@@ -52,7 +53,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
-                android:background="@android:color/white"
+                android:background="@color/secondaryBackgroundColor"
                 android:padding="7.5dp"
                 android:src="@drawable/ic_my_location_green"
                 tools:ignore="ContentDescription" />
@@ -70,25 +71,23 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/secondaryBackgroundColor">
 
                 <ImageView
                     android:id="@+id/nav_plusZoomBTN"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_marginBottom="10dp"
-                    android:background="@android:color/white"
                     android:padding="5dp"
                     android:src="@drawable/ic_add_green"
                     tools:ignore="ContentDescription" />
-
 
                 <ImageView
                     android:id="@+id/nav_minusZoomBTN"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_below="@id/nav_plusZoomBTN"
-                    android:background="@android:color/white"
                     android:padding="5dp"
                     android:src="@drawable/ic_remove_green"
                     tools:ignore="ContentDescription" />

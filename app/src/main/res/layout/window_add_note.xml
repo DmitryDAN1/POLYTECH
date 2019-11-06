@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/secondaryBackgroundColor">
 
     <EditText
         android:id="@+id/notes_titleET"
@@ -11,7 +12,6 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="25dp"
         android:layout_marginRight="15dp"
-        android:background="@android:color/white"
         android:fontFamily="@font/sfsemibold"
         android:hint="@string/notes_title"
         android:importantForAutofill="no"
@@ -26,7 +26,6 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="15dp"
-        android:background="@android:color/white"
         android:fontFamily="@font/sfregular"
         android:hint="@string/notes_subtitle"
         android:inputType="none"
@@ -45,7 +44,7 @@
         android:layout_marginBottom="25dp"
         android:fontFamily="@font/sfmedium"
         android:text="@string/save"
-        android:textColor="@color/polyGreen"
+        android:textColor="@color/colorPrimary"
         android:textSize="22sp" />
 
     <TextView

@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/primaryBackgroundColor">
 
     <View
         android:id="@+id/top_navigation_view_line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_above="@+id/frame_layout"
-        android:background="@color/polyWhiteDark" />
+        android:layout_above="@+id/frame_layout" />
 
     <FrameLayout
         android:id="@+id/frame_layout"
@@ -24,14 +23,14 @@
         android:id="@+id/bottom_navigation_view_line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_above="@+id/bottom_navigation_view"
-        android:background="@color/polyWhiteDark" />
+        android:layout_above="@+id/bottom_navigation_view"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:menu="@menu/menu_bottom_navigation" />
+        app:menu="@menu/menu_bottom_navigation"
+        android:background="@color/navbarBackgroundColor"/>
 
 </RelativeLayout>

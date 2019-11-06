@@ -1,5 +1,6 @@
 package com.danapps.polytech.calendar;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -37,7 +38,6 @@ public class ScheduleCalendarView extends View {
 
     private final String[] shortWeekdays;
 
-    private Paint       backgroundPaint;
     private TextPaint   weekdayPaint;
     private TextPaint   datePaint;
     private Rect        dateTextBounds;
@@ -63,7 +63,6 @@ public class ScheduleCalendarView extends View {
 
         shortWeekdays = getResources().getStringArray(R.array.calendar_short_weekdays);
 
-        backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         weekdayPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
         datePaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
         highlightedDatePaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
@@ -78,14 +77,10 @@ public class ScheduleCalendarView extends View {
             font = ResourcesCompat.getFont(context, fontId);
         }
 
-        final int backgroundColor = typedArray.getColor(R.styleable.ScheduleCalendarView_backgroundColor,
-                ContextCompat.getColor(context, R.color.design_default_color_primary));
-        backgroundPaint.setColor(backgroundColor);
-
         final float weekdaySize = typedArray.getDimension(R.styleable.ScheduleCalendarView_weekdayTextSize,
                 18f * getResources().getDisplayMetrics().scaledDensity);
         final int weekdayColor = typedArray.getColor(R.styleable.ScheduleCalendarView_weekdayTextColor,
-                ContextCompat.getColor(context, R.color.design_default_color_primary_dark));
+                ContextCompat.getColor(context, R.color.design_default_color_primary));
         weekdayPaint.setColor(weekdayColor);
         weekdayPaint.setTypeface(font);
         weekdayPaint.setTextSize(weekdaySize);
@@ -106,6 +101,7 @@ public class ScheduleCalendarView extends View {
         highlightedDatePaint.setTypeface(datePaint.getTypeface());
         highlightedDatePaint.setTextSize(dateSize);
         highlightedDatePaint.setTextAlign(Paint.Align.CENTER);
+
 
         final int todayColor = typedArray.getColor(R.styleable.ScheduleCalendarView_dateTodayTextColor,
                 ContextCompat.getColor(context, R.color.design_default_color_primary_dark));
@@ -267,6 +263,7 @@ public class ScheduleCalendarView extends View {
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         return gestureDetector.onTouchEvent(event);

@@ -100,7 +100,7 @@ public class MainAuthFragment extends Fragment {
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                 if (dataSnapshot.child("UserName").getValue() != null)
                                                     sPref.edit().putString("UserName", dataSnapshot.child("UserName").getValue().toString()).apply();
-                                                if (dataSnapshot.child("UserSurname") != null)
+                                                if (dataSnapshot.child("UserSurname").getValue() != null)
                                                     sPref.edit().putString("UserSurname", dataSnapshot.child("UserSurname").getValue().toString()).apply();
 
                                                 progressBar.setVisibility(View.INVISIBLE);

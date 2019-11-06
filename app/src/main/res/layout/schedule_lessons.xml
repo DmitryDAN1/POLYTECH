@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    app:cardBackgroundColor="@color/secondaryBackgroundColor"
     android:clickable="true"
     android:focusable="true"
     android:orientation="vertical"
@@ -37,15 +37,15 @@
                 android:text="@string/button_switch"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
-                android:textColor="@color/polyGreenLight"/>
+                android:textColor="@color/colorPrimary" />
 
             <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
                 android:id="@+id/schedule_lessons_indicator"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="end|center_vertical"
-                app:spi_dotColor="@color/polyWhiteDark"
-                app:spi_dotSelectedColor="@color/polyGreenLight" />
+                app:spi_dotColor="@color/icColor"
+                app:spi_dotSelectedColor="@color/colorPrimary" />
         </FrameLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

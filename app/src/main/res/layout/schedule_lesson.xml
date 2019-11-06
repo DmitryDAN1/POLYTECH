@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -15,7 +16,8 @@
             android:fontFamily="@font/sfmedium"
             android:text="1"
             android:textColor="@android:color/darker_gray"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/lesson_type"
@@ -27,17 +29,19 @@
             android:fontFamily="@font/sfmedium"
             android:text="Практика"
             android:textColor="@android:color/darker_gray"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/lesson_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:fontFamily="@font/sfmedium"
-            android:text="10:00 - 11:40"
+            android:text="10:00-11:40"
             android:textColor="@android:color/darker_gray"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
 
 
     </RelativeLayout>
@@ -50,8 +54,8 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/sfsemibold"
         android:text="Высшая математика"
-        android:textColor="@color/polyBlack"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/lesson_teacher"
@@ -62,7 +66,8 @@
         android:fontFamily="@font/sfregular"
         android:text="Дробинцев Павел Дмитриевич"
         android:textColor="@android:color/darker_gray"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/lesson_location"
@@ -73,6 +78,7 @@
         android:fontFamily="@font/sfmedium"
         android:text="Главное здание, ауд. 237"
         android:textColor="@android:color/darker_gray"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        tools:ignore="HardcodedText" />
 
 </RelativeLayout>

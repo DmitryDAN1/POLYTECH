@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/PolyWhiteLight"
     tools:context=".fragments.tabs.RegisterPassFragment">
 
     <ImageView
@@ -33,7 +32,6 @@
             android:layout_marginRight="25dp"
             android:gravity="center"
             android:text="@string/reg_pass_mainText"
-            android:textColor="@color/polyBlack"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -65,7 +63,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                tools:ignore="Autofill,LabelFor" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,8 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/reg_pass_passTIL"
             android:gravity="center"
-            android:text="@string/showPass"
-            android:textColor="@color/polyGreen" />
+            android:text="@string/showPass" />
 
     </RelativeLayout>
 

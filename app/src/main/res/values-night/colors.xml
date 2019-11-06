@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryBackgroundColor">#202125</color>
+    <color name="secondaryBackgroundColor">#2D2E32</color>
+    <color name="navbarBackgroundColor">#37383C</color>
+
+    <color name="icColor">#A0A0A0</color>
+    <color name="textColor">#A0A0A0</color>
+
+    <color name="calendarWeekdayColor">#EFEFEF</color>
+    <color name="calendarDateColor">#EFEFEF</color>
+    <color name="calendarHighlightedDateColor">#FFFFFF</color>
+    <color name="calendarShowDialogColor">#AFAFAF</color>
+</resources>

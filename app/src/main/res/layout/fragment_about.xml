@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/PolyWhiteLight"
     tools:context=".fragments.tabs.AboutFragment">
 
     <RelativeLayout
@@ -16,7 +15,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@color/PolyWhiteLight"
             android:src="@drawable/ic_arrow_back_green"
             tools:ignore="ContentDescription" />
 
@@ -74,7 +72,7 @@
                         android:layout_marginEnd="15dp"
                         android:layout_toEndOf="@id/about_contactIcon"
                         android:fontFamily="@font/sfregular"
-                        android:text="Связаться с разработчиком"
+                        android:text="@string/about_contact"
                         android:textSize="16sp" />
 
                 </RelativeLayout>
@@ -117,7 +115,7 @@
                         android:layout_marginEnd="15dp"
                         android:layout_toEndOf="@id/about_rateIcon"
                         android:fontFamily="@font/sfregular"
-                        android:text="Оценить приложение в Google Play"
+                        android:text="@string/about_mark"
                         android:textSize="16sp" />
 
                 </RelativeLayout>
@@ -161,7 +159,7 @@
                         android:layout_marginEnd="15dp"
                         android:layout_toEndOf="@id/about_licenseIcon"
                         android:fontFamily="@font/sfregular"
-                        android:text="Лицензии"
+                        android:text="@string/about_license"
                         android:textSize="16sp" />
 
                 </RelativeLayout>

@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/PolyWhiteLight"
     tools:context=".fragments.tabs.ResetPassFinishFragment">
 
 
@@ -42,7 +41,6 @@
             android:layout_marginRight="25dp"
             android:gravity="center"
             android:text="@string/reset_finish_mainText"
-            android:textColor="@color/polyBlack"
             android:textSize="30sp"
             android:textStyle="bold" />
 
