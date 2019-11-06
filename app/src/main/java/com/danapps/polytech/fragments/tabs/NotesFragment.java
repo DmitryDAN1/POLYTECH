@@ -16,9 +16,11 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +42,8 @@ public class NotesFragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<NoteListItem> listItems = new ArrayList<>();
+
+    private Button button;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -121,7 +125,6 @@ public class NotesFragment extends Fragment {
 
         });
 
-
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
 
             @Override
@@ -136,12 +139,6 @@ public class NotesFragment extends Fragment {
                 Toast.makeText(getContext(), String.valueOf(position+10), Toast.LENGTH_SHORT).show();
             }
         }));
-
-
-
-
-
-
 
         return view;
     }
