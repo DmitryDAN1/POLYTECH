@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -61,8 +62,8 @@ public class ChangeGroupFragment extends Fragment {
 
         facultiesApi.getGroups(tPref.getInt("FacultiesId", 0)).enqueue(new Callback<FacultiesApi.GetGroupsResponse>() {
             @Override
-            public void onResponse(Call<FacultiesApi.GetGroupsResponse> call, Response<FacultiesApi.GetGroupsResponse> response) {
-                view.findViewById(R.id.changeGroup_progressBar).setVisibility(View.GONE);
+            public void onResponse(@NonNull Call<FacultiesApi.GetGroupsResponse> call, @NonNull Response<FacultiesApi.GetGroupsResponse> response) {
+                view.findViewById(R.id.changeGroup_progressBar).setVisibility(View.INVISIBLE);
                 nextButton.setVisibility(View.VISIBLE);
                 mainRelativeLayout.setVisibility(View.VISIBLE);
 
@@ -74,7 +75,7 @@ public class ChangeGroupFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<FacultiesApi.GetGroupsResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<FacultiesApi.GetGroupsResponse> call, @NonNull Throwable t) {
 
             }
         });
@@ -86,8 +87,11 @@ public class ChangeGroupFragment extends Fragment {
             if (groupACTV.getText().toString().isEmpty())
                 groupTIL.setError("Вы не ввели номер группы");
             else {
+                view.findViewById(R.id.changeGroup_nextBTN).setClickable(false);
+                view.findViewById(R.id.changeGroup_progressBar).setVisibility(View.VISIBLE);
+
                 int groupId = 0;
-                boolean checker = true;
+                boolean checker = false;
 
                 for (int i = 0; i < list.size(); i++) {
                     if (list.get(i).equals(groupACTV.getText().toString())) {
@@ -96,9 +100,11 @@ public class ChangeGroupFragment extends Fragment {
                     }
                 }
 
-                if (!checker)
+                if (!checker) {
+                    view.findViewById(R.id.changeGroup_progressBar).setVisibility(View.INVISIBLE);
+                    view.findViewById(R.id.changeGroup_nextBTN).setClickable(true);
                     groupTIL.setError("Вы ввели не корректный номер группы");
-                else {
+                } else {
                     sPref.edit().putString("UserGroupName", groupACTV.getText().toString()).apply();
                     sPref.edit().putInt("UserGroupId", groupId).apply();
                     Log.e("ChangeGroupFragment", "sPref<UserGroupName>: " + groupACTV.getText().toString());
@@ -107,14 +113,29 @@ public class ChangeGroupFragment extends Fragment {
                     if (auth.getCurrentUser() != null) {
                         DatabaseReference myRef = database.getReference(auth.getCurrentUser().getUid()).child("UserInfo");
                         myRef.child("UserGroupId").setValue(groupId);
-                        myRef.child("UserGroupName").setValue(groupACTV.getText().toString());
+                        myRef.child("UserGroupName").setValue(groupACTV.getText().toString())
+                                .addOnSuccessListener(aVoid -> {
+                                    int id = ((BottomNavigationView) getActivity()
+                                            .findViewById(R.id.bottom_navigation_view))
+                                            .getSelectedItemId();
+
+                                    if (id == R.id.schedule_item)
+                                        ((MainActivity) getActivity()).loadFragment(2);
+                                    else if (id == R.id.menu_item)
+                                        ((MainActivity) getActivity()).loadFragment(4);
+                                });
+                    } else {
+                        int id = ((BottomNavigationView) getActivity()
+                                .findViewById(R.id.bottom_navigation_view))
+                                .getSelectedItemId();
+
+                        if (id == R.id.schedule_item)
+                            ((MainActivity) getActivity()).loadFragment(2);
+                        else if (id == R.id.menu_item)
+                            ((MainActivity) getActivity()).loadFragment(4);
                     }
 
-                    int id = ((BottomNavigationView) ((MainActivity) getActivity()).findViewById(R.id.bottom_navigation_view)).getSelectedItemId();
-                    if (id == R.id.schedule_item)
-                        ((MainActivity) getActivity()).loadFragment(2);
-                    else if (id == R.id.menu_item)
-                        ((MainActivity) getActivity()).loadFragment(4);
+
                 }
             }
 

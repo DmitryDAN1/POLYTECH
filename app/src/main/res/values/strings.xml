@@ -86,7 +86,7 @@
     <string name="change_password">Изменить пароль</string>
     <string name="about_app">О приложении</string>
     <string name="change_name">Сменить имя профиля</string>
-    <string name="app_version">Версия приложения: 0.1.0</string>
+    <string name="app_version">Версия приложения: 0.3.3</string>
     <string name="auditory_format">%s, ауд. %s</string>
     <string name="unknown">Неизвестно</string>
     <string name="schedule_network_failed">Не удалось соединиться с сервером. Проверьте подключение</string>
