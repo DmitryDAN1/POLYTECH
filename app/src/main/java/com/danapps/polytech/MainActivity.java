@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.danapps.polytech.fragments.tabs.AboutFragment;
@@ -20,6 +21,7 @@ import com.danapps.polytech.fragments.tabs.ChangeGroupFragment;
 import com.danapps.polytech.fragments.tabs.ChangeNameFragment;
 import com.danapps.polytech.fragments.tabs.ChangePassFragment;
 import com.danapps.polytech.fragments.tabs.LicenseFragment;
+import com.danapps.polytech.fragments.tabs.LinksFragment;
 import com.danapps.polytech.fragments.tabs.MainAuthFragment;
 import com.danapps.polytech.fragments.tabs.MenuFragment;
 import com.danapps.polytech.fragments.tabs.NavigationChooseFragment;
@@ -44,10 +46,9 @@ public class MainActivity extends FragmentActivity {
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     FragmentManager fm = getSupportFragmentManager();
-
+    private int currentFragment;
     BottomNavigationView bottomNavigationView;
 
-    private int currentFragment;
     private Fragment[] fragments = {
             new NotesFragment(),                        // 0
             new NavigationChooseFragment(),             // 1
@@ -66,7 +67,8 @@ public class MainActivity extends FragmentActivity {
             new AboutFragment(),                        // 14
             new LicenseFragment(),                      // 15
             new ChangePassFragment(),                   // 16
-            new ChangeEmailFragment()                   // 17
+            new ChangeEmailFragment(),                  // 17
+            new LinksFragment()                         // 18
     };
 
     @Override
@@ -149,6 +151,55 @@ public class MainActivity extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
+        switch (currentFragment) {
+
+            case 5:     // ChangeGroupFragment
+                loadFragment(6);
+                break;
+
+            case 7:     // MainAuthFragment
+            case 13:    // ChangeNameFragment
+            case 14:    // AboutFragment
+            case 16:    // ChangePassFragment
+            case 17:    // ChangeEmailFragment
+            case 18:    // LinksFragment
+                loadFragment(4);
+                break;
+
+            case 8:     // RegisterEmailFragment
+            case 10:    // RegisterFinishFragment
+            case 11:    // ResetPassEmailFragment
+            case 12:    // ResetPassFinishFragment
+                loadFragment(7);
+                break;
+
+            case 9:     // RegisterPassFragment
+                loadFragment(8);
+                break;
+
+            case 15:    // LicenseFragment
+                loadFragment(14);
+                break;
+
+            case 6:     // ChangeFacultyFragment
+                if (bottomNavigationView.getSelectedItemId() == R.id.menu_item)
+                    loadFragment(4);
+                else
+                    showExitDialog();
+                break;
+
+            default:
+                if (getSupportFragmentManager().findFragmentByTag("NoteEditFragment") != null)
+                    loadFragment(0);
+                else if (getSupportFragmentManager().findFragmentByTag("NavigationFragment") != null)
+                    loadFragment(1);
+                else
+                    showExitDialog();
+                break;
+        }
+    }
+
+    private void showExitDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
                 .setTitle(getString(R.string.exit_from_app_mainText)).setMessage(getString(R.string.exit_from_app_subText))
                 .setNegativeButton(getString(R.string.No), (dialogInterface, i) -> Toast.makeText(getApplicationContext(), getString(R.string.good_choice), Toast.LENGTH_SHORT).show())

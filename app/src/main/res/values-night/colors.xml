@@ -4,6 +4,8 @@
     <color name="secondaryBackgroundColor">#2D2E32</color>
     <color name="navbarBackgroundColor">#37383C</color>
 
+    <color name="alternateColor">#DCDCDC</color>
+
     <color name="icColor">#A0A0A0</color>
     <color name="textColor">#A0A0A0</color>
 

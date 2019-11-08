@@ -115,6 +115,23 @@
     <string name="about_contact">Связаться с разработчиком</string>
     <string name="about_mark">Оценить приложение в Google Play</string>
     <string name="about_license">Лицензии</string>
+    <string name="useful_links">Полезные ссылки</string>
+    <string name="sites_title">ОБРАЗОВАТЕЛЬНЫЕ ПОРТАЛЫ</string>
+    <string name="central_server_lms">Центральный сервер (LMS)</string>
+    <string name="fvo">Факультет военного обучения</string>
+    <string name="portasp">Портал аспирантуры</string>
+    <string name="dliets">Институт энергетики</string>
+    <string name="dlido">Институт дополнительного образования</string>
+    <string name="dlvsbtipt">Институт биомедицинских систем и биотехнологий</string>
+    <string name="dleei">Институт промышленного менеджмента, экономики и торговли</string>
+    <string name="dliamm">Институт прикладной математики и механики</string>
+    <string name="dliamt">Институт передовых производственных технологий</string>
+    <string name="immetdist">Институт машиностроения, материалов и транспорта</string>
+    <string name="dlice">Инженерно-строительный институт</string>
+    <string name="dlphnt">Институт физики, нанотехнологий и телекоммуникаций</string>
+    <string name="dlifkst">Институт физической культуры</string>
+    <string name="dl">Институт компьютерных наук и технологий</string>
+    <string name="dlhum">Гуманитарный институт</string>
     <string-array name="calendar_short_weekdays">
         <item>Пн</item>
         <item>Вт</item>

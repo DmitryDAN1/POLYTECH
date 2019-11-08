@@ -131,7 +131,10 @@ public class NotesFragment extends Fragment {
             public void onClick(View view, int position) {
                 NoteEditFragment noteEditFragment = new NoteEditFragment();
                 sPref.edit().putInt("CurrentNote", (position + 1)).apply();
-                Objects.requireNonNull(getFragmentManager()).beginTransaction().replace(R.id.frame_layout, noteEditFragment).commit();
+                Objects.requireNonNull(getFragmentManager())
+                        .beginTransaction()
+                        .replace(R.id.frame_layout, noteEditFragment, "NoteEditFragment")
+                        .commit();
             }
 
             @Override

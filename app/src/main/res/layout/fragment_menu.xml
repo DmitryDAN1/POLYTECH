@@ -143,6 +143,38 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/menu_body_linksContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/menu_body_groupContent">
+
+            <ImageView
+                android:id="@+id/menu_body_linksIcon"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:src="@drawable/ic_link_gray_24dp"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/menu_body_linksText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_toEndOf="@id/menu_body_linksIcon"
+                android:fontFamily="@font/sfregular"
+                android:text="@string/useful_links"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
     </RelativeLayout>
 
     <View

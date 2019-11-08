@@ -12,7 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.danapps.polytech.R;
 import com.danapps.polytech.MainActivity;
@@ -28,7 +30,9 @@ import com.google.firebase.database.ValueEventListener;
 public class MainAuthFragment extends Fragment {
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private Button logBTN;
+    private Button logBTN, regBtn;
+    private ImageView backBtn;
+    private TextView resetPassBtn;
     private ProgressBar progressBar;
 
     @Override
@@ -36,6 +40,9 @@ public class MainAuthFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main_auth, container, false);
         SharedPreferences sPref = getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         logBTN = view.findViewById(R.id.auth_logBTN);
+        regBtn = view.findViewById(R.id.auth_registerBTN);
+        backBtn = view.findViewById(R.id.auth_backBTN);
+        resetPassBtn = view.findViewById(R.id.auth_resetPassBTN);
         progressBar = view.findViewById(R.id.auth_progressBar);
 
         view.findViewById(R.id.auth_backBTN).setOnClickListener(v ->
@@ -56,6 +63,9 @@ public class MainAuthFragment extends Fragment {
                 ((TextInputLayout) view.findViewById(R.id.auth_passTIL)).setError(getString(R.string.pass_error_length));
             else {
                 logBTN.setClickable(false);
+                backBtn.setClickable(false);
+                regBtn.setClickable(false);
+                resetPassBtn.setClickable(false);
                 progressBar.setVisibility(View.VISIBLE);
                 mAuth.signInWithEmailAndPassword(
                         ((EditText) view.findViewById(R.id.auth_emailET)).getText().toString(),
@@ -64,6 +74,9 @@ public class MainAuthFragment extends Fragment {
                     Snackbar.make(view, getString(R.string.auth_main_error), Snackbar.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.INVISIBLE);
                     logBTN.setClickable(true);
+                    backBtn.setClickable(true);
+                    regBtn.setClickable(true);
+                    resetPassBtn.setClickable(true);
                 }).addOnSuccessListener(authResult -> {
                     DatabaseReference myRef = FirebaseDatabase.getInstance().getReference(authResult.getUser().getUid());
                     myRef.child("UserInfo").child("UserLogin").setValue(emailET.getText().toString());
@@ -82,6 +95,9 @@ public class MainAuthFragment extends Fragment {
 
                                 progressBar.setVisibility(View.INVISIBLE);
                                 logBTN.setClickable(true);
+                                backBtn.setClickable(true);
+                                regBtn.setClickable(true);
+                                resetPassBtn.setClickable(true);
                                 ((MainActivity) getActivity()).loadFragment(4);
                             }
 
@@ -105,6 +121,9 @@ public class MainAuthFragment extends Fragment {
 
                                                 progressBar.setVisibility(View.INVISIBLE);
                                                 logBTN.setClickable(true);
+                                                backBtn.setClickable(true);
+                                                regBtn.setClickable(true);
+                                                resetPassBtn.setClickable(true);
                                                 ((MainActivity) getActivity()).loadFragment(4);
                                             }
 
@@ -116,6 +135,9 @@ public class MainAuthFragment extends Fragment {
                                     } else {
                                         progressBar.setVisibility(View.INVISIBLE);
                                         logBTN.setClickable(true);
+                                        backBtn.setClickable(true);
+                                        regBtn.setClickable(true);
+                                        resetPassBtn.setClickable(true);
                                         ((MainActivity) getActivity()).loadFragment(4);
                                     }
                                 });

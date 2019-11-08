@@ -82,14 +82,19 @@ public class NavigationChooseFragment extends Fragment {
                     toTIL.setError(getString(R.string.navigation_choose_adress_error));
                 else {
                     sPref.edit().putInt("Place1", fromInt).putInt("Place2", toInt).putBoolean("isRoute", true).apply();
-                    getFragmentManager().beginTransaction().replace(R.id.frame_layout, navigationFragment).commit();
+                    getFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.frame_layout, navigationFragment, "NavigationFragment")
+                            .commit();
                 }
             }
         });
 
         view.findViewById(R.id.nav_openMap).setOnClickListener(v ->
-                Objects.requireNonNull(getFragmentManager()).beginTransaction()
-                .replace(R.id.frame_layout, navigationFragment).commit());
+                Objects.requireNonNull(getFragmentManager())
+                        .beginTransaction()
+                        .replace(R.id.frame_layout, navigationFragment, "NavigationFragment")
+                        .commit());
 
         return view;
     }

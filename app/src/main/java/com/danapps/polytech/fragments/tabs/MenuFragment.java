@@ -56,6 +56,9 @@ public class MenuFragment extends Fragment {
         view.findViewById(R.id.menu_body_groupContent).setOnClickListener(v ->
                 ((MainActivity) getActivity()).loadFragment(6));
 
+        view.findViewById(R.id.menu_body_linksContent).setOnClickListener(v ->
+                ((MainActivity) getActivity()).loadFragment(18));
+
         ((TextView) view.findViewById(R.id.menu_body_groupCurrent)).setText(sPref.getString("UserGroupName", "Группа не выбрана"));
         ((TextView) view.findViewById(R.id.menu_headerGroup)).setText(sPref.getString("UserGroupName", "Группа не выбрана"));
 

@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#319B3D</color>
     <color name="colorAccent">#42D153</color>
 
+    <color name="alternateColor">#232323</color>
+    
     <color name="icColor">#808080</color>
     <color name="textColor">#808080</color>
 

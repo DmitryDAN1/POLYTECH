@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    tools:context=".fragments.tabs.LinksFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="50dp">
+
+        <ImageView
+            android:id="@+id/links_backBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="5dp"
+            android:src="@drawable/ic_arrow_back_green"
+            tools:ignore="ContentDescription" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/links_backBTN"
+            android:layout_marginTop="15dp">
+
+            <RelativeLayout
+                android:id="@+id/links_sites"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/secondaryBackgroundColor"
+                tools:ignore="UselessParent">
+
+                <TextView
+                    android:id="@+id/links_sites_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/sfsemibold"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/sites_title"
+                    android:textColor="@color/textColor"
+                    android:textSize="14sp" />
+
+
+                <TextView
+                    android:id="@+id/links_sites_lms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/links_sites_title"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/sfregular"
+                    android:paddingStart="25dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="25dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/central_server_lms"
+                    android:textSize="14sp" />
+
+                <View
+                    android:id="@+id/links_sites_lmsLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/links_sites_lms"
+                    android:background="@color/primaryBackgroundColor" />
+
+
+                <TextView
+                    android:id="@+id/links_sites_dlhum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/links_sites_lmsLine"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/sfregular"
+                    android:paddingStart="25dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="25dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/dlhum"
+                    android:textSize="14sp" />
+
+                <View
+                    android:id="@+id/links_sites_dlhumLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/links_sites_dlhum"
+                    android:background="@color/primaryBackgroundColor" />
+
+                <TextView
+                    android:id="@+id/links_sites_dl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/links_sites_dlhumLine"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/sfregular"
+                    android:paddingStart="25dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="25dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/dl"
+                    android:textSize="14sp" />
+
+                <View
+                    android:id="@+id/links_sites_dlLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/links_sites_dl"
+                    android:background="@color/primaryBackgroundColor" />
+
+                <TextView
+                    android:id="@+id/links_sites_dlifkst"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/links_sites_dlLine"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/sfregular"
+                    android:paddingStart="25dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="25dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/dlifkst"
+                    android:textSize="14sp" />
+
+                <View
+                    android:id="@+id/links_sites_dlifkstLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/links_sites_dlifkst"
+                    android:background="@color/primaryBackgroundColor" />
+
+                <TextView
+                    android:id="@+id/links_sites_dlphnt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/links_sites_dlifkstLine"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/sfregular"
+                    android:paddingStart="25dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="25dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/dlphnt"
+                    android:textSize="14sp" />
+
+                <View
+                    android:id="@+id/links_sites_dlphntLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/links_sites_dlphnt"
+                    android:background="@color/primaryBackgroundColor" />
+
+                <TextView
+                    android:id="@+id/links_sites_dlice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/links_sites_dlphntLine"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/sfregular"
+                    android:paddingStart="25dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="25dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/dlice"
+                    android:textSize="14sp" />
+
+                <View
+                    android:id="@+id/links_sites_dliceLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/links_sites_dlice"
+                    android:background="@color/primaryBackgroundColor" />
+
+                <TextView
+                    android:id="@+id/links_sites_immetdist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/links_sites_dliceLine"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/sfregular"
+                    android:paddingStart="25dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="25dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/immetdist"
+                    android:textSize="14sp" />
+
+                <View
+                    android:id="@+id/links_sites_immetdistLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/links_sites_immetdist"
+                    android:background="@color/primaryBackgroundColor" />
+
+                <TextView
+                    android:id="@+id/links_sites_dliamt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/links_sites_immetdistLine"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/sfregular"
+                    android:paddingStart="25dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="25dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/dliamt"
+                    android:textSize="14sp" />
+
+                <View
+                    android:id="@+id/links_sites_dliamtLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/links_sites_dliamt"
+                    android:background="@color/primaryBackgroundColor" />
+
+                <TextView
+                    android:id="@+id/links_sites_dliamm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/links_sites_dliamtLine"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/sfregular"
+                    android:paddingStart="25dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="25dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/dliamm"
+                    android:textSize="14sp" />
+
+                <View
+                    android:id="@+id/links_sites_dliammLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/links_sites_dliamm"
+                    android:background="@color/primaryBackgroundColor" />
+
+                <TextView
+                    android:id="@+id/links_sites_dleei"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/links_sites_dliammLine"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/sfregular"
+                    android:paddingStart="25dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="25dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/dleei"
+                    android:textSize="14sp" />
+
+                <View
+                    android:id="@+id/links_sites_dleeiLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/links_sites_dleei"
+                    android:background="@color/primaryBackgroundColor" />
+
+                <TextView
+                    android:id="@+id/links_sites_dlvsbtipt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/links_sites_dleeiLine"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/sfregular"
+                    android:paddingStart="25dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="25dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/dlvsbtipt"
+                    android:textSize="14sp" />
+
+                <View
+                    android:id="@+id/links_sites_dlvsbtiptLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/links_sites_dlvsbtipt"
+                    android:background="@color/primaryBackgroundColor" />
+
+
+                <TextView
+                    android:id="@+id/links_sites_dlido"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/links_sites_dlvsbtiptLine"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/sfregular"
+                    android:paddingStart="25dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="25dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/dlido"
+                    android:textSize="14sp" />
+
+                <View
+                    android:id="@+id/links_sites_dlidoLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/links_sites_dlido"
+                    android:background="@color/primaryBackgroundColor" />
+
+                <TextView
+                    android:id="@+id/links_sites_dliets"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/links_sites_dlidoLine"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/sfregular"
+                    android:paddingStart="25dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="25dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/dliets"
+                    android:textSize="14sp" />
+
+                <View
+                    android:id="@+id/links_sites_dlietsLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/links_sites_dliets"
+                    android:background="@color/primaryBackgroundColor" />
+
+                <TextView
+                    android:id="@+id/links_sites_portasp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/links_sites_dliets"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/sfregular"
+                    android:paddingStart="25dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="25dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/portasp"
+                    android:textSize="14sp" />
+
+                <View
+                    android:id="@+id/links_sites_portaspLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/links_sites_portasp"
+                    android:background="@color/primaryBackgroundColor" />
+
+                <TextView
+                    android:id="@+id/links_sites_fvo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/links_sites_portaspLine"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/sfregular"
+                    android:paddingStart="25dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="25dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/fvo"
+                    android:textSize="14sp" />
+
+                <View
+                    android:id="@+id/links_sites_fvoLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/links_sites_fvo"
+                    android:background="@color/primaryBackgroundColor" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</ScrollView>
