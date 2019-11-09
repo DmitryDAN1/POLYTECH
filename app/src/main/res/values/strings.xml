@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Polytech</string>
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="app_name">PolyLook</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="notifications">Уведомления</string>
     <string name="group_number">Номер группы</string>
     <string name="auth_hint">Войдите в свою учётную запись!</string>
@@ -15,12 +15,12 @@
     <string name="reg_pass_mainText">Введите пароль</string>
     <string name="showPass">Показать пароль</string>
     <string name="hidePass">Скрыть пароль</string>
-    <string name="reg_finish_finishBTN">Завершить регистрацию</string>
+    <string name="reg_finish_finishBTN">Авторизоваться</string>
     <string name="reset_pass_subText">На почту будет отправлено письмо с инструкцией по сбросу пароля</string>
     <string name="auth_mainText">Авторизируйтесь</string>
     <string name="reg_pass_subText">Используйте надёждный пароль, содержащий не менее 6 символов</string>
-    <string name="reg_finish_mainText">Подтвердите почту</string>
-    <string name="reg_finish_subText">Проверьте свою почту, чтобы завершить регистрацию</string>
+    <string name="reg_finish_mainText">Регистрация почти завершена</string>
+    <string name="reg_finish_subText">Войдите в свой аккаунт, чтобы завершить регистрацию</string>
     <string name="reset_finish_mainText">Проверьте почту</string>
     <string name="reset_finish_subText">Сообщение с инструкцией по сбросу пароля отправлено</string>
     <string name="reset_finish_nextBTN">Авторизоваться</string>
