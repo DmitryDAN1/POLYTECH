@@ -132,6 +132,7 @@
     <string name="dlifkst">Институт физической культуры</string>
     <string name="dl">Институт компьютерных наук и технологий</string>
     <string name="dlhum">Гуманитарный институт</string>
+    <string name="night_theme">Тёмная тема</string>
     <string-array name="calendar_short_weekdays">
         <item>Пн</item>
         <item>Вт</item>

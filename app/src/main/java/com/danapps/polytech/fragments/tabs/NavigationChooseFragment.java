@@ -8,9 +8,11 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
@@ -95,6 +97,20 @@ public class NavigationChooseFragment extends Fragment {
                         .beginTransaction()
                         .replace(R.id.frame_layout, navigationFragment, "NavigationFragment")
                         .commit());
+
+        fromACTV.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE)
+                toACTV.setSelection(0, toACTV.getText().length());
+
+            return false;
+        });
+
+        toACTV.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE)
+                view.findViewById(R.id.nav_loadBTN).performClick();
+
+            return false;
+        });
 
         return view;
     }

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -150,6 +151,23 @@ public class MainAuthFragment extends Fragment {
         view.findViewById(R.id.auth_registerBTN).setOnClickListener(v ->
             ((MainActivity) getActivity()).loadFragment(8));
 
+
+        ((EditText) view.findViewById(R.id.auth_emailET)).setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE)
+                ((EditText) view.findViewById(R.id.auth_passET))
+                        .setSelection(((EditText) view.findViewById(R.id.auth_passET))
+                                .getText()
+                                .length());
+
+            return false;
+        });
+
+        ((EditText) view.findViewById(R.id.auth_passET)).setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE)
+                logBTN.performClick();
+
+            return false;
+        });
 
         return view;
     }

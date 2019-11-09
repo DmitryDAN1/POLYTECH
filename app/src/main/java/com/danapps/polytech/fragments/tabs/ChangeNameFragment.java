@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.danapps.polytech.MainActivity;
@@ -21,11 +23,15 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class ChangeNameFragment extends Fragment {
 
+    private EditText nameET;
+    private EditText surnameET;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_change_name, container, false);
         SharedPreferences sPref = getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
-
+        nameET = view.findViewById(R.id.changeName_nameET);
+        surnameET = view.findViewById(R.id.changeName_surnameET);
         view.findViewById(R.id.changeName_backBTN).setOnClickListener(v ->
                 ((MainActivity) getActivity()).loadFragment(4));
 
@@ -45,6 +51,20 @@ public class ChangeNameFragment extends Fragment {
                 myRef.child("UserSurname").setValue(surnameET.getText().toString());
                 ((MainActivity) getActivity()).loadFragment(4);
             }
+        });
+
+        nameET.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE)
+                surnameET.setSelection(surnameET.getText().length());
+
+            return false;
+        });
+
+        surnameET.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE)
+                view.findViewById(R.id.changeName_nextBTN).performClick();
+
+            return false;
         });
 
         return view;

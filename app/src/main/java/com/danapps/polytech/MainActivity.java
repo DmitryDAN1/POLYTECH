@@ -2,14 +2,21 @@ package com.danapps.polytech;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -74,10 +81,12 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        @SuppressLint("InflateParams") View view = LayoutInflater.from(getBaseContext()).inflate(R.layout.activity_main, null, true);
+        SharedPreferences sPref = getSharedPreferences("UserInfo", MODE_PRIVATE);
+        updateTheme(sPref);
+        @SuppressLint("InflateParams")
+        View view = LayoutInflater.from(getBaseContext()).inflate(R.layout.activity_main, null, true);
         setContentView(view);
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);
-        SharedPreferences sPref = getSharedPreferences("UserInfo", MODE_PRIVATE);
         SharedPreferences tPref = getSharedPreferences("TimedInfo", MODE_PRIVATE);
         tPref.edit().clear().apply();
 //        sPref.edit().clear().apply();
@@ -199,6 +208,12 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        finishAffinity();
+        super.onDestroy();
+    }
+
     private void showExitDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
                 .setTitle(getString(R.string.exit_from_app_mainText)).setMessage(getString(R.string.exit_from_app_subText))
@@ -213,7 +228,25 @@ public class MainActivity extends FragmentActivity {
             fm.beginTransaction().replace(R.id.frame_layout, new ChangeGroupFragment()).commit();
         else
             fm.beginTransaction().replace(R.id.frame_layout, fragments[currentFragment], String.valueOf(currentFragment)).commit();
-
         Log.e("Fragment", "loadFragment:" + id);
+    }
+
+    public void updateTheme(SharedPreferences sPref) {
+        if (sPref.getString("NightTheme", "NO").equals("YES"))
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        else
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+    }
+
+    public void showRebootDialog() {
+        AlertDialog.Builder dialogA = new AlertDialog.Builder(MainActivity.this)
+                .setTitle("Перезапустите приложение")
+                .setMessage("Чтобы изменние стали работать, необходимо перезапустить приложение")
+                .setPositiveButton("Перезапустить", (dialog, which) -> finishAffinity());
+
+        dialogA.create();
+//        dialogA.setOnCancelListener(dialog -> finishAffinity());
+        dialogA.setOnDismissListener(dialog1 -> finishAffinity());
+        dialogA.show();
     }
 }

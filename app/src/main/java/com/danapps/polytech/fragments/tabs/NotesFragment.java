@@ -139,7 +139,7 @@ public class NotesFragment extends Fragment {
 
             @Override
             public void onLongClick(View view, int position) {
-                Toast.makeText(getContext(), String.valueOf(position+10), Toast.LENGTH_SHORT).show();
+
             }
         }));
 

@@ -2,7 +2,9 @@ package com.danapps.polytech.fragments.tabs;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -12,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.danapps.polytech.R;
@@ -26,6 +29,11 @@ public class MenuFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.fragment_menu, container, false);
         SharedPreferences sPref = getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        if (sPref.getString("NightTheme", "NO").equals("YES"))
+            ((Switch) view.findViewById(R.id.menu_body_themeSwitch)).setChecked(true);
+        else
+            ((Switch) view.findViewById(R.id.menu_body_themeSwitch)).setChecked(false);
+
         if (mAuth.getCurrentUser() != null) {
             view.findViewById(R.id.menu_authBlock).setVisibility(View.VISIBLE);
             view.findViewById(R.id.menu_authLine).setVisibility(View.VISIBLE);
@@ -75,6 +83,19 @@ public class MenuFragment extends Fragment {
 
         view.findViewById(R.id.menu_auth_emailContent).setOnClickListener(v ->
                 ((MainActivity) getActivity()).loadFragment(17));
+
+        ((Switch) view.findViewById(R.id.menu_body_themeSwitch)).setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked)
+                sPref.edit().putString("NightTheme", "YES").apply();
+            else
+                sPref.edit().putString("NightTheme", "NO").apply();
+
+            ((MainActivity) getActivity()).updateTheme(sPref);
+            Log.e("ThemeChanged", sPref.getString("NightTheme", "No"));
+
+            ((MainActivity) getActivity()).showRebootDialog();
+        });
+
         return view;
     }
 

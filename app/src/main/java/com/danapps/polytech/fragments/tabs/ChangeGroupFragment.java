@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -144,6 +145,13 @@ public class ChangeGroupFragment extends Fragment {
         view.findViewById(R.id.changeGroup_backBTN).setOnClickListener(v ->
                 ((MainActivity) getActivity()).loadFragment(6)
         );
+
+        groupACTV.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE)
+                view.findViewById(R.id.changeGroup_nextBTN).performClick();
+
+            return false;
+        });
 
         return view;
     }
