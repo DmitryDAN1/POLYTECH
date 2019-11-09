@@ -72,6 +72,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
 
     implementation "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:1.0.6"
-
+    implementation 'com.github.MikeOrtiz:TouchImageView:2.2.0'
     implementation project(path: ':ruz')
 }

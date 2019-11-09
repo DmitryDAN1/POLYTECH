@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.core.app.ActivityCompat;
@@ -93,7 +94,9 @@ public class NavigationFragment extends Fragment {
 
 
         if (sPref.getBoolean("isRoute", false)) {
-            DirectionsApiRequest request = DirectionsApi.newRequest(geoApiContext)
+            DirectionsApiRequest request =
+                    DirectionsApi
+                    .newRequest(geoApiContext)
                     .origin(place1.getPosition().latitude + "," + place1.getPosition().longitude)
                     .destination(place2.getPosition().latitude + "," + place2.getPosition().longitude)
                     .mode(TravelMode.WALKING);
@@ -102,9 +105,15 @@ public class NavigationFragment extends Fragment {
                 @Override
                 public void onResult(final DirectionsResult result) {
                     Handler mainHandler = new Handler(Looper.getMainLooper());
-                    mainHandler.post(() ->
-                            currentPolyline = googleMap.addPolyline(new PolylineOptions()
-                                .addAll(PolyUtil.decode(result.routes[0].overviewPolyline.getEncodedPath())).width(20)));
+                    mainHandler.post(() -> {
+                        PolylineOptions polylineOptions =
+                                new PolylineOptions()
+                                        .addAll(PolyUtil.decode(result.routes[0].overviewPolyline.getEncodedPath()))
+                                        .width(30)
+                                        .color(Color.rgb(50,150,60));
+
+                        currentPolyline = googleMap.addPolyline(polylineOptions);
+                    });
                 }
 
                 @Override
