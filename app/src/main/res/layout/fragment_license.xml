@@ -1,20 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primaryBackgroundColor"
     android:orientation="horizontal"
     tools:context=".fragments.tabs.SchemeFragment">
 
-    <TextView
+    <!--    <TextView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_centerInParent="true"-->
+    <!--        android:layout_margin="25dp"-->
+    <!--        android:fontFamily="@font/sfmedium"-->
+    <!--        android:gravity="center"-->
+    <!--        android:text="Данный раздел в разработке!"-->
+    <!--        android:textSize="25sp"-->
+    <!--        tools:ignore="HardcodedText" />-->
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/copyright_iconsCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_margin="25dp"
-        android:fontFamily="@font/sfmedium"
-        android:gravity="center"
-        android:text="Данный раздел в разработке!"
-        android:textSize="25sp"
-        tools:ignore="HardcodedText" />
+        android:layout_margin="10dp"
+        android:background="@color/secondaryBackgroundColor"
+        app:cardCornerRadius="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfsemibold"
+            android:padding="10dp"
+            android:text="@string/images"
+            android:textColor="@color/textColor"
+            android:textSize="18sp" />
+
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

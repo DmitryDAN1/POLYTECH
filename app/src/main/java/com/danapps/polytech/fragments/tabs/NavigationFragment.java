@@ -27,6 +27,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -157,9 +159,14 @@ public class NavigationFragment extends Fragment {
                 googleMap.setMyLocationEnabled(true);
             }
 
+
             NavigationFragment.this.googleMap = googleMap;
-            NavigationFragment.this.googleMap.addMarker(place1);
-            NavigationFragment.this.googleMap.addMarker(place2);
+            NavigationFragment.this.googleMap
+                    .addMarker(place1)
+                    .setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+            NavigationFragment.this.googleMap
+                    .addMarker(place2)
+                    .setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
             NavigationFragment.this.googleMap.setBuildingsEnabled(true);
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place1.getPosition(), 17f));
         });

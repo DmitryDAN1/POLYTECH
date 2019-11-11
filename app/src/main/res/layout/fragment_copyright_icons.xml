@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryBackgroundColor"
+    tools:context=".fragments.tabs.CopyrightIconsFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/copyright_icon1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/secondaryBackgroundColor"
+        app:cardCornerRadius="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/icon1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:padding="5dp"
+                android:src="@drawable/ic_moon_black_24dp"
+                android:tint="@color/icColor"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/iconText1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/icon1"
+                android:fontFamily="@font/sfsemibold"
+                android:padding="10dp"
+                android:text="Icon made by iconixar from www.flaticon.com"
+                android:textColor="@color/textColor"
+                android:textSize="12sp"
+                tools:ignore="HardcodedText" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/copyright_icon2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/copyright_icon1"
+        android:layout_margin="10dp"
+        android:background="@color/secondaryBackgroundColor"
+        app:cardCornerRadius="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/icon2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:padding="5dp"
+                android:src="@drawable/ic_at_gray_24dp"
+                android:tint="@color/icColor"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/iconText2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/icon2"
+                android:fontFamily="@font/sfsemibold"
+                android:padding="10dp"
+                android:text="Icon made by Gregor Cresnar from www.flaticon.com"
+                android:textColor="@color/textColor"
+                android:textSize="12sp"
+                tools:ignore="HardcodedText" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

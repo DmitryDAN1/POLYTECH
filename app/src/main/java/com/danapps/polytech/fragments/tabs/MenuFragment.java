@@ -64,6 +64,9 @@ public class MenuFragment extends Fragment {
         view.findViewById(R.id.menu_body_groupContent).setOnClickListener(v ->
                 ((MainActivity) getActivity()).loadFragment(6));
 
+        view.findViewById(R.id.menu_body_teachersContent).setOnClickListener(v ->
+                ((MainActivity) getActivity()).loadFragment(3));
+
         view.findViewById(R.id.menu_body_linksContent).setOnClickListener(v ->
                 ((MainActivity) getActivity()).loadFragment(18));
 

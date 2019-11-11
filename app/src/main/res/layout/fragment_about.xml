@@ -159,7 +159,7 @@
                         android:layout_marginEnd="15dp"
                         android:layout_toEndOf="@id/about_licenseIcon"
                         android:fontFamily="@font/sfregular"
-                        android:text="@string/about_license"
+                        android:text="@string/about_copyright"
                         android:textSize="16sp" />
 
                 </RelativeLayout>

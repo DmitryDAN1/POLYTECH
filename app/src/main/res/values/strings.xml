@@ -86,7 +86,7 @@
     <string name="change_password">Изменить пароль</string>
     <string name="about_app">О приложении</string>
     <string name="change_name">Сменить имя профиля</string>
-    <string name="app_version">Версия приложения: 0.3.3</string>
+    <string name="app_version">Версия приложения: 0.3.6</string>
     <string name="auditory_format">%s, ауд. %s</string>
     <string name="unknown">Неизвестно</string>
     <string name="schedule_network_failed">Не удалось соединиться с сервером. Проверьте подключение</string>
@@ -114,7 +114,7 @@
     <string name="navigation_show_map">Открыть карту</string>
     <string name="about_contact">Связаться с разработчиком</string>
     <string name="about_mark">Оценить приложение в Google Play</string>
-    <string name="about_license">Лицензии</string>
+    <string name="about_copyright">Копирайт</string>
     <string name="useful_links">Полезные ссылки</string>
     <string name="sites_title">ОБРАЗОВАТЕЛЬНЫЕ ПОРТАЛЫ</string>
     <string name="central_server_lms">Центральный сервер (LMS)</string>
@@ -133,6 +133,8 @@
     <string name="dl">Институт компьютерных наук и технологий</string>
     <string name="dlhum">Гуманитарный институт</string>
     <string name="night_theme">Тёмная тема</string>
+    <string name="teachers">Преподаватели</string>
+    <string name="images">Изображения</string>
     <string-array name="calendar_short_weekdays">
         <item>Пн</item>
         <item>Вт</item>

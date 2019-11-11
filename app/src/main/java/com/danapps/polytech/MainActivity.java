@@ -1,5 +1,13 @@
 package com.danapps.polytech;
 
+import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -7,31 +15,18 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
-import android.annotation.SuppressLint;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.ContextThemeWrapper;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.Toast;
-
 import com.danapps.polytech.fragments.tabs.AboutFragment;
 import com.danapps.polytech.fragments.tabs.ChangeFacultyFragment;
 import com.danapps.polytech.fragments.tabs.ChangeGroupFragment;
 import com.danapps.polytech.fragments.tabs.ChangeNameFragment;
 import com.danapps.polytech.fragments.tabs.ChangePassFragment;
+import com.danapps.polytech.fragments.tabs.CopyrightIconsFragment;
 import com.danapps.polytech.fragments.tabs.LicenseFragment;
 import com.danapps.polytech.fragments.tabs.LinksFragment;
 import com.danapps.polytech.fragments.tabs.MainAuthFragment;
 import com.danapps.polytech.fragments.tabs.MenuFragment;
 import com.danapps.polytech.fragments.tabs.NavigationChooseFragment;
+import com.danapps.polytech.fragments.tabs.NotesFragment;
 import com.danapps.polytech.fragments.tabs.RegisterEmailFragment;
 import com.danapps.polytech.fragments.tabs.RegisterFinishFragment;
 import com.danapps.polytech.fragments.tabs.RegisterPassFragment;
@@ -39,7 +34,6 @@ import com.danapps.polytech.fragments.tabs.ResetPassEmailFragment;
 import com.danapps.polytech.fragments.tabs.ResetPassFinishFragment;
 import com.danapps.polytech.fragments.tabs.ScheduleFragment;
 import com.danapps.polytech.fragments.tabs.SchemeFragment;
-import com.danapps.polytech.fragments.tabs.NotesFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -75,7 +69,8 @@ public class MainActivity extends FragmentActivity {
             new LicenseFragment(),                      // 15
             new ChangePassFragment(),                   // 16
             new ChangeEmailFragment(),                  // 17
-            new LinksFragment()                         // 18
+            new LinksFragment(),                        // 18
+            new CopyrightIconsFragment()                // 19
     };
 
     @Override
@@ -190,11 +185,16 @@ public class MainActivity extends FragmentActivity {
                 loadFragment(14);
                 break;
 
+            case 3:     // SchemeFragment TODO: THAT WILL NOT SCHEME
             case 6:     // ChangeFacultyFragment
                 if (bottomNavigationView.getSelectedItemId() == R.id.menu_item)
-                    loadFragment(4);
+                    loadFragment(4);    // MenuFragment
                 else
                     showExitDialog();
+                break;
+
+            case 19:
+                loadFragment(15);   // LicenseFragment
                 break;
 
             default:

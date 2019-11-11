@@ -16,11 +16,11 @@
         android:text="Данный раздел в разработке!"
         android:textSize="25sp"
         tools:ignore="HardcodedText" />
-<!--
-    <com.ortiz.touchview.TouchImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/test"
-        android:scaleType="centerInside" />
--->
+
+<!--    <com.ortiz.touchview.TouchImageView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:src="@drawable/first_floor"-->
+<!--        android:scaleType="centerCrop" />-->
+
 </RelativeLayout>
