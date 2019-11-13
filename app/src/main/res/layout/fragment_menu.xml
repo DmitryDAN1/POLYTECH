@@ -93,10 +93,21 @@
             <Switch
                 android:id="@+id/menu_body_themeSwitch"
                 android:layout_width="wrap_content"
+                android:enabled="false"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
                 android:layout_marginEnd="15dp" />
+
+            <ImageView
+                android:id="@+id/menu_body_changeThemeZone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:paddingTop="17.5dp"
+                android:paddingBottom="17.5dp"
+                android:background="@color/trans"
+                tools:ignore="ContentDescription" />
 
         </RelativeLayout>
 

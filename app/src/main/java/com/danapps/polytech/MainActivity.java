@@ -77,7 +77,6 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences sPref = getSharedPreferences("UserInfo", MODE_PRIVATE);
-        updateTheme(sPref);
         @SuppressLint("InflateParams")
         View view = LayoutInflater.from(getBaseContext()).inflate(R.layout.activity_main, null, true);
         setContentView(view);
@@ -231,22 +230,19 @@ public class MainActivity extends FragmentActivity {
         Log.e("Fragment", "loadFragment:" + id);
     }
 
-    public void updateTheme(SharedPreferences sPref) {
-        if (sPref.getString("NightTheme", "NO").equals("YES"))
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        else
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-    }
-
     public void showRebootDialog() {
         AlertDialog.Builder dialogA = new AlertDialog.Builder(MainActivity.this)
-                .setTitle("Перезапустите приложение")
-                .setMessage("Чтобы изменние стали работать, необходимо перезапустить приложение")
-                .setPositiveButton("Перезапустить", (dialog, which) -> finishAffinity());
+                .setTitle("Изменение темы")
+                //TODO: Дописать
+                .setMessage("Чтобы изменить тему, необходимо:" +
+                        "\n 1) Открыть приложение \"Настройки\"" +
+                        "\n2) Зайти в параметры \"Экрана\"" +
+                        "\n3) Перевести переключатель \"Темная тема\" в активное положение" +
+                        "\n4) Перезапустить приложение")
+                .setPositiveButton("Перезапустить приложение", (dialog, which) -> finishAffinity())
+                .setNegativeButton("Закрыть окно", (dialog, which) -> {});
 
         dialogA.create();
-//        dialogA.setOnCancelListener(dialog -> finishAffinity());
-        dialogA.setOnDismissListener(dialog1 -> finishAffinity());
         dialogA.show();
     }
 }

@@ -6,8 +6,10 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -29,10 +31,14 @@ public class MenuFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.fragment_menu, container, false);
         SharedPreferences sPref = getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
-        if (sPref.getString("NightTheme", "NO").equals("YES"))
+
+        Log.e("123", String.valueOf(Configuration.UI_MODE_NIGHT_NO));
+
+        if (getContext().getResources().getConfiguration().uiMode == Configuration.UI_MODE_NIGHT_YES)
             ((Switch) view.findViewById(R.id.menu_body_themeSwitch)).setChecked(true);
         else
             ((Switch) view.findViewById(R.id.menu_body_themeSwitch)).setChecked(false);
+
 
         if (mAuth.getCurrentUser() != null) {
             view.findViewById(R.id.menu_authBlock).setVisibility(View.VISIBLE);
@@ -87,17 +93,8 @@ public class MenuFragment extends Fragment {
         view.findViewById(R.id.menu_auth_emailContent).setOnClickListener(v ->
                 ((MainActivity) getActivity()).loadFragment(17));
 
-        ((Switch) view.findViewById(R.id.menu_body_themeSwitch)).setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked)
-                sPref.edit().putString("NightTheme", "YES").apply();
-            else
-                sPref.edit().putString("NightTheme", "NO").apply();
-
-            ((MainActivity) getActivity()).updateTheme(sPref);
-            Log.e("ThemeChanged", sPref.getString("NightTheme", "No"));
-
-            ((MainActivity) getActivity()).showRebootDialog();
-        });
+        view.findViewById(R.id.menu_body_changeThemeZone).setOnClickListener(v ->
+                ((MainActivity) getActivity()).showRebootDialog());
 
         return view;
     }

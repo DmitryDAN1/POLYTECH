@@ -57,20 +57,34 @@ public class NavigationFragment extends Fragment {
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.fragment_navigation, null);
         NavigationChooseFragment navigationChooseFragment = new NavigationChooseFragment();
         SharedPreferences sPref = Objects.requireNonNull(getActivity()).getSharedPreferences("TimedInfo", Context.MODE_PRIVATE);
-
+        String[] buildingsArray = getResources().getStringArray(R.array.buildings);
         MarkerOptions[] places = {
-                new MarkerOptions().position(new LatLng(60.007224, 30.372821)).title(getString(R.string.mainBuilding)),
-                new MarkerOptions().position(new LatLng(60.008859, 30.372726)).title(getString(R.string.corpus1)),
-                new MarkerOptions().position(new LatLng(60.008492, 30.374974)).title(getString(R.string.corpus2)),
-                new MarkerOptions().position(new LatLng(60.007146, 30.381604)).title(getString(R.string.corpus3)),
-                new MarkerOptions().position(new LatLng(60.007449, 30.376937)).title(getString(R.string.corpus4)),
-                new MarkerOptions().position(new LatLng(59.999852, 30.374400)).title(getString(R.string.corpus5)),
-                new MarkerOptions().position(new LatLng(60.000091, 30.367683)).title(getString(R.string.corpus6)),
-                new MarkerOptions().position(new LatLng(60.000666, 30.366200)).title(getString(R.string.corpus9)),
-                new MarkerOptions().position(new LatLng(60.000582, 30.368989)).title(getString(R.string.corpus10)),
-                new MarkerOptions().position(new LatLng(60.009048, 30.377305)).title(getString(R.string.corpus11)),
-                new MarkerOptions().position(new LatLng(60.007133, 30.390397)).title(getString(R.string.corpus15)),
-                new MarkerOptions().position(new LatLng(60.007729, 30.389621)).title(getString(R.string.corpus16))
+                new MarkerOptions().position(new LatLng(60.007214, 30.372825)).title(buildingsArray[0]),
+                new MarkerOptions().position(new LatLng(60.008848, 30.372723)).title(buildingsArray[1]),
+                new MarkerOptions().position(new LatLng(60.008428, 30.375230)).title(buildingsArray[2]),
+                new MarkerOptions().position(new LatLng(60.007161, 30.381251)).title(buildingsArray[3]),
+                new MarkerOptions().position(new LatLng(60.007429, 30.377105)).title(buildingsArray[4]),
+                new MarkerOptions().position(new LatLng(59.999852, 30.374400)).title(buildingsArray[5]),
+                new MarkerOptions().position(new LatLng(60.000091, 30.367683)).title(buildingsArray[6]),
+                new MarkerOptions().position(new LatLng(60.000666, 30.366200)).title(buildingsArray[7]),
+                new MarkerOptions().position(new LatLng(60.000582, 30.368989)).title(buildingsArray[8]),
+                new MarkerOptions().position(new LatLng(60.009048, 30.377305)).title(buildingsArray[9]),
+                new MarkerOptions().position(new LatLng(60.007133, 30.390397)).title(buildingsArray[10]),
+                new MarkerOptions().position(new LatLng(60.007729, 30.389621)).title(buildingsArray[11]),
+                new MarkerOptions().position(new LatLng(60.005673, 30.381761)).title(buildingsArray[12]),
+                new MarkerOptions().position(new LatLng(60.006340, 30.382602)).title(buildingsArray[13]),
+                new MarkerOptions().position(new LatLng(60.006556, 30.376312)).title(buildingsArray[14]),
+                new MarkerOptions().position(new LatLng(60.007672, 30.376143)).title(buildingsArray[15]),
+                new MarkerOptions().position(new LatLng(60.005903, 30.378971)).title(buildingsArray[16]),
+                new MarkerOptions().position(new LatLng(60.002819, 30.368477)).title(buildingsArray[17]),
+                new MarkerOptions().position(new LatLng(60.005921, 30.374256)).title(buildingsArray[18]),
+                new MarkerOptions().position(new LatLng(60.007420, 30.379492)).title(buildingsArray[19]),
+                new MarkerOptions().position(new LatLng(60.003102, 30.374487)).title(buildingsArray[20]),
+                new MarkerOptions().position(new LatLng(60.009391, 30.371517)).title(buildingsArray[21]),
+                new MarkerOptions().position(new LatLng(59.994482, 30.356609)).title(buildingsArray[22]),
+                new MarkerOptions().position(new LatLng(60.004634, 30.379182)).title(buildingsArray[23]),
+                new MarkerOptions().position(new LatLng(60.004881, 30.370738)).title(buildingsArray[24]),
+                new MarkerOptions().position(new LatLng(60.004806, 30.377978)).title(buildingsArray[25]),
         };
 
         if (sPref.getBoolean("isRoute", false)) {

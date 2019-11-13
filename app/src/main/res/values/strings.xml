@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">PolyLook</string>
+    <string name="app_version">Версия приложения: 0.3.7</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="notifications">Уведомления</string>
     <string name="group_number">Номер группы</string>
@@ -50,18 +51,34 @@
     <string name="schedule">Расписание</string>
     <string name="menu_scheme">Схемы корпусов</string>
     <string name="menu">Меню</string>
-    <string name="mainBuilding">Главное здание</string>
-    <string name="corpus1">1-й корпус</string>
-    <string name="corpus2">2-й корпус</string>
-    <string name="corpus3">3-й корпус</string>
-    <string name="corpus4">4-й корпус</string>
-    <string name="corpus5">5-й корпус</string>
-    <string name="corpus6">6-й корпус</string>
-    <string name="corpus9">9-й корпус</string>
-    <string name="corpus10">10-й корпус</string>
-    <string name="corpus11">11-й корпус</string>
-    <string name="corpus15">15-й корпус</string>
-    <string name="corpus16">16-й корпус</string>
+    <string-array name="buildings">
+        <item>Главное здание</item>
+        <item>1-й корпус</item>
+        <item>2-й корпус</item>
+        <item>3-й корпус</item>
+        <item>4-й корпус</item>
+        <item>5-й корпус</item>
+        <item>6-й корпус</item>
+        <item>9-й корпус</item>
+        <item>10-й корпус</item>
+        <item>11-й корпус</item>
+        <item>15-й корпус (ИМОП)</item>
+        <item>16-й корпус</item>        <!-- 11 -->
+        <item>1-й гидрокорпус</item>
+        <item>2-й гидрокорпус</item>
+        <item>Химический корпус</item>
+        <item>Механический корпус</item>
+        <item>НИК</item>                <!-- 16 -->
+        <item>Спортивный комплекс</item>                <!-- 17 -->
+        <item>Гидробашня</item>                <!-- 18 -->
+        <item>Лабораторный корпус</item>                <!-- 19 -->
+        <item>НОЦ РАН</item>                <!-- 20 -->
+        <item>Секретариат приёмной комиссии</item>                <!-- 21 -->
+        <item>ИПМЭиТ</item>                <!-- 22 -->
+        <item>Дом учёных в Лесном</item>                <!-- 23 -->
+        <item>1-й профессорский корпус</item>                <!-- 24 -->
+        <item>2-й профессорский корпус</item>                <!-- 24 -->
+    </string-array>
     <string name="chooseRoute">Выберите маршрут</string>
     <string name="navigation_choose_from_error">Вы не ввели точку отправления</string>
     <string name="navigation_choose_to_error">Вы не ввели точку прибытия!</string>
@@ -86,7 +103,6 @@
     <string name="change_password">Изменить пароль</string>
     <string name="about_app">О приложении</string>
     <string name="change_name">Сменить имя профиля</string>
-    <string name="app_version">Версия приложения: 0.3.6</string>
     <string name="auditory_format">%s, ауд. %s</string>
     <string name="unknown">Неизвестно</string>
     <string name="schedule_network_failed">Не удалось соединиться с сервером. Проверьте подключение</string>

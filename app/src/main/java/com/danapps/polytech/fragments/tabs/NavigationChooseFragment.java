@@ -29,20 +29,7 @@ public class NavigationChooseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.fragment_navigation_choose, null);
-        String[] places = {
-            getString(R.string.mainBuilding),
-            getString(R.string.corpus1),
-            getString(R.string.corpus2),
-            getString(R.string.corpus3),
-            getString(R.string.corpus4),
-            getString(R.string.corpus5),
-            getString(R.string.corpus6),
-            getString(R.string.corpus9),
-            getString(R.string.corpus10),
-            getString(R.string.corpus11),
-            getString(R.string.corpus15),
-            getString(R.string.corpus16)
-        };
+        String[] places = getResources().getStringArray(R.array.buildings);
 
         ArrayAdapter<String> placesAdapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()), android.R.layout.simple_list_item_1, places);
         AutoCompleteTextView fromACTV = view.findViewById(R.id.nav_fromACTV);
