@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class ResetPassEmailFragment extends Fragment {
 
-    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

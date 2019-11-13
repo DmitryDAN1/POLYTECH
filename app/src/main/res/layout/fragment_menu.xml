@@ -59,63 +59,53 @@
         android:layout_below="@id/menu_headerLine"
         android:background="@color/secondaryBackgroundColor">
 
-        <RelativeLayout
-            android:id="@+id/menu_body_themeContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/menu_body_themeContent"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
 
-            <ImageView
-                android:id="@+id/menu_body_themeIcon"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:src="@drawable/ic_moon_black_24dp"
-                android:tint="@color/icColor"
-                tools:ignore="ContentDescription" />
+<!--            <ImageView-->
+<!--                android:id="@+id/menu_body_themeIcon"-->
+<!--                android:layout_width="35dp"-->
+<!--                android:layout_height="35dp"-->
+<!--                android:layout_marginStart="15dp"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:layout_marginBottom="5dp"-->
+<!--                android:paddingTop="5dp"-->
+<!--                android:paddingBottom="5dp"-->
+<!--                android:src="@drawable/ic_moon_black_24dp"-->
+<!--                android:tint="@color/icColor"-->
+<!--                tools:ignore="ContentDescription" />-->
 
-            <TextView
-                android:id="@+id/menu_body_themeText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_toStartOf="@id/menu_body_themeSwitch"
-                android:layout_toEndOf="@id/menu_body_themeIcon"
-                android:fontFamily="@font/sfregular"
-                android:text="@string/night_theme"
-                android:textSize="16sp" />
+<!--            <TextView-->
+<!--                android:id="@+id/menu_body_themeText"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_centerInParent="true"-->
+<!--                android:layout_marginStart="15dp"-->
+<!--                android:layout_marginEnd="15dp"-->
+<!--                android:layout_toStartOf="@id/menu_body_themeSwitch"-->
+<!--                android:layout_toEndOf="@id/menu_body_themeIcon"-->
+<!--                android:fontFamily="@font/sfregular"-->
+<!--                android:text="@string/night_theme"-->
+<!--                android:textSize="16sp" />-->
 
-            <Switch
-                android:id="@+id/menu_body_themeSwitch"
-                android:layout_width="wrap_content"
-                android:enabled="false"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerInParent="true"
-                android:layout_marginEnd="15dp" />
+<!--            <ImageView-->
+<!--                android:id="@+id/menu_body_changeThemeZone"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:paddingTop="17.5dp"-->
+<!--                android:paddingBottom="17.5dp"-->
+<!--                android:background="@color/trans"-->
+<!--                tools:ignore="ContentDescription" />-->
 
-            <ImageView
-                android:id="@+id/menu_body_changeThemeZone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:paddingTop="17.5dp"
-                android:paddingBottom="17.5dp"
-                android:background="@color/trans"
-                tools:ignore="ContentDescription" />
-
-        </RelativeLayout>
+<!--        </RelativeLayout>-->
 
         <RelativeLayout
             android:id="@+id/menu_body_groupContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/menu_body_themeContent">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/menu_body_groupIcon"

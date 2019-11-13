@@ -13,7 +13,7 @@ public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
     private GestureDetector gestureDetector;
     private ClickListener clickListener;
 
-    public RecyclerTouchListener(Context context, final RecyclerView recyclerView, ClickListener clickListener) {
+    public RecyclerTouchListener(Context context, ClickListener clickListener) {
 
         this.clickListener = clickListener;
 
@@ -21,13 +21,6 @@ public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
                 return true;
-            }
-
-            @Override
-            public void onLongPress(MotionEvent e) {
-                View child = recyclerView.findChildViewUnder(e.getX(), e.getY());
-                if (child != null && clickListener != null)
-                    clickListener.onLongClick(child, recyclerView.getChildAdapterPosition(child));
             }
         });
     }
@@ -56,7 +49,5 @@ public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
     public interface ClickListener {
 
         void onClick(View view, int position);
-
-        void onLongClick(View view, int position);
     }
 }

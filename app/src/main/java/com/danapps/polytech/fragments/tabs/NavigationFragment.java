@@ -8,11 +8,6 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -21,13 +16,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.danapps.polytech.R;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+
 import com.danapps.polytech.MainActivity;
+import com.danapps.polytech.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
@@ -163,9 +161,7 @@ public class NavigationFragment extends Fragment {
 
             if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-                if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)) {
-                    //TODO: что то тут должно быть но что не моя забота
-                } else {
+                if (!ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)) {
                     ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
                 }
             } else {

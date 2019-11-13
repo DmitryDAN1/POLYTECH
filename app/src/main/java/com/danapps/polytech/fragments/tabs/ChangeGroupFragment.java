@@ -41,10 +41,7 @@ public class ChangeGroupFragment extends Fragment {
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-    private FacultiesApi facultiesApi;
-
     private AutoCompleteTextView groupACTV;
-    private ArrayAdapter<String> stringArrayAdapter;
     private RelativeLayout mainRelativeLayout;
     private Button nextButton;
 
@@ -53,7 +50,7 @@ public class ChangeGroupFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_change_group, container, false);
         SharedPreferences tPref = getActivity().getSharedPreferences("TimedInfo", Context.MODE_PRIVATE);
         SharedPreferences sPref = getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
-        facultiesApi = RuzService.getInstance().getFacultiesApi();
+        FacultiesApi facultiesApi = RuzService.getInstance().getFacultiesApi();
         List<String> list = new ArrayList<>();
         List<Integer> listId = new ArrayList<>();
         TextInputLayout groupTIL = view.findViewById(R.id.changeGroup_groupTIL);
@@ -81,7 +78,7 @@ public class ChangeGroupFragment extends Fragment {
             }
         });
 
-        stringArrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, list);
+        ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, list);
         groupACTV.setAdapter(stringArrayAdapter);
 
         view.findViewById(R.id.changeGroup_nextBTN).setOnClickListener(v -> {

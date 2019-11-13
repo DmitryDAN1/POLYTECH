@@ -10,11 +10,11 @@ public class NoteListItem {
         this.subtitle = subtitle;
     }
 
-    public String getTitle() {
+    String getTitle() {
         return title;
     }
 
-    public String getSubtitle() {
+    String getSubtitle() {
         return subtitle;
     }
 }

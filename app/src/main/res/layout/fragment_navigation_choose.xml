@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:completionThreshold="0"
                 android:hint="@string/navigation_origin"
-                android:inputType="textAutoComplete"
+                android:inputType="text"
                 android:textSize="20sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -63,9 +63,9 @@
                 android:id="@+id/nav_toACTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:completionThreshold="1"
+                android:completionThreshold="0"
                 android:hint="@string/navigation_destination"
-                android:inputType="textAutoComplete"
+                android:inputType="text"
                 android:textSize="20sp" />
 
         </com.google.android.material.textfield.TextInputLayout>

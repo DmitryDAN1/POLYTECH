@@ -26,14 +26,11 @@ public class AboutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_about, container, false);
 
-        view.findViewById(R.id.about_contactContent).setOnClickListener(v -> {
-            openLink(getActivity(), "https://vk.com/dmitryidan");
-        });
+        view.findViewById(R.id.about_contactContent).setOnClickListener(v ->
+                openLink(getActivity(), "https://vk.com/dmitryidan"));
 
-        //TODO: Добавить ссылку
-        view.findViewById(R.id.about_rateContent).setOnClickListener(v -> {
-
-        });
+        view.findViewById(R.id.about_rateContent).setOnClickListener(v ->
+                openLink(getActivity(), "https://play.google.com/store/apps/details?id=com.danapps.polytech"));
 
         view.findViewById(R.id.about_licenseContent).setOnClickListener(v ->
             ((MainActivity) getActivity()).loadFragment(15));

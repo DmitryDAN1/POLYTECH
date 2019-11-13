@@ -1,6 +1,5 @@
 package com.danapps.polytech.faculties;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +15,9 @@ import java.util.List;
 public class FacultiesAdapter extends RecyclerView.Adapter<FacultiesAdapter.ViewHolder>{
 
     private List<FacultiesListItem> listItems;
-    private Context context;
-    private int current;
 
-    public FacultiesAdapter(List<FacultiesListItem> listItems, Context context) {
+    public FacultiesAdapter(List<FacultiesListItem> listItems) {
         this.listItems = listItems;
-        this.context = context;
     }
 
     @NonNull
@@ -38,11 +34,7 @@ public class FacultiesAdapter extends RecyclerView.Adapter<FacultiesAdapter.View
         FacultiesListItem listItem = listItems.get(position);
         holder.textViewTitle.setText(listItem.getName());
 
-        holder.textViewTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                current = position;
-            }
+        holder.textViewTitle.setOnClickListener(v -> {
         });
     }
 

@@ -10,12 +10,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.danapps.polytech.fragments.tabs.AboutFragment;
+import com.danapps.polytech.fragments.tabs.ChangeEmailFragment;
 import com.danapps.polytech.fragments.tabs.ChangeFacultyFragment;
 import com.danapps.polytech.fragments.tabs.ChangeGroupFragment;
 import com.danapps.polytech.fragments.tabs.ChangeNameFragment;
@@ -228,21 +228,5 @@ public class MainActivity extends FragmentActivity {
         else
             fm.beginTransaction().replace(R.id.frame_layout, fragments[currentFragment], String.valueOf(currentFragment)).commit();
         Log.e("Fragment", "loadFragment:" + id);
-    }
-
-    public void showRebootDialog() {
-        AlertDialog.Builder dialogA = new AlertDialog.Builder(MainActivity.this)
-                .setTitle("Изменение темы")
-                //TODO: Дописать
-                .setMessage("Чтобы изменить тему, необходимо:" +
-                        "\n 1) Открыть приложение \"Настройки\"" +
-                        "\n2) Зайти в параметры \"Экрана\"" +
-                        "\n3) Перевести переключатель \"Темная тема\" в активное положение" +
-                        "\n4) Перезапустить приложение")
-                .setPositiveButton("Перезапустить приложение", (dialog, which) -> finishAffinity())
-                .setNegativeButton("Закрыть окно", (dialog, which) -> {});
-
-        dialogA.create();
-        dialogA.show();
     }
 }

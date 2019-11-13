@@ -1,4 +1,4 @@
-package com.danapps.polytech;
+package com.danapps.polytech.fragments.tabs;
 
 
 import android.content.Context;
@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.danapps.polytech.MainActivity;
+import com.danapps.polytech.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;

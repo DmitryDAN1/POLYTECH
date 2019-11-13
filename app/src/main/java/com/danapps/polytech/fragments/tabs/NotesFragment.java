@@ -8,22 +8,18 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.danapps.polytech.R;
 import com.danapps.polytech.notes.NoteAdapter;
@@ -125,22 +121,13 @@ public class NotesFragment extends Fragment {
 
         });
 
-        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
-
-            @Override
-            public void onClick(View view, int position) {
-                NoteEditFragment noteEditFragment = new NoteEditFragment();
-                sPref.edit().putInt("CurrentNote", (position + 1)).apply();
-                Objects.requireNonNull(getFragmentManager())
-                        .beginTransaction()
-                        .replace(R.id.frame_layout, noteEditFragment, "NoteEditFragment")
-                        .commit();
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-
-            }
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), (view1, position) -> {
+            NoteEditFragment noteEditFragment = new NoteEditFragment();
+            sPref.edit().putInt("CurrentNote", (position + 1)).apply();
+            Objects.requireNonNull(getFragmentManager())
+                    .beginTransaction()
+                    .replace(R.id.frame_layout, noteEditFragment, "NoteEditFragment")
+                    .commit();
         }));
 
         return view;

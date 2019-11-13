@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">PolyLook</string>
-    <string name="app_version">Версия приложения: 0.3.7</string>
+    <string name="app_version">Версия приложения: 1.0.0</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="notifications">Уведомления</string>
     <string name="group_number">Номер группы</string>
@@ -11,7 +11,7 @@
     <string name="register">Зарегестрироваться</string>
     <string name="reset_pass_hint">Забыли пароль?</string>
     <string name="next">Продолжить</string>
-    <string name="reg_email_mainText">Введите email</string>
+    <string name="reg_email_mainText">Введите Email</string>
     <string name="reg_email_subText">Электронная почта будет использоваться для авторизации</string>
     <string name="reg_pass_mainText">Введите пароль</string>
     <string name="showPass">Показать пароль</string>
@@ -19,7 +19,7 @@
     <string name="reg_finish_finishBTN">Авторизоваться</string>
     <string name="reset_pass_subText">На почту будет отправлено письмо с инструкцией по сбросу пароля</string>
     <string name="auth_mainText">Авторизируйтесь</string>
-    <string name="reg_pass_subText">Используйте надёждный пароль, содержащий не менее 6 символов</string>
+    <string name="reg_pass_subText">Используйте надёждный пароль, содержащий не менее 6 символов!</string>
     <string name="reg_finish_mainText">Регистрация почти завершена</string>
     <string name="reg_finish_subText">Войдите в свой аккаунт, чтобы завершить регистрацию</string>
     <string name="reset_finish_mainText">Проверьте почту</string>
@@ -33,11 +33,11 @@
     <string name="Yes">Да</string>
     <string name="No">Нет</string>
     <string name="email_error">Вы забыли ввести почту :)</string>
-    <string name="email_error_registered">Данная электронная почта уже зарегестрирована!</string>
+    <string name="email_error_registered">Данная электронная почта уже зарегистрирована!</string>
     <string name="pass_error">Вы забыли ввести пароль :)</string>
-    <string name="pass_error_length">Пароль дожен быть не менее 6 символов!</string>
+    <string name="pass_error_length">Пароль должен быть не менее 6 символов!</string>
     <string name="welcome">Изменение имени</string>
-    <string name="welcome_start_subText">Введети имя и фамилию, которые будет отображаться в профиле</string>
+    <string name="welcome_start_subText">Введите имя и фамилию, которые будет отображаться в профиле</string>
     <string name="surname">Фамилия</string>
     <string name="name">Имя</string>
     <string name="welcome_start_name_error">Вы не ввели ваше имя!</string>
@@ -80,7 +80,7 @@
         <item>2-й профессорский корпус</item>                <!-- 24 -->
     </string-array>
     <string name="chooseRoute">Выберите маршрут</string>
-    <string name="navigation_choose_from_error">Вы не ввели точку отправления</string>
+    <string name="navigation_choose_from_error">Вы не ввели точку отправления!</string>
     <string name="navigation_choose_to_error">Вы не ввели точку прибытия!</string>
     <string name="navigation_choose_adress_error">Введите корректный адресс</string>
     <string name="notes">Заметки</string>
@@ -133,24 +133,25 @@
     <string name="about_copyright">Копирайт</string>
     <string name="useful_links">Полезные ссылки</string>
     <string name="sites_title">ОБРАЗОВАТЕЛЬНЫЕ ПОРТАЛЫ</string>
-    <string name="central_server_lms">Центральный сервер (LMS)</string>
-    <string name="fvo">Факультет военного обучения</string>
-    <string name="portasp">Портал аспирантуры</string>
-    <string name="dliets">Институт энергетики</string>
-    <string name="dlido">Институт дополнительного образования</string>
-    <string name="dlvsbtipt">Институт биомедицинских систем и биотехнологий</string>
-    <string name="dleei">Институт промышленного менеджмента, экономики и торговли</string>
-    <string name="dliamm">Институт прикладной математики и механики</string>
-    <string name="dliamt">Институт передовых производственных технологий</string>
-    <string name="immetdist">Институт машиностроения, материалов и транспорта</string>
-    <string name="dlice">Инженерно-строительный институт</string>
-    <string name="dlphnt">Институт физики, нанотехнологий и телекоммуникаций</string>
-    <string name="dlifkst">Институт физической культуры</string>
-    <string name="dl">Институт компьютерных наук и технологий</string>
-    <string name="dlhum">Гуманитарный институт</string>
+    <string name="central_server_lms" translatable="false">Центральный сервер (LMS)</string>
+    <string name="fvo" translatable="false">Факультет военного обучения</string>
+    <string name="portasp" translatable="false">Портал аспирантуры</string>
+    <string name="dliets" translatable="false">Институт энергетики</string>
+    <string name="dlido" translatable="false">Институт дополнительного образования</string>
+    <string name="dlvsbtipt" translatable="false">Институт биомедицинских систем и биотехнологий</string>
+    <string name="dleei" translatable="false">Институт промышленного менеджмента, экономики и торговли</string>
+    <string name="dliamm" translatable="false">Институт прикладной математики и механики</string>
+    <string name="dliamt" translatable="false">Институт передовых производственных технологий</string>
+    <string name="immetdist" translatable="false">Институт машиностроения, материалов и транспорта</string>
+    <string name="dlice" translatable="false">Инженерно-строительный институт</string>
+    <string name="dlphnt" translatable="false">Институт физики, нанотехнологий и телекоммуникаций</string>
+    <string name="dlifkst" translatable="false">Институт физической культуры</string>
+    <string name="dl" translatable="false">Институт компьютерных наук и технологий</string>
+    <string name="dlhum" translatable="false">Гуманитарный институт</string>
     <string name="night_theme">Тёмная тема</string>
     <string name="teachers">Преподаватели</string>
     <string name="images">Изображения</string>
+    <string name="enter_group_number">Введите номер группы</string>
     <string-array name="calendar_short_weekdays">
         <item>Пн</item>
         <item>Вт</item>

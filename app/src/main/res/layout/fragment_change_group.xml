@@ -72,7 +72,7 @@
                 android:completionThreshold="1"
                 android:fontFamily="@font/sfregular"
                 android:gravity="center"
-                android:inputType="phone"
+                android:inputType="text"
                 tools:ignore="LabelFor" />
 
         </com.google.android.material.textfield.TextInputLayout>

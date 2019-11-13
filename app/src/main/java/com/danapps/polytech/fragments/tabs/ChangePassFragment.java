@@ -4,9 +4,6 @@ package com.danapps.polytech.fragments.tabs;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,13 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import androidx.fragment.app.Fragment;
+
 import com.danapps.polytech.MainActivity;
 import com.danapps.polytech.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class ChangePassFragment extends Fragment {

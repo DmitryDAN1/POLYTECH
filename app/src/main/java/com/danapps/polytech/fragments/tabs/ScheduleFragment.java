@@ -1,18 +1,14 @@
 package com.danapps.polytech.fragments.tabs;
 
 import android.annotation.SuppressLint;
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
@@ -29,8 +25,6 @@ import com.venvw.spbstu.ruz.models.Schedule;
 import org.joda.time.LocalDate;
 
 public class ScheduleFragment extends Fragment implements ScheduleView {
-
-    private static final String TAG = "ScheduleFragment";
 
     private SchedulePresenter presenter;
 
@@ -98,9 +92,7 @@ public class ScheduleFragment extends Fragment implements ScheduleView {
     private void initScheduleCalendar(ScheduleCalendarView view) {
         scheduleCalendarView = view;
         view.attachToRecyclerView(scheduleRecyclerView);
-        view.setOnDateSelected(date -> {
-            presenter.presentForSpecificDate(date);
-        });
+        view.setOnDateSelected(date -> presenter.presentForSpecificDate(date));
     }
 
     @Override
