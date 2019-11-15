@@ -50,6 +50,7 @@ public class ChangeGroupFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_change_group, container, false);
         SharedPreferences tPref = getActivity().getSharedPreferences("TimedInfo", Context.MODE_PRIVATE);
         SharedPreferences sPref = getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        SharedPreferences gPref = getActivity().getSharedPreferences("GroupsInfo", Context.MODE_PRIVATE);
         FacultiesApi facultiesApi = RuzService.getInstance().getFacultiesApi();
         List<String> list = new ArrayList<>();
         List<Integer> listId = new ArrayList<>();
@@ -103,37 +104,15 @@ public class ChangeGroupFragment extends Fragment {
                     view.findViewById(R.id.changeGroup_nextBTN).setClickable(true);
                     groupTIL.setError("Вы ввели не корректный номер группы");
                 } else {
-                    sPref.edit().putString("UserGroupName", groupACTV.getText().toString()).apply();
-                    sPref.edit().putInt("UserGroupId", groupId).apply();
-                    Log.e("ChangeGroupFragment", "sPref<UserGroupName>: " + groupACTV.getText().toString());
-                    Log.e("ChangeGroupFragment", "sPref<UserGroupId>: " + groupId);
+                    gPref.edit().putInt("GroupsCount", gPref.getInt("GroupsCount", 0) + 1).apply();
 
-                    if (auth.getCurrentUser() != null) {
-                        DatabaseReference myRef = database.getReference(auth.getCurrentUser().getUid()).child("UserInfo");
-                        myRef.child("UserGroupId").setValue(groupId);
-                        myRef.child("UserGroupName").setValue(groupACTV.getText().toString())
-                                .addOnSuccessListener(aVoid -> {
-                                    int id = ((BottomNavigationView) getActivity()
-                                            .findViewById(R.id.bottom_navigation_view))
-                                            .getSelectedItemId();
+                    gPref.edit().putString("GroupName" + gPref.getInt("GroupsCount", 0), groupACTV.getText().toString()).apply();
+                    gPref.edit().putInt("GroupId" + gPref.getInt("GroupsCount", 0), groupId).apply();
 
-                                    if (id == R.id.schedule_item)
-                                        ((MainActivity) getActivity()).loadFragment(2);
-                                    else if (id == R.id.menu_item)
-                                        ((MainActivity) getActivity()).loadFragment(4);
-                                });
-                    } else {
-                        int id = ((BottomNavigationView) getActivity()
-                                .findViewById(R.id.bottom_navigation_view))
-                                .getSelectedItemId();
+                    if (gPref.getInt("GroupsCount", 0) <= 1)
+                        gPref.edit().putInt("CurrentGroup", 1).apply();
 
-                        if (id == R.id.schedule_item)
-                            ((MainActivity) getActivity()).loadFragment(2);
-                        else if (id == R.id.menu_item)
-                            ((MainActivity) getActivity()).loadFragment(4);
-                    }
-
-
+                    ((MainActivity) getActivity()).loadFragment(2);
                 }
             }
 

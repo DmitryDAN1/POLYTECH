@@ -152,6 +152,7 @@
     <string name="teachers">Преподаватели</string>
     <string name="images">Изображения</string>
     <string name="enter_group_number">Введите номер группы</string>
+    <string name="saved_groups">Сохранённые группы</string>
     <string-array name="calendar_short_weekdays">
         <item>Пн</item>
         <item>Вт</item>

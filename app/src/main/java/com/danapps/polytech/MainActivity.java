@@ -20,6 +20,7 @@ import com.danapps.polytech.fragments.tabs.ChangeFacultyFragment;
 import com.danapps.polytech.fragments.tabs.ChangeGroupFragment;
 import com.danapps.polytech.fragments.tabs.ChangeNameFragment;
 import com.danapps.polytech.fragments.tabs.ChangePassFragment;
+import com.danapps.polytech.fragments.tabs.ChooseGroupFragment;
 import com.danapps.polytech.fragments.tabs.CopyrightIconsFragment;
 import com.danapps.polytech.fragments.tabs.LicenseFragment;
 import com.danapps.polytech.fragments.tabs.LinksFragment;
@@ -70,13 +71,15 @@ public class MainActivity extends FragmentActivity {
             new ChangePassFragment(),                   // 16
             new ChangeEmailFragment(),                  // 17
             new LinksFragment(),                        // 18
-            new CopyrightIconsFragment()                // 19
+            new CopyrightIconsFragment(),               // 19
+            new ChooseGroupFragment()                   // 20
     };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences sPref = getSharedPreferences("UserInfo", MODE_PRIVATE);
+        SharedPreferences gPref = getSharedPreferences("GroupsInfo", MODE_PRIVATE);
         @SuppressLint("InflateParams")
         View view = LayoutInflater.from(getBaseContext()).inflate(R.layout.activity_main, null, true);
         setContentView(view);
@@ -85,7 +88,7 @@ public class MainActivity extends FragmentActivity {
         tPref.edit().clear().apply();
 //        sPref.edit().clear().apply();
 //        mAuth.signOut();
-        if (sPref.getInt("UserGroupId", 0) != 0)
+        if (gPref.getInt("GroupsCount", 0) != 0)
             loadFragment(2);
         else
             loadFragment(6);
@@ -133,7 +136,7 @@ public class MainActivity extends FragmentActivity {
                     break;
 
                 case (R.id.schedule_item):
-                    if (sPref.getInt("UserGroupId", 0) != 0)
+                    if (gPref.getInt("GroupsCount", 0) != 0)
                         loadFragment(2);
                     else
                         loadFragment(6);
@@ -154,6 +157,7 @@ public class MainActivity extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
+        SharedPreferences gPref = getSharedPreferences("GroupsInfo", MODE_PRIVATE);
         switch (currentFragment) {
 
             case 5:     // ChangeGroupFragment
@@ -196,6 +200,14 @@ public class MainActivity extends FragmentActivity {
                 loadFragment(15);   // LicenseFragment
                 break;
 
+            case 20:
+
+                if (gPref.getInt("GroupsCount", 0) != 0)
+                    loadFragment(2);
+                else
+                    loadFragment(6);
+                break;
+
             default:
                 if (getSupportFragmentManager().findFragmentByTag("NoteEditFragment") != null)
                     loadFragment(0);
@@ -219,6 +231,14 @@ public class MainActivity extends FragmentActivity {
                 .setNegativeButton(getString(R.string.No), (dialogInterface, i) -> Toast.makeText(getApplicationContext(), getString(R.string.good_choice), Toast.LENGTH_SHORT).show())
                 .setPositiveButton(getString(R.string.Yes), (dialogInterface, i) -> finishAffinity());
         builder.create().show();
+    }
+
+    public void updateFragment(int id) {
+        switch (id) {
+            case 2:
+                fragments[id] = new ScheduleFragment();
+                break;
+        }
     }
 
     public void loadFragment(int id) {
