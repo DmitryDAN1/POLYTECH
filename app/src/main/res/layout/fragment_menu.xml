@@ -27,20 +27,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/sfbold"
                 android:gravity="center"
                 android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/menu_headerGroup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/menu_headerUserNameTV"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/sfregular"
-                android:gravity="center"
-                android:text="@string/group_number"
-                android:textSize="14sp" />
+<!--            <TextView-->
+<!--                android:id="@+id/menu_headerGroup"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/menu_headerUserNameTV"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:fontFamily="@font/sfregular"-->
+<!--                android:gravity="center"-->
+<!--                android:text="@string/group_number"-->
+<!--                android:textSize="14sp" />-->
 
         </RelativeLayout>
     </RelativeLayout>
@@ -102,55 +103,53 @@
 
 <!--        </RelativeLayout>-->
 
-        <RelativeLayout
-            android:id="@+id/menu_body_groupContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/menu_body_groupContent"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
 
-            <ImageView
-                android:id="@+id/menu_body_groupIcon"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:src="@drawable/ic_group_gray"
-                android:tint="@color/icColor"
-                tools:ignore="ContentDescription" />
+<!--            <ImageView-->
+<!--                android:id="@+id/menu_body_groupIcon"-->
+<!--                android:layout_width="35dp"-->
+<!--                android:layout_height="35dp"-->
+<!--                android:layout_marginStart="15dp"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:layout_marginBottom="5dp"-->
+<!--                android:paddingTop="5dp"-->
+<!--                android:paddingBottom="5dp"-->
+<!--                android:src="@drawable/ic_group_gray"-->
+<!--                android:tint="@color/icColor"-->
+<!--                tools:ignore="ContentDescription" />-->
 
-            <TextView
-                android:id="@+id/menu_body_groupText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_toStartOf="@id/menu_body_groupCurrent"
-                android:layout_toEndOf="@id/menu_body_groupIcon"
-                android:fontFamily="@font/sfregular"
-                android:text="@string/group_number"
-                android:textSize="16sp" />
+<!--            <TextView-->
+<!--                android:id="@+id/menu_body_groupText"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_centerInParent="true"-->
+<!--                android:layout_marginStart="15dp"-->
+<!--                android:layout_marginEnd="15dp"-->
+<!--                android:layout_toStartOf="@id/menu_body_groupCurrent"-->
+<!--                android:layout_toEndOf="@id/menu_body_groupIcon"-->
+<!--                android:fontFamily="@font/sfregular"-->
+<!--                android:text="@string/group_number"-->
+<!--                android:textSize="16sp" />-->
 
-            <TextView
-                android:id="@+id/menu_body_groupCurrent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerInParent="true"
-                android:layout_marginEnd="15dp"
-                android:fontFamily="@font/sfregular"
-                android:textSize="16sp" />
+<!--            <TextView-->
+<!--                android:id="@+id/menu_body_groupCurrent"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_centerInParent="true"-->
+<!--                android:layout_marginEnd="15dp"-->
+<!--                android:fontFamily="@font/sfregular"-->
+<!--                android:textSize="16sp" />-->
 
-        </RelativeLayout>
+<!--        </RelativeLayout>-->
 
         <RelativeLayout
             android:id="@+id/menu_body_teachersContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/menu_body_groupContent">
-
+            android:layout_height="wrap_content" >
             <ImageView
                 android:id="@+id/menu_body_teachersIcon"
                 android:layout_width="35dp"

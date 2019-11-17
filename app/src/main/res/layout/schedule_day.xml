@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,10 +9,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <TextView
-        android:id="@+id/schedule_day_text"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/schedule_day_no_lessons"
-        android:textAlignment="center" />
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/schedule_day_image"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_art"
+            android:tint="@color/icColor"
+            tools:ignore="ContentDescription" />
+    </RelativeLayout>
 </FrameLayout>

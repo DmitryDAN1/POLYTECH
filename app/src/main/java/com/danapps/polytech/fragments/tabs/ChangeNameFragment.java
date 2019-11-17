@@ -4,15 +4,14 @@ package com.danapps.polytech.fragments.tabs;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import com.danapps.polytech.MainActivity;
 import com.danapps.polytech.R;
@@ -46,7 +45,10 @@ public class ChangeNameFragment extends Fragment {
                 sPref.edit().putString("UserName", nameET.getText().toString())
                             .putString("UserSurname", surnameET.getText().toString())
                             .apply();
-                DatabaseReference myRef = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("UserInfo");
+                DatabaseReference myRef = FirebaseDatabase.getInstance()
+                        .getReference("Users")
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .child("UserInfo");
                 myRef.child("UserName").setValue(nameET.getText().toString());
                 myRef.child("UserSurname").setValue(surnameET.getText().toString());
                 ((MainActivity) getActivity()).loadFragment(4);

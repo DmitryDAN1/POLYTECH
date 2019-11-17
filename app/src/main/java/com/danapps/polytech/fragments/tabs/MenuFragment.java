@@ -38,8 +38,8 @@ public class MenuFragment extends Fragment {
                 ((MainActivity) getActivity()).loadFragment(7);
             else {
                 new AlertDialog.Builder(getContext())
-                    .setTitle(getString(R.string.exit_from_app_mainText))
-                    .setMessage("Вы уверены, что хотите выйти из своего аккаунта?")
+                    .setTitle(getString(R.string.exit_profile))
+                    .setMessage(getString(R.string.exit_profile_text))
                     .setNegativeButton(getString(R.string.No), (dialog, which) -> Log.e("Menu", "Exit NO"))
                     .setPositiveButton(getString(R.string.Yes), (dialog, which) -> {
                         mAuth.signOut();
@@ -53,17 +53,11 @@ public class MenuFragment extends Fragment {
             }
         });
 
-        view.findViewById(R.id.menu_body_groupContent).setOnClickListener(v ->
-                ((MainActivity) getActivity()).loadFragment(6));
-
         view.findViewById(R.id.menu_body_teachersContent).setOnClickListener(v ->
                 ((MainActivity) getActivity()).loadFragment(3));
 
         view.findViewById(R.id.menu_body_linksContent).setOnClickListener(v ->
                 ((MainActivity) getActivity()).loadFragment(18));
-
-        ((TextView) view.findViewById(R.id.menu_body_groupCurrent)).setText(sPref.getString("UserGroupName", "Группа не выбрана"));
-        ((TextView) view.findViewById(R.id.menu_headerGroup)).setText(sPref.getString("UserGroupName", "Группа не выбрана"));
 
         UpdateName(view, sPref);
 
@@ -89,9 +83,9 @@ public class MenuFragment extends Fragment {
                 ((TextView) view.findViewById(R.id.menu_headerUserNameTV))
                         .setText(sPref.getString("UserName", "") + " " + sPref.getString("UserSurname", ""));
             else
-                ((TextView) view.findViewById(R.id.menu_headerUserNameTV)).setText("Выберети себе имя!");
+                ((TextView) view.findViewById(R.id.menu_headerUserNameTV)).setText(R.string.choose_name);
         else
-            ((TextView) view.findViewById(R.id.menu_headerUserNameTV)).setText("Необходимо авторизоваться!");
+            ((TextView) view.findViewById(R.id.menu_headerUserNameTV)).setText(R.string.need_authorize);
 
     }
 }

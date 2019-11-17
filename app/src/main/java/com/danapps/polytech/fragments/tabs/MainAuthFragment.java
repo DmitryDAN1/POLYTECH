@@ -3,10 +3,6 @@ package com.danapps.polytech.fragments.tabs;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +13,11 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.danapps.polytech.R;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import com.danapps.polytech.MainActivity;
+import com.danapps.polytech.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -79,20 +78,26 @@ public class MainAuthFragment extends Fragment {
                     regBtn.setClickable(true);
                     resetPassBtn.setClickable(true);
                 }).addOnSuccessListener(authResult -> {
-                    DatabaseReference myRef = FirebaseDatabase.getInstance().getReference(authResult.getUser().getUid());
-                    myRef.child("UserInfo").child("UserLogin").setValue(emailET.getText().toString());
-                    myRef.child("UserInfo").child("UserPass").setValue(passET.getText().toString());
-                    sPref.edit().putString("UserLogin", emailET.getText().toString())
-                                .putString("UserPass", passET.getText().toString()).apply();
+                    DatabaseReference myRef = FirebaseDatabase
+                            .getInstance()
+                            .getReference("Users")
+                            .child(authResult.getUser().getUid())
+                            .child("UserInfo");
+                    myRef.child("UserLogin").setValue(emailET.getText().toString());
+                    myRef.child("UserPass").setValue(passET.getText().toString());
+                    sPref.edit()
+                            .putString("UserLogin", emailET.getText().toString())
+                            .putString("UserPass", passET.getText().toString()).apply();
 
-                    if (sPref.getInt("UserGroupId", 0) == 0) {
-                        myRef.child("UserInfo").addListenerForSingleValueEvent(new ValueEventListener() {
+
+                    if (sPref.getString("UserName", "").equals("")) {
+                        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                if (dataSnapshot.child("UserGroupId").getValue() != null)
-                                    sPref.edit().putInt("UserGroupId", Integer.valueOf(dataSnapshot.child("UserGroupId").getValue().toString())).apply();
-                                if (dataSnapshot.child("UserGroupName").getValue() != null)
-                                    sPref.edit().putString("UserGroupName", dataSnapshot.child("UserGroupName").getValue().toString()).apply();
+                                if (dataSnapshot.child("UserName").getValue() != null)
+                                    sPref.edit().putString("UserName", dataSnapshot.child("UserName").getValue().toString()).apply();
+                                if (dataSnapshot.child("UserSurname").getValue() != null)
+                                    sPref.edit().putString("UserSurname", dataSnapshot.child("UserSurname").getValue().toString()).apply();
 
                                 progressBar.setVisibility(View.INVISIBLE);
                                 logBTN.setClickable(true);
@@ -108,40 +113,12 @@ public class MainAuthFragment extends Fragment {
                             }
                         });
                     } else {
-                        myRef.child("UserInfo").child("UserGroupId").setValue(sPref.getInt("UserGroupId", 0));
-                        myRef.child("UserInfo").child("UserGroupName").setValue(sPref.getString("UserGroupName", "0"))
-                                .addOnSuccessListener(aVoid -> {
-                                    if (sPref.getString("UserName", "").equals("")) {
-                                        myRef.child("UserInfo").addListenerForSingleValueEvent(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                                if (dataSnapshot.child("UserName").getValue() != null)
-                                                    sPref.edit().putString("UserName", dataSnapshot.child("UserName").getValue().toString()).apply();
-                                                if (dataSnapshot.child("UserSurname").getValue() != null)
-                                                    sPref.edit().putString("UserSurname", dataSnapshot.child("UserSurname").getValue().toString()).apply();
-
-                                                progressBar.setVisibility(View.INVISIBLE);
-                                                logBTN.setClickable(true);
-                                                backBtn.setClickable(true);
-                                                regBtn.setClickable(true);
-                                                resetPassBtn.setClickable(true);
-                                                ((MainActivity) getActivity()).loadFragment(4);
-                                            }
-
-                                            @Override
-                                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                            }
-                                        });
-                                    } else {
-                                        progressBar.setVisibility(View.INVISIBLE);
-                                        logBTN.setClickable(true);
-                                        backBtn.setClickable(true);
-                                        regBtn.setClickable(true);
-                                        resetPassBtn.setClickable(true);
-                                        ((MainActivity) getActivity()).loadFragment(4);
-                                    }
-                                });
+                        progressBar.setVisibility(View.INVISIBLE);
+                        logBTN.setClickable(true);
+                        backBtn.setClickable(true);
+                        regBtn.setClickable(true);
+                        resetPassBtn.setClickable(true);
+                        ((MainActivity) getActivity()).loadFragment(4);
                     }
                 });
             }

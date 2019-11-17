@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primaryBackgroundColor"
     tools:context=".fragments.tabs.AboutFragment">
 
     <RelativeLayout
@@ -43,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:background="@android:color/white"
+                android:background="@color/secondaryBackgroundColor"
                 app:cardCornerRadius="5dp">
 
                 <RelativeLayout
@@ -55,6 +56,7 @@
                         android:id="@+id/about_contactIcon"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
+                        android:tint="@color/icColor"
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
@@ -72,6 +74,7 @@
                         android:layout_marginEnd="15dp"
                         android:layout_toEndOf="@id/about_contactIcon"
                         android:fontFamily="@font/sfregular"
+                        android:textColor="@color/textColor"
                         android:text="@string/about_contact"
                         android:textSize="16sp" />
 
@@ -86,7 +89,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:background="@android:color/white"
+                android:background="@color/secondaryBackgroundColor"
                 app:cardCornerRadius="5dp">
 
                 <RelativeLayout
@@ -103,6 +106,7 @@
                         android:layout_marginBottom="5dp"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
+                        android:tint="@color/icColor"
                         android:src="@drawable/ic_star_gray"
                         tools:ignore="ContentDescription" />
 
@@ -113,6 +117,7 @@
                         android:layout_centerInParent="true"
                         android:layout_marginStart="15dp"
                         android:layout_marginEnd="15dp"
+                        android:textColor="@color/textColor"
                         android:layout_toEndOf="@id/about_rateIcon"
                         android:fontFamily="@font/sfregular"
                         android:text="@string/about_mark"
@@ -130,7 +135,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
-                android:background="@android:color/white"
+                android:background="@color/secondaryBackgroundColor"
                 app:cardCornerRadius="5dp">
 
                 <RelativeLayout
@@ -147,6 +152,7 @@
                         android:layout_marginBottom="5dp"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
+                        android:tint="@color/icColor"
                         android:src="@drawable/ic_copyright_gray"
                         tools:ignore="ContentDescription" />
 
@@ -158,6 +164,7 @@
                         android:layout_marginStart="15dp"
                         android:layout_marginEnd="15dp"
                         android:layout_toEndOf="@id/about_licenseIcon"
+                        android:textColor="@color/textColor"
                         android:fontFamily="@font/sfregular"
                         android:text="@string/about_copyright"
                         android:textSize="16sp" />
@@ -175,8 +182,9 @@
             android:fontFamily="@font/sfregular"
             android:gravity="center"
             android:paddingTop="25dp"
+            android:textColor="@color/textColor"
             android:paddingBottom="10dp"
-            android:text="@string/app_version"
+            android:text="@string/app_version_text"
             android:textSize="16sp" />
 
     </RelativeLayout>

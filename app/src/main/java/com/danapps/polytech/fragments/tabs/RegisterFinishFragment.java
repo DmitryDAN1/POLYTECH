@@ -4,15 +4,14 @@ package com.danapps.polytech.fragments.tabs;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.danapps.polytech.R;
+import androidx.fragment.app.Fragment;
+
 import com.danapps.polytech.MainActivity;
+import com.danapps.polytech.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -34,10 +33,15 @@ public class RegisterFinishFragment extends Fragment {
             .addOnFailureListener( e ->
                 Snackbar.make(view, getString(R.string.reg_finish_error), Snackbar.LENGTH_LONG).show()
             ).addOnSuccessListener(authResult -> {
-            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference(mAuth.getCurrentUser().getUid()).child("UserInfo");
+            DatabaseReference myRef = FirebaseDatabase.getInstance()
+                    .getReference("Users")
+                    .child(mAuth.getCurrentUser().getUid())
+                    .child("UserInfo");
+
             myRef.child("UserLogin").setValue(tPref.getString("TimedEmail", "0"));
             myRef.child("UserPass").setValue(tPref.getString("TimedPass", "0"));
             mAuth.signOut();
+
             view.findViewById(R.id.regFinish_progressbar).setVisibility(View.INVISIBLE);
             view.findViewById(R.id.regFinish_mainRL).setVisibility(View.VISIBLE);
             view.findViewById(R.id.reg_finish_nextBTN).setVisibility(View.VISIBLE);

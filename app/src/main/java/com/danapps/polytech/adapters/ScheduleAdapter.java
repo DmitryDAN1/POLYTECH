@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -73,12 +73,12 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
             ScheduleDayAdapter.StructuredDay day = structuredDays.get(position);
             if(day != null) {
                 ((ScheduleDayAdapter) holder.itemsRecycler.getAdapter()).setStructuredDay(day);
-                holder.text.setVisibility(View.GONE);
+                holder.image.setVisibility(View.GONE);
                 return;
             }
         }
         ((ScheduleDayAdapter) holder.itemsRecycler.getAdapter()).setStructuredDay(null);
-        holder.text.setVisibility(View.VISIBLE);
+        holder.image.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -88,13 +88,13 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
 
     class ViewHolder extends RecyclerView.ViewHolder {
         final RecyclerView itemsRecycler;
-        final TextView text;
+        final ImageView image;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             itemsRecycler = itemView.findViewById(R.id.schedule_day_items_recycler);
-            text = itemView.findViewById(R.id.schedule_day_text);
+            image = itemView.findViewById(R.id.schedule_day_image);
         }
     }
 }

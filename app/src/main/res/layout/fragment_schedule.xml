@@ -80,7 +80,8 @@
         android:id="@+id/schedule_progress_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="invisible"
+        android:background="@color/primaryBackgroundColor">
 
         <ProgressBar
             android:id="@+id/schedule_progress_bar"

@@ -1,7 +1,11 @@
 package com.danapps.polytech;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +17,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.danapps.polytech.fragments.tabs.AboutFragment;
 import com.danapps.polytech.fragments.tabs.ChangeEmailFragment;
@@ -42,6 +47,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.List;
 
 public class MainActivity extends FragmentActivity {
 
@@ -78,23 +85,34 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences tPref = getSharedPreferences("TimedInfo", MODE_PRIVATE);
         SharedPreferences sPref = getSharedPreferences("UserInfo", MODE_PRIVATE);
         SharedPreferences gPref = getSharedPreferences("GroupsInfo", MODE_PRIVATE);
+        tPref.edit().clear().apply();
+//        sPref.edit().clear().apply();
+//        gPref.edit().clear().apply();
+//        FirebaseAuth.getInstance().signOut();
+        sPref.edit().putInt("AppVersion", getResources().getInteger(R.integer.app_version)).apply();
+        Log.e("TimedInfo:", tPref.getAll().toString());
+        Log.e("UserInfo:", sPref.getAll().toString());
+        Log.e("GroupsInfo:", gPref.getAll().toString());
+
         @SuppressLint("InflateParams")
         View view = LayoutInflater.from(getBaseContext()).inflate(R.layout.activity_main, null, true);
         setContentView(view);
+        checkUpdate(sPref);
+
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);
-        SharedPreferences tPref = getSharedPreferences("TimedInfo", MODE_PRIVATE);
-        tPref.edit().clear().apply();
-//        sPref.edit().clear().apply();
-//        mAuth.signOut();
-        if (gPref.getInt("GroupsCount", 0) != 0)
-            loadFragment(2);
-        else
-            loadFragment(6);
         bottomNavigationView.setSelectedItemId(R.id.schedule_item);
-        Log.e("TimedInfo:", tPref.getAll().toString());
-        Log.e("UserInfo:", sPref.getAll().toString());
+
+        if (gPref.getInt("GroupsCount", 0) != 0) {
+            loadFragment(2);
+        }
+        else {
+            loadFragment(6);
+        }
+
 
         if (mAuth.getCurrentUser() != null) {
             Log.e("FirebaseAuth", mAuth.getCurrentUser().getEmail());
@@ -106,11 +124,6 @@ public class MainActivity extends FragmentActivity {
             myRef.child("UserInfo").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child("UserGroupId").getValue() != null)
-                        sPref.edit().putInt("UserGroupId", Integer.valueOf(dataSnapshot.child("UserGroupId").getValue().toString())).apply();
-                    if (dataSnapshot.child("UserGroupName").getValue() != null)
-                        sPref.edit().putString("UserGroupName", dataSnapshot.child("UserGroupName").getValue().toString()).apply();
-
                     if (dataSnapshot.child("UserName").getValue() != null)
                         sPref.edit().putString("UserName", dataSnapshot.child("UserName").getValue().toString()).apply();
                     if (dataSnapshot.child("UserSurname").getValue() != null)
@@ -246,7 +259,56 @@ public class MainActivity extends FragmentActivity {
         if (id == 5)
             fm.beginTransaction().replace(R.id.frame_layout, new ChangeGroupFragment()).commit();
         else
-            fm.beginTransaction().replace(R.id.frame_layout, fragments[currentFragment], String.valueOf(currentFragment)).commit();
+            fm.beginTransaction()
+                    .replace(R.id.frame_layout, fragments[currentFragment], String.valueOf(currentFragment))
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit();
         Log.e("Fragment", "loadFragment:" + id);
+    }
+
+    private void checkUpdate(SharedPreferences sPref){
+        DatabaseReference myRef = database.getReference("AppInfo");
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (Integer.valueOf(dataSnapshot.child("AppVersion").getValue().toString()) > sPref.getInt("AppVersion", 0)) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+                    builder.setTitle("Доступно новое обновление!")
+                            .setMessage(dataSnapshot.child("AppUpdates").getValue().toString().replaceAll("\\n", "\n"))
+                            .setPositiveButton("Обновить", (dialog, which) ->
+                                    openLink(MainActivity.this, "https://play.google.com/store/apps/details?id=com.danapps.polytech"))
+                            .setNegativeButton("Позже", (dialog, which) -> dialog.dismiss())
+                            .create()
+                            .show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void openLink(Activity activity, String url) {
+        final String VK_APP_PACKAGE_ID = getString(R.string.VK_APP_PACKAGE_ID);
+
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        List<ResolveInfo> resInfo = activity.getPackageManager().queryIntentActivities(intent, 0);
+
+        if (resInfo.isEmpty())
+            return;
+
+        for (ResolveInfo info: resInfo) {
+            if (info.activityInfo == null)
+                continue;
+            if (VK_APP_PACKAGE_ID.equals(info.activityInfo.packageName)) {
+                intent.setPackage(info.activityInfo.packageName);
+                break;
+            }
+        }
+
+        activity.startActivity(intent);
     }
 }

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">PolyLook</string>
-    <string name="app_version">Версия приложения: 1.0.0</string>
+    <string name="app_version_text">Версия приложения: 1.0.1</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="notifications">Уведомления</string>
     <string name="group_number">Номер группы</string>
@@ -153,6 +153,11 @@
     <string name="images">Изображения</string>
     <string name="enter_group_number">Введите номер группы</string>
     <string name="saved_groups">Сохранённые группы</string>
+    <string name="VK_APP_PACKAGE_ID">com.vkontakte.android</string>
+    <string name="choose_name">Выберети себе имя!</string>
+    <string name="need_authorize">Необходимо авторизоваться!</string>
+    <string name="exit_profile">Выход из аккаунта</string>
+    <string name="exit_profile_text">Вы уверены, что хотите выйти из своего аккаунта?</string>
     <string-array name="calendar_short_weekdays">
         <item>Пн</item>
         <item>Вт</item>
